@@ -166,7 +166,7 @@
             var telemetry = (TraceTelemetry)this.adapterHelper.Channel.SentItems.FirstOrDefault();
             Assert.IsNotNull(telemetry, "Didn't get the log event from the channel");
 
-            Assert.AreNotEqual((default(DateTimeOffset)), telemetry.Timestamp);
+            Assert.AreNotEqual(default, telemetry.Timestamp);
         }
 
         [TestMethod]
