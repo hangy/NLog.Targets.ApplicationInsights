@@ -1,0 +1,38 @@
+<Project ToolsVersion="15.0" Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>netstandard2.0</TargetFrameworks>
+    <RootNamespace>hangy.NLog.Targets.ApplicationInsights</RootNamespace>
+    <AssemblyName>hangy.NLog.Targets.ApplicationInsights</AssemblyName>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <!--Nupkg properties-->
+    <PackageId>hangy.NLog.Targets.ApplicationInsights</PackageId>
+    <Title>Application Insights NLog Target</Title>
+    <Description>Application Insights NLog Target is a custom target allowing you to send NLog log messages to Application Insights. Application Insights will collect your logs from multiple sources and provide rich powerful search capabilities. Privacy statement: https://go.microsoft.com/fwlink/?LinkId=512156</Description>
+    <PackageTags>Analytics Azure ApplicationInsights Telemetry Monitoring SDK NLog </PackageTags>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="NLog" />
+    <PackageReference Include="Microsoft.Diagnostics.Tracing.EventRegister" >
+      <PrivateAssets>All</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.ApplicationInsights" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="app.config.install.xdt" />
+    <Content Include="app.config.uninstall.xdt" />
+    <Content Include="web.config.install.xdt" />
+    <Content Include="web.config.uninstall.xdt" />
+  </ItemGroup>
+
+  <Import Project="..\CommonShared\CommonShared.projitems" Label="Shared" />
+
+  <ItemGroup>
+    <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleToAttribute">
+     <_Parameter1>hangy.NLog.Targets.ApplicationInsights.Tests</_Parameter1>
+    </AssemblyAttribute>
+  </ItemGroup>
+</Project>

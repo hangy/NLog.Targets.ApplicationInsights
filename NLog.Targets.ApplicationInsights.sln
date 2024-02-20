@@ -1,0 +1,63 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{9DA0DCA0-DD1B-4556-8D80-53231990A3CA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{1C7E8755-DDFD-4BB8-8B51-9DC548ADABD0}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Common.Logging", "src\CommonShared\Common.Logging.shproj", "{587B624B-8C64-498E-93D7-A2D2ABC17EAB}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NLogTarget", "src\NLogTarget\NLogTarget.csproj", "{1F0A103A-4E10-4DF5-9655-8BF0F7C7BC01}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "TestFramework.Shared.Logging", "test\CommonTestShared\TestFramework.Shared.Logging.shproj", "{3B9AB7FA-562D-4E4E-86E3-3348426BC0D9}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "TestFramework.Shared.Logging2", "test\Shared\TestFramework.Shared.Logging2.shproj", "{FA775630-7917-4A99-A78C-FBA46EDF685C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NLogTarget.Tests", "test\NLogTarget.Tests\NLogTarget.Tests.csproj", "{7EB53F3F-3D0B-4424-8791-58D24858B85E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{ADA31CB1-ACB9-4CF5-AC57-F3DB1331133A}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+		Directory.Build.props = Directory.Build.props
+		Directory.Packages.props = Directory.Packages.props
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1F0A103A-4E10-4DF5-9655-8BF0F7C7BC01}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1F0A103A-4E10-4DF5-9655-8BF0F7C7BC01}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1F0A103A-4E10-4DF5-9655-8BF0F7C7BC01}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1F0A103A-4E10-4DF5-9655-8BF0F7C7BC01}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7EB53F3F-3D0B-4424-8791-58D24858B85E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7EB53F3F-3D0B-4424-8791-58D24858B85E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7EB53F3F-3D0B-4424-8791-58D24858B85E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7EB53F3F-3D0B-4424-8791-58D24858B85E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{587B624B-8C64-498E-93D7-A2D2ABC17EAB} = {9DA0DCA0-DD1B-4556-8D80-53231990A3CA}
+		{1F0A103A-4E10-4DF5-9655-8BF0F7C7BC01} = {9DA0DCA0-DD1B-4556-8D80-53231990A3CA}
+		{3B9AB7FA-562D-4E4E-86E3-3348426BC0D9} = {1C7E8755-DDFD-4BB8-8B51-9DC548ADABD0}
+		{FA775630-7917-4A99-A78C-FBA46EDF685C} = {1C7E8755-DDFD-4BB8-8B51-9DC548ADABD0}
+		{7EB53F3F-3D0B-4424-8791-58D24858B85E} = {1C7E8755-DDFD-4BB8-8B51-9DC548ADABD0}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {EAB058AB-0C23-41AE-AA00-B64232F565BA}
+	EndGlobalSection
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		src\CommonShared\CommonShared.projitems*{1f0a103a-4e10-4df5-9655-8bf0f7c7bc01}*SharedItemsImports = 5
+		test\CommonTestShared\CommonTestShared.projitems*{3b9ab7fa-562d-4e4e-86e3-3348426bc0d9}*SharedItemsImports = 13
+		src\CommonShared\CommonShared.projitems*{587b624b-8c64-498e-93d7-a2d2abc17eab}*SharedItemsImports = 13
+		test\CommonTestShared\CommonTestShared.projitems*{7eb53f3f-3d0b-4424-8791-58d24858b85e}*SharedItemsImports = 5
+		test\Shared\Adapters.Shared.Tests.projitems*{7eb53f3f-3d0b-4424-8791-58d24858b85e}*SharedItemsImports = 5
+		test\Shared\Adapters.Shared.Tests.projitems*{fa775630-7917-4a99-a78c-fba46edf685c}*SharedItemsImports = 13
+	EndGlobalSection
+EndGlobal
