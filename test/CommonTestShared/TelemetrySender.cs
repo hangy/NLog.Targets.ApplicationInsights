@@ -11,27 +11,29 @@
 
     internal static class TelemetrySender
     {
+        private static readonly HttpClient client = new();
+
         /// <summary>
         /// Upload item to Validate endpoint.
         /// </summary>
         /// <param name="telemetryItem">Telemetry item to validate.</param>
         /// <returns>Empty string if no errors found. Response if validation failed.</returns>
-        public static string ValidateEndpointSend(ITelemetry telemetryItem)
+        public static async Task<string?> ValidateEndpointSend(ITelemetry telemetryItem)
         {
             telemetryItem.Context.InstrumentationKey = "fafa4b10-03d3-4bb0-98f4-364f0bdf5df8";
 
-            string response = null;
+            string? response = null;
 
             string json = Encoding.UTF8.GetString(JsonSerializer.Serialize(new List<ITelemetry> { telemetryItem }, false));
 
-            HttpClient client = new HttpClient();
-            var result = client.PostAsync(
+            using HttpContent content = new ByteArrayContent(Encoding.UTF8.GetBytes(json));
+            var result = await client.PostAsync(
                 new Uri("https://dc.services.visualstudio.com/v2/validate"),
-                new ByteArrayContent(Encoding.UTF8.GetBytes(json))).GetAwaiter().GetResult();
+                content).ConfigureAwait(false);
 
             if (result.StatusCode != HttpStatusCode.OK)
             {
-                response = result.Content.ReadAsStringAsync().GetAwaiter().GetResult();
+                response = await result.Content.ReadAsStringAsync().ConfigureAwait(false);
                 Trace.WriteLine(response);
             }
 

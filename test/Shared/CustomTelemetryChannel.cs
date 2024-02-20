@@ -15,32 +15,33 @@ namespace Microsoft.ApplicationInsights
 
     internal sealed class CustomTelemetryChannel : ITelemetryChannel
     {
-        private EventWaitHandle waitHandle;
+        private readonly EventWaitHandle waitHandle;
+
+        private readonly object mutex = new();
 
         public CustomTelemetryChannel()
         {
             this.waitHandle = new AutoResetEvent(false);
-#if NET452
+#if NET462 || NET472 || NET48
             this.SentItems = new ITelemetry[0];
 #else
-            this.SentItems = Array.Empty<ITelemetry>();
+            this.SentItems = [];
 #endif
         }
 
         public bool? DeveloperMode { get; set; }
 
-        public string EndpointAddress { get; set; }
+        public string EndpointAddress { get; set; } = "https://example.com/telemetry/";
 
         public ITelemetry[] SentItems { get; private set; }
 
         public void Send(ITelemetry item)
         {
-            lock (this)
+            lock (this.mutex)
             {
                 ITelemetry[] current = this.SentItems;
-                List<ITelemetry> temp = new List<ITelemetry>(current);
-                temp.Add(item);
-                this.SentItems = temp.ToArray();
+                List<ITelemetry> temp = [.. current, item];
+                this.SentItems = [.. temp];
                 this.waitHandle.Set();
             }
         }
@@ -60,7 +61,7 @@ namespace Microsoft.ApplicationInsights
                     }
                     else
                     {
-                        lock (this)
+                        lock (this.mutex)
                         {
                             tcs.SetResult(this.SentItems.Length);
                         }
@@ -86,12 +87,12 @@ namespace Microsoft.ApplicationInsights
 
         public CustomTelemetryChannel Reset()
         {
-            lock (this)
+            lock (this.mutex)
             {
 #if NET452
                 this.SentItems = new ITelemetry[0];
 #else
-                this.SentItems = Array.Empty<ITelemetry>();
+                this.SentItems = [];
 #endif
             }
 

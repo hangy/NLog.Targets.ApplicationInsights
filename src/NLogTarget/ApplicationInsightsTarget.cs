@@ -29,7 +29,7 @@ namespace Microsoft.ApplicationInsights.NLogTarget
     [Target("ApplicationInsightsTarget")]
     public sealed class ApplicationInsightsTarget : TargetWithLayout
     {
-        private TelemetryClient telemetryClient;
+        private TelemetryClient? telemetryClient;
         private DateTime lastLogEventTime;
         private NLog.Layouts.Layout instrumentationKeyLayout = string.Empty;
         private NLog.Layouts.Layout connectionStringLayout = string.Empty;
@@ -40,13 +40,12 @@ namespace Microsoft.ApplicationInsights.NLogTarget
         public ApplicationInsightsTarget()
         {
             this.Layout = @"${message}";
-            this.OptimizeBufferReuse = true;
         }
 
         /// <summary>
         /// Gets or sets the Application Insights instrumentationKey for your application. 
         /// </summary>
-        public string InstrumentationKey
+        public string? InstrumentationKey
         {
             get => (this.instrumentationKeyLayout as NLog.Layouts.SimpleLayout)?.Text ?? null;
             set => this.instrumentationKeyLayout = value ?? string.Empty;
@@ -55,7 +54,7 @@ namespace Microsoft.ApplicationInsights.NLogTarget
         /// <summary>
         /// Gets or sets the Application Insights connectionstring for your application.
         /// </summary>
-        public string ConnectionString
+        public string? ConnectionString
         {
             get => (this.connectionStringLayout as NLog.Layouts.SimpleLayout)?.Text ?? null;
             set => this.connectionStringLayout = value ?? string.Empty;
@@ -70,10 +69,7 @@ namespace Microsoft.ApplicationInsights.NLogTarget
         /// <summary>
         /// Gets the logging controller we will be using.
         /// </summary>
-        internal TelemetryClient TelemetryClient
-        {
-            get { return this.telemetryClient; }
-        }
+        internal TelemetryClient? TelemetryClient => this.telemetryClient;
 
         internal void BuildPropertyBag(LogEventInfo logEvent, ITelemetry trace)
         {
@@ -82,13 +78,18 @@ namespace Microsoft.ApplicationInsights.NLogTarget
 
             IDictionary<string, string> propertyBag;
 
-            if (trace is ExceptionTelemetry)
+            if (trace is ExceptionTelemetry exceptionTelemetry)
             {
-                propertyBag = ((ExceptionTelemetry)trace).Properties;
+                propertyBag = exceptionTelemetry.Properties;
+            }
+            else if (trace is TraceTelemetry traceTelemetry)
+            {
+                propertyBag = traceTelemetry.Properties;
             }
             else
             {
-                propertyBag = ((TraceTelemetry)trace).Properties;
+                int initialSize = this.ContextProperties.Count + (logEvent.HasProperties ? logEvent.Properties.Count : 0) + 3;
+                propertyBag = new Dictionary<string, string>(initialSize);
             }
 
             if (!string.IsNullOrEmpty(logEvent.LoggerName))
@@ -130,7 +131,7 @@ namespace Microsoft.ApplicationInsights.NLogTarget
 #pragma warning restore CS0618 // Type or member is obsolete
 
             string connectionString = this.connectionStringLayout.Render(LogEventInfo.CreateNullEvent());
-           
+
             // Check if nlog application insights target has connectionstring in config file then
             // configure telemetryclient with the connectionstring otherwise using instrumentationkey.
             if (!string.IsNullOrWhiteSpace(connectionString))
@@ -185,7 +186,7 @@ namespace Microsoft.ApplicationInsights.NLogTarget
 
             try
             {
-                this.TelemetryClient.Flush();
+                this.telemetryClient?.Flush();
                 if (DateTime.UtcNow.AddSeconds(-30) > this.lastLogEventTime)
                 {
                     // Nothing has been written, so nothing to wait for
@@ -225,9 +226,9 @@ namespace Microsoft.ApplicationInsights.NLogTarget
             }
 
             string value = Convert.ToString(valueObj, CultureInfo.InvariantCulture);
-            if (propertyBag.ContainsKey(key))
+            if (propertyBag.TryGetValue(key, out string propertyValue))
             {
-                if (string.Equals(value, propertyBag[key], StringComparison.Ordinal))
+                if (string.Equals(value, propertyValue, StringComparison.Ordinal))
                 {
                     return;
                 }
@@ -280,7 +281,7 @@ namespace Microsoft.ApplicationInsights.NLogTarget
             var exceptionTelemetry = new ExceptionTelemetry(logEvent.Exception)
             {
                 SeverityLevel = GetSeverityLevel(logEvent.Level),
-                Message = $"{logEvent.Exception.GetType().ToString()}: {logEvent.Exception.Message}",
+                Message = $"{logEvent.Exception.GetType()}: {logEvent.Exception.Message}",
             };
 
             string logMessage = this.RenderLogEvent(this.Layout, logEvent);
@@ -290,7 +291,7 @@ namespace Microsoft.ApplicationInsights.NLogTarget
             }
 
             this.BuildPropertyBag(logEvent, exceptionTelemetry);
-            this.telemetryClient.Track(exceptionTelemetry);
+            this.telemetryClient?.Track(exceptionTelemetry);
         }
 
         private void SendTrace(LogEventInfo logEvent)
@@ -302,7 +303,7 @@ namespace Microsoft.ApplicationInsights.NLogTarget
             };
 
             this.BuildPropertyBag(logEvent, trace);
-            this.telemetryClient.Track(trace);
+            this.telemetryClient?.Track(trace);
         }
     }
 }

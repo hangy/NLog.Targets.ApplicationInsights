@@ -21,12 +21,12 @@ namespace Microsoft.ApplicationInsights.Tracing.Tests
 
         public string ConnectionString { get; }
 
-#if NET452 || NET46
-        private static readonly string ApplicationInsightsConfigFilePath =
+#if NET462 || NET472 || NET48
+        private static readonly string applicationInsightsConfigFilePath =
             Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "ApplicationInsights.config");
 #else
-        private static readonly string ApplicationInsightsConfigFilePath =
-            Path.Combine(Path.GetDirectoryName(typeof(AdapterHelper).GetTypeInfo().Assembly.Location), "ApplicationInsights.config");
+        private static readonly string applicationInsightsConfigFilePath =
+            Path.Combine(Path.GetDirectoryName(typeof(AdapterHelper).GetTypeInfo().Assembly.Location)!, "ApplicationInsights.config");
 #endif
 
         public AdapterHelper(string instrumentationKey = "F8474271-D231-45B6-8DD4-D344C309AE69", 
@@ -43,16 +43,21 @@ namespace Microsoft.ApplicationInsights.Tracing.Tests
                                      </ApplicationInsights>",
                                      instrumentationKey, connectionString);
 
-            File.WriteAllText(ApplicationInsightsConfigFilePath, configuration);
+            File.WriteAllText(applicationInsightsConfigFilePath, configuration);
             this.Channel = new CustomTelemetryChannel();
         }
 
         internal CustomTelemetryChannel Channel { get; private set; }
 
-        public static void ValidateChannel(AdapterHelper adapterHelper, string instrumentationKey, int expectedTraceCount)
+        public static void ValidateChannel(AdapterHelper? adapterHelper, string instrumentationKey, int expectedTraceCount)
         {
+            if (adapterHelper == null)
+            {
+                throw new ArgumentNullException(nameof(adapterHelper));
+            }
+
             // Validate that the channel received traces
-            ITelemetry[] sentItems = null;
+            ITelemetry[]? sentItems = null;
             int totalMillisecondsToWait = (int)TimeSpan.FromMinutes(1).TotalMilliseconds;
             const int IterationMilliseconds = 250;
 
@@ -89,9 +94,9 @@ namespace Microsoft.ApplicationInsights.Tracing.Tests
             {
                 this.Channel.Dispose();
 
-                if (File.Exists(ApplicationInsightsConfigFilePath))
+                if (File.Exists(applicationInsightsConfigFilePath))
                 {
-                    File.Delete(ApplicationInsightsConfigFilePath);
+                    File.Delete(applicationInsightsConfigFilePath);
                 }
             }
         }
