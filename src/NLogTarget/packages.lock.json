@@ -28,9 +28,9 @@
       },
       "NLog": {
         "type": "Direct",
-        "requested": "[4.6.8, )",
-        "resolved": "4.6.8",
-        "contentHash": "LKB0uN5naOTxdNz++iapk6arNYv2asE8FPRBAmQZ1fe8y8C1Zm6sldh/w9TP/w5s7FGK8s0x6ny0og5ytFK1oQ=="
+        "requested": "[5.2.8, )",
+        "resolved": "5.2.8",
+        "contentHash": "jAIELkWBs1CXFPp986KSGpDFQZHCFccO+LMbKBTTNm42KifaI1mYzFMFQQfuGmGMTrCx0TFPhDjHDE4cLAZWiQ=="
       },
       "Microsoft.NETCore.Platforms": {
         "type": "Transitive",
