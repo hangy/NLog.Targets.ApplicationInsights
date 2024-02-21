@@ -13,6 +13,7 @@
 
     using NLog;
     using NLog.Config;
+    using NLog.Targets;
 
     [TestClass]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1001:TypesThatOwnDisposableFieldsShouldBeDisposable", Justification = "Disposing the object on the TestCleanup method")]
