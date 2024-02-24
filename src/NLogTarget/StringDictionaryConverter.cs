@@ -10,61 +10,50 @@ namespace Microsoft.ApplicationInsights.NLogTarget
     using System;
     using System.Collections;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Runtime.InteropServices;
-    using System.Text;
-    using System.Threading.Tasks;
 
     /// <summary>
     /// Converts from NLog Object-properties to ApplicationInsight String-properties
     /// </summary>
-    class StringDictionaryConverter : IDictionary<string, object>
+    class StringDictionaryConverter(IDictionary<string, string> wrapped) : IDictionary<string, object>
     {
-        private readonly IDictionary<string, string> _wrapped;
+        public object this[string key] { get => wrapped[key]; set => wrapped[key] = SafeValueConverter(value); }
 
-        public StringDictionaryConverter(IDictionary<string, string> wrapped)
-        {
-            _wrapped = wrapped;
-        }
+        public ICollection<string> Keys => wrapped.Keys;
 
-        public object this[string key] { get => _wrapped[key]; set => _wrapped[key] = SafeValueConverter(value); }
+        public ICollection<object> Values => new List<object>(wrapped.Values);
 
-        public ICollection<string> Keys => _wrapped.Keys;
+        public int Count => wrapped.Count;
 
-        public ICollection<object> Values => new List<object>(_wrapped.Values);
-
-        public int Count => _wrapped.Count;
-
-        public bool IsReadOnly => _wrapped.IsReadOnly;
+        public bool IsReadOnly => wrapped.IsReadOnly;
 
         public void Add(string key, object value)
         {
-            _wrapped.Add(key, SafeValueConverter(value));
+            wrapped.Add(key, SafeValueConverter(value));
         }
 
         public void Add(KeyValuePair<string, object> item)
         {
-            _wrapped.Add(new KeyValuePair<string, string>(item.Key, SafeValueConverter(item.Value)));
+            wrapped.Add(new KeyValuePair<string, string>(item.Key, SafeValueConverter(item.Value)));
         }
 
         public void Clear()
         {
-            _wrapped.Clear();
+            wrapped.Clear();
         }
 
         public bool Contains(KeyValuePair<string, object> item)
         {
-            return _wrapped.Contains(new KeyValuePair<string, string>(item.Key, SafeValueConverter(item.Value)));
+            return wrapped.Contains(new KeyValuePair<string, string>(item.Key, SafeValueConverter(item.Value)));
         }
 
         public bool ContainsKey(string key)
         {
-            return _wrapped.ContainsKey(key);
+            return wrapped.ContainsKey(key);
         }
 
         public void CopyTo(KeyValuePair<string, object>[] array, int arrayIndex)
         {
-            foreach (var item in _wrapped)
+            foreach (var item in wrapped)
             {
                 array[arrayIndex++] = new KeyValuePair<string, object>(item.Key, item.Value);
             }
@@ -72,22 +61,22 @@ namespace Microsoft.ApplicationInsights.NLogTarget
 
         public IEnumerator<KeyValuePair<string, object>> GetEnumerator()
         {
-            return AsEnumerable().GetEnumerator();
+            return this.AsEnumerable().GetEnumerator();
         }
 
         public bool Remove(string key)
         {
-            return _wrapped.Remove(key);
+            return wrapped.Remove(key);
         }
 
         public bool Remove(KeyValuePair<string, object> item)
         {
-            return _wrapped.Remove(new KeyValuePair<string, string>(item.Key, SafeValueConverter(item.Value)));
+            return wrapped.Remove(new KeyValuePair<string, string>(item.Key, SafeValueConverter(item.Value)));
         }
 
         public bool TryGetValue(string key, out object value)
         {
-            if (_wrapped.TryGetValue(key, out var stringValue))
+            if (wrapped.TryGetValue(key, out var stringValue))
             {
                 value = stringValue;
                 return true;
@@ -99,12 +88,12 @@ namespace Microsoft.ApplicationInsights.NLogTarget
 
         IEnumerator IEnumerable.GetEnumerator()
         {
-            return ((IEnumerable)_wrapped).GetEnumerator();
+            return ((IEnumerable)wrapped).GetEnumerator();
         }
 
         private IEnumerable<KeyValuePair<string, object>> AsEnumerable()
         {
-            foreach (var item in _wrapped)
+            foreach (var item in wrapped)
                 yield return new KeyValuePair<string, object>(item.Key, item.Value);
         }
 

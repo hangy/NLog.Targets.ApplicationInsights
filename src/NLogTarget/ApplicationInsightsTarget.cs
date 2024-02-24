@@ -92,7 +92,7 @@ namespace Microsoft.ApplicationInsights.NLogTarget
                     propertyBag.Add("UserStackSourceLine", callsiteSourceLineNumber.ToString());
             }
 
-            if (ShouldIncludeProperties(logEvent) || ContextProperties.Count > 0)
+            if (this.ShouldIncludeProperties(logEvent) || this.ContextProperties.Count > 0)
             {
                 this.GetAllProperties(logEvent, new StringDictionaryConverter(propertyBag));
             }
@@ -223,7 +223,7 @@ namespace Microsoft.ApplicationInsights.NLogTarget
                 Message = $"{logEvent.Exception.GetType()}: {logEvent.Exception.Message}",
             };
 
-            string logMessage = this.RenderLogEvent(this.Layout, logEvent);
+            var logMessage = this.RenderLogEvent(this.Layout, logEvent);
             if (!string.IsNullOrEmpty(logMessage))
             {
                 exceptionTelemetry.Properties.Add("Message", logMessage);
@@ -235,7 +235,7 @@ namespace Microsoft.ApplicationInsights.NLogTarget
 
         private void SendTrace(LogEventInfo logEvent)
         {
-            string logMessage = this.RenderLogEvent(this.Layout, logEvent);
+            var logMessage = this.RenderLogEvent(this.Layout, logEvent);
             var trace = new TraceTelemetry(logMessage)
             {
                 SeverityLevel = GetSeverityLevel(logEvent.Level),

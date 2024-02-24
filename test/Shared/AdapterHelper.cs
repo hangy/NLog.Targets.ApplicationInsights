@@ -40,11 +40,13 @@ namespace Microsoft.ApplicationInsights.Tracing.Tests
                                            select parts[1]).FirstOrDefault();
             }
 
-            string configuration = string.Format(InvariantCulture,
-                                    @"<?xml version=""1.0"" encoding=""utf-8"" ?>
-                                     <ApplicationInsights xmlns=""http://schemas.microsoft.com/ApplicationInsights/2013/Settings"">
+            var configuration = string.Format(InvariantCulture,
+                                    """
+                                    <?xml version="1.0" encoding="utf-8" ?>
+                                        <ApplicationInsights xmlns="http://schemas.microsoft.com/ApplicationInsights/2013/Settings">
                                         <ConnectionString>{0}</ConnectionString>
-                                     </ApplicationInsights>",
+                                        </ApplicationInsights>
+                                    """,
                                      connectionString);
 
             File.WriteAllText(applicationInsightsConfigFilePath, configuration);
@@ -62,7 +64,7 @@ namespace Microsoft.ApplicationInsights.Tracing.Tests
 
             // Validate that the channel received traces
             ITelemetry[] sentItems = null;
-            int totalMillisecondsToWait = (int)TimeSpan.FromMinutes(1).TotalMilliseconds;
+            var totalMillisecondsToWait = (int)TimeSpan.FromMinutes(1).TotalMilliseconds;
             const int IterationMilliseconds = 250;
 
             while (totalMillisecondsToWait > 0)
@@ -70,7 +72,7 @@ namespace Microsoft.ApplicationInsights.Tracing.Tests
                 sentItems = adapterHelper.Channel.SentItems;
                 if (sentItems.Length > 0)
                 {
-                    ITelemetry telemetry = sentItems.FirstOrDefault();
+                    var telemetry = sentItems.FirstOrDefault();
 
                     Assert.AreEqual(expectedTraceCount, sentItems.Length, "All messages are received by the channel");
                     Assert.IsNotNull(telemetry, "telemetry collection is not null");

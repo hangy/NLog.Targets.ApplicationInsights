@@ -11,7 +11,6 @@ namespace Microsoft.ApplicationInsights
     using System.Threading;
     using System.Threading.Tasks;
     using Microsoft.ApplicationInsights.Channel;
-    using Microsoft.ApplicationInsights.DataContracts;
 
     internal sealed class CustomTelemetryChannel : ITelemetryChannel
     {
@@ -35,7 +34,7 @@ namespace Microsoft.ApplicationInsights
         {
             lock (this.mutex)
             {
-                ITelemetry[] current = this.SentItems;
+                var current = this.SentItems;
                 List<ITelemetry> temp = [.. current, item];
                 this.SentItems = [.. temp];
                 this.waitHandle.Set();
