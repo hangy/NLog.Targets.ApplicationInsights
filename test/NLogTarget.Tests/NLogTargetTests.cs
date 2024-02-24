@@ -144,7 +144,7 @@
         }
 
         [TestMethod]
-        [Ignore]
+        [Ignore("This test requires a valid connection string or instrumentation key to run")]
         [TestCategory("NLogTarget")]
         public async Task TelemetryIsAcceptedByValidateEndpoint()
         {
