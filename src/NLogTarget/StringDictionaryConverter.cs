@@ -85,7 +85,7 @@ namespace Microsoft.ApplicationInsights.NLogTarget
             return _wrapped.Remove(new KeyValuePair<string, string>(item.Key, SafeValueConverter(item.Value)));
         }
 
-        public bool TryGetValue(string key, out object? value)
+        public bool TryGetValue(string key, out object value)
         {
             if (_wrapped.TryGetValue(key, out var stringValue))
             {
@@ -93,7 +93,7 @@ namespace Microsoft.ApplicationInsights.NLogTarget
                 return true;
             }
             
-            value = null;
+            value = null!;
             return false;
         }
 
