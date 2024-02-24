@@ -14,6 +14,5 @@
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)AdapterHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)CustomTelemetryChannel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ExceptionAssert.cs" />
   </ItemGroup>
 </Project>

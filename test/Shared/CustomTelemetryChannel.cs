@@ -22,11 +22,7 @@ namespace Microsoft.ApplicationInsights
         public CustomTelemetryChannel()
         {
             this.waitHandle = new AutoResetEvent(false);
-#if NET462 || NET472 || NET48
-            this.SentItems = new ITelemetry[0];
-#else
             this.SentItems = [];
-#endif
         }
 
         public bool? DeveloperMode { get; set; }
@@ -89,11 +85,7 @@ namespace Microsoft.ApplicationInsights
         {
             lock (this.mutex)
             {
-#if NET452
-                this.SentItems = new ITelemetry[0];
-#else
                 this.SentItems = [];
-#endif
             }
 
             return this;
