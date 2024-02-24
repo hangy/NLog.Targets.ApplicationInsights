@@ -15,17 +15,10 @@
 
   <ItemGroup>
     <PackageReference Include="NLog" />
-    <PackageReference Include="Microsoft.Diagnostics.Tracing.EventRegister" >
+    <PackageReference Include="Microsoft.Diagnostics.Tracing.EventRegister">
       <PrivateAssets>All</PrivateAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.ApplicationInsights" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Include="app.config.install.xdt" />
-    <Content Include="app.config.uninstall.xdt" />
-    <Content Include="web.config.install.xdt" />
-    <Content Include="web.config.uninstall.xdt" />
   </ItemGroup>
 
   <Import Project="..\CommonShared\CommonShared.projitems" Label="Shared" />
