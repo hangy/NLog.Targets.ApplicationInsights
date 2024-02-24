@@ -29,6 +29,7 @@ namespace Microsoft.ApplicationInsights.NLogTarget
     [Target("ApplicationInsightsTarget")]
     public sealed class ApplicationInsightsTarget : TargetWithContext
     {
+        private TelemetryConfiguration? telemetryConfiguration;
         private TelemetryClient? telemetryClient;
         private DateTime lastLogEventTime;
         private NLog.Layouts.Layout instrumentationKeyLayout = string.Empty;
@@ -126,27 +127,27 @@ namespace Microsoft.ApplicationInsights.NLogTarget
         protected override void InitializeTarget()
         {
             base.InitializeTarget();
-#pragma warning disable CS0618 // Type or member is obsolete: TelemtryConfiguration.Active is used in TelemetryClient constructor.
-            this.telemetryClient = new TelemetryClient();
-#pragma warning restore CS0618 // Type or member is obsolete
 
+            var config = TelemetryConfiguration.CreateDefault();
             string connectionString = this.connectionStringLayout.Render(LogEventInfo.CreateNullEvent());
 
             // Check if nlog application insights target has connectionstring in config file then
             // configure telemetryclient with the connectionstring otherwise using instrumentationkey.
             if (!string.IsNullOrWhiteSpace(connectionString))
             {
-                this.telemetryClient.TelemetryConfiguration.ConnectionString = connectionString;
+                config.ConnectionString = connectionString;
             }
             else
             {
                 string instrumentationKey = this.instrumentationKeyLayout.Render(LogEventInfo.CreateNullEvent());
                 if (!string.IsNullOrWhiteSpace(instrumentationKey))
                 {
-                    this.telemetryClient.Context.InstrumentationKey = instrumentationKey;
+                    config.InstrumentationKey = instrumentationKey;
                 }
             }
 
+            this.telemetryConfiguration = config;
+            this.telemetryClient = new TelemetryClient(config);
             this.telemetryClient.Context.GetInternalContext().SdkVersion = SdkVersionUtils.GetSdkVersion("nlog:");
         }
 
@@ -203,6 +204,18 @@ namespace Microsoft.ApplicationInsights.NLogTarget
             {
                 asyncContinuation(ex);
             }
+        }
+
+        /// <inheritdoc/>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                this.telemetryConfiguration?.Dispose();
+                this.telemetryClient?.Flush();
+            }
+
+            base.Dispose(disposing);
         }
 
         private static SeverityLevel? GetSeverityLevel(LogLevel logEventLevel)
