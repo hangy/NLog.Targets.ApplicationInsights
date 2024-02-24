@@ -29,19 +29,23 @@ namespace Microsoft.ApplicationInsights.Tracing.Tests
             Path.Combine(Path.GetDirectoryName(typeof(AdapterHelper).GetTypeInfo().Assembly.Location)!, "ApplicationInsights.config");
 #endif
 
-        public AdapterHelper(string instrumentationKey = "F8474271-D231-45B6-8DD4-D344C309AE69", 
-            string connectionString= "Your_ApplicationInsights_ConnectionString")
+        public AdapterHelper(string connectionString = "InstrumentationKey=F8474271-D231-45B6-8DD4-D344C309AE69;IngestionEndpoint=https://westeurope.in.applicationinsights.azure.example.com/;LiveEndpoint=https://westeurope.livediagnostics.monitor.azure.example.com/")
         {
-            this.InstrumentationKey = instrumentationKey;
             this.ConnectionString = connectionString;
+            if (!string.IsNullOrWhiteSpace(connectionString))
+            {
+                this.InstrumentationKey = (from item in connectionString.Split(';')
+                                           let parts = item.Split('=')
+                                           where parts.Length == 2 && parts[0].Equals("InstrumentationKey", StringComparison.OrdinalIgnoreCase)
+                                           select parts[1]).FirstOrDefault();
+            }
 
             string configuration = string.Format(InvariantCulture,
                                     @"<?xml version=""1.0"" encoding=""utf-8"" ?>
                                      <ApplicationInsights xmlns=""http://schemas.microsoft.com/ApplicationInsights/2013/Settings"">
-                                        <InstrumentationKey>{0}</InstrumentationKey>
-                                        <ConnectionString>{1}</ConnectionString>
+                                        <ConnectionString>{0}</ConnectionString>
                                      </ApplicationInsights>",
-                                     instrumentationKey, connectionString);
+                                     connectionString);
 
             File.WriteAllText(applicationInsightsConfigFilePath, configuration);
             this.Channel = new CustomTelemetryChannel();
@@ -49,7 +53,7 @@ namespace Microsoft.ApplicationInsights.Tracing.Tests
 
         internal CustomTelemetryChannel Channel { get; private set; }
 
-        public static void ValidateChannel(AdapterHelper? adapterHelper, string instrumentationKey, int expectedTraceCount)
+        public static void ValidateChannel(AdapterHelper adapterHelper, string instrumentationKey, int expectedTraceCount)
         {
             if (adapterHelper == null)
             {
@@ -57,7 +61,7 @@ namespace Microsoft.ApplicationInsights.Tracing.Tests
             }
 
             // Validate that the channel received traces
-            ITelemetry[]? sentItems = null;
+            ITelemetry[] sentItems = null;
             int totalMillisecondsToWait = (int)TimeSpan.FromMinutes(1).TotalMilliseconds;
             const int IterationMilliseconds = 250;
 

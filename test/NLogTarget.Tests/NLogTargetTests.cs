@@ -38,11 +38,11 @@
 
         [TestMethod]
         [TestCategory("NLogTarget")]
-        public void InitializeTargetNotThrowsWhenInstrumentationKeyIsNull()
+        public void InitializeTargetNotThrowsWhenConnectionStringIsNull()
         {
             try
             {
-                this.CreateTargetWithGivenInstrumentationKey(null);
+                this.CreateTargetWithGivenConnectionString(null);
             }
             catch (NLogConfigurationException ex)
             {
@@ -52,11 +52,11 @@
 
         [TestMethod]
         [TestCategory("NLogTarget")]
-        public void InitializeTargetNotThrowsWhenInstrumentationKeyIsEmptyString()
+        public void InitializeTargetNotThrowsWhenConnectionStringIsEmptyString()
         {
             try
             {
-                this.CreateTargetWithGivenInstrumentationKey(string.Empty);
+                this.CreateTargetWithGivenConnectionString(string.Empty);
             }
             catch (NLogConfigurationException ex)
             {
@@ -68,64 +68,64 @@
         [TestCategory("NLogTarget")]
         public void ExceptionsDoNotEscapeNLog()
         {
-            string instrumentationKey = "93d9c2b7-e633-4571-8520-d391511a1df5";
+            string connectionString = "InstrumentationKey=93d9c2b7-e633-4571-8520-d391511a1df5;IngestionEndpoint=https://westeurope.in.applicationinsights.azure.example.com/;LiveEndpoint=https://westeurope.livediagnostics.monitor.azure.example.com/";
 
             static void loggerAction(Logger aiLogger) => aiLogger.Trace("Hello World");
-            this.CreateTargetWithGivenInstrumentationKey(instrumentationKey, loggerAction);
+            this.CreateTargetWithGivenConnectionString(connectionString, loggerAction);
         }
 
         [TestMethod]
         [TestCategory("NLogTarget")]
         public void TracesAreEnqueuedInChannel()
         {
-            string instrumentationKey = "93d9c2b7-e633-4571-8520-d391511a1df5";
+            string connectionString = "InstrumentationKey=93d9c2b7-e633-4571-8520-d391511a1df5;IngestionEndpoint=https://westeurope.in.applicationinsights.azure.example.com/;LiveEndpoint=https://westeurope.livediagnostics.monitor.azure.example.com/";
 
-            Logger aiLogger = this.CreateTargetWithGivenInstrumentationKey(instrumentationKey);
-            this.VerifyMessagesInMockChannel(aiLogger, instrumentationKey);
+            Logger aiLogger = this.CreateTargetWithGivenConnectionString(connectionString);
+            this.VerifyMessagesInMockChannel(aiLogger, "93d9c2b7-e633-4571-8520-d391511a1df5");
         }
 
         [TestMethod]
         [TestCategory("NLogTarget")]
-        public void InstrumentationKeyIsReadFromEnvironment()
+        public void ConnectionStringIsReadFromEnvironment()
         {
-            string instrumentationKey = "F8474271-D231-45B6-8DD4-D344C309AE69";
+            string connectionString = "InstrumentationKey=F8474271-D231-45B6-8DD4-D344C309AE69;IngestionEndpoint=https://westeurope.in.applicationinsights.azure.example.com/;LiveEndpoint=https://westeurope.livediagnostics.monitor.azure.example.com/";
 
-            Logger aiLogger = this.CreateTargetWithGivenInstrumentationKey(instrumentationKey);
-            this.VerifyMessagesInMockChannel(aiLogger, instrumentationKey);
+            Logger aiLogger = this.CreateTargetWithGivenConnectionString(connectionString);
+            this.VerifyMessagesInMockChannel(aiLogger, "F8474271-D231-45B6-8DD4-D344C309AE69");
         }
 
         [TestMethod]
         [TestCategory("NLogTarget")]
-        public void InstrumentationKeyIsReadFromLayout()
+        public void ConnectionStringIsReadFromLayout()
         {
-            string instrumentationKey = "F8474271-D231-45B6-8DD4-D344C309AE69";
+            string connectionString = "InstrumentationKey=F8474271-D231-45B6-8DD4-D344C309AE69;IngestionEndpoint=https://westeurope.in.applicationinsights.azure.example.com/;LiveEndpoint=https://westeurope.livediagnostics.monitor.azure.example.com/";
 
             var gdcKey = Guid.NewGuid().ToString();
-            NLog.GlobalDiagnosticsContext.Set(gdcKey, instrumentationKey);
+            NLog.GlobalDiagnosticsContext.Set(gdcKey, connectionString);
 
-            Logger aiLogger = this.CreateTargetWithGivenInstrumentationKey($"${{gdc:item={gdcKey}}}");
-            this.VerifyMessagesInMockChannel(aiLogger, instrumentationKey);
+            Logger aiLogger = this.CreateTargetWithGivenConnectionString($"${{gdc:item={gdcKey}}}");
+            this.VerifyMessagesInMockChannel(aiLogger, "F8474271-D231-45B6-8DD4-D344C309AE69");
         }
 
         [TestMethod]
         [TestCategory("NLogTarget")]
         public void TraceAreEnqueuedInChannelAndContainAllProperties()
         {
-            string instrumentationKey = "F8474271-D231-45B6-8DD4-D344C309AE69";
+            string connectionString = "InstrumentationKey=F8474271-D231-45B6-8DD4-D344C309AE69;IngestionEndpoint=https://westeurope.in.applicationinsights.azure.example.com/;LiveEndpoint=https://westeurope.livediagnostics.monitor.azure.example.com/";
 
 #pragma warning disable CA5394 // Do not use insecure randomness - Test message has no security impact
             Random random = new Random();
             int number = random.Next();
 #pragma warning restore CA5394 // Do not use insecure randomness - Test message has no security impact
 
-            Logger aiLogger = this.CreateTargetWithGivenInstrumentationKey(instrumentationKey);
+            Logger aiLogger = this.CreateTargetWithGivenConnectionString(connectionString);
 
-            aiLogger.Debug("Message {0}, using instrumentation key:{1}", number, instrumentationKey);
+            aiLogger.Debug("Message {0}, using instrumentation key:{1}", number, connectionString);
 
-            TraceTelemetry? telemetry = this.adapterHelper.Channel.SentItems.FirstOrDefault() as TraceTelemetry;
+            TraceTelemetry telemetry = this.adapterHelper.Channel.SentItems.FirstOrDefault() as TraceTelemetry;
             Assert.IsNotNull(telemetry, "Didn't get the log event from the channel");
 
-            telemetry.Properties.TryGetValue("LoggerName", out string? loggerName);
+            telemetry.Properties.TryGetValue("LoggerName", out string loggerName);
             Assert.AreEqual("AITarget", loggerName);
         }
 
@@ -133,7 +133,7 @@
         [TestCategory("NLogTarget")]
         public void SdkVersionIsCorrect()
         {
-            Logger aiLogger = this.CreateTargetWithGivenInstrumentationKey();
+            Logger aiLogger = this.CreateTargetWithGivenConnectionString();
 
             aiLogger.Debug("Message");
 
@@ -148,7 +148,7 @@
         [TestCategory("NLogTarget")]
         public async Task TelemetryIsAcceptedByValidateEndpoint()
         {
-            Logger aiLogger = this.CreateTargetWithGivenInstrumentationKey();
+            Logger aiLogger = this.CreateTargetWithGivenConnectionString();
 
             aiLogger.Debug("Message");
 
@@ -161,11 +161,11 @@
         [TestCategory("NLogTarget")]
         public void TraceHasTimestamp()
         {
-            Logger aiLogger = this.CreateTargetWithGivenInstrumentationKey();
+            Logger aiLogger = this.CreateTargetWithGivenConnectionString();
 
             aiLogger.Debug("Message");
 
-            TraceTelemetry? telemetry = this.adapterHelper.Channel.SentItems.FirstOrDefault() as TraceTelemetry;
+            TraceTelemetry telemetry = this.adapterHelper.Channel.SentItems.FirstOrDefault() as TraceTelemetry;
             Assert.IsNotNull(telemetry, "Didn't get the log event from the channel");
 
             Assert.AreNotEqual(default, telemetry.Timestamp);
@@ -175,14 +175,14 @@
         [TestCategory("NLogTarget")]
         public void TraceMessageCanBeFormedUsingLayout()
         {
-            ApplicationInsightsTarget target = new();
+            using ApplicationInsightsTarget target = new();
             target.Layout = @"${uppercase:${level}} ${message}";
 
-            Logger aiLogger = this.CreateTargetWithGivenInstrumentationKey("test", null, target);
+            Logger aiLogger = this.CreateTargetWithGivenConnectionString(target: target);
 
             aiLogger.Debug("Message");
 
-            TraceTelemetry? telemetry = this.adapterHelper.Channel.SentItems.FirstOrDefault() as TraceTelemetry;
+            TraceTelemetry telemetry = this.adapterHelper.Channel.SentItems.FirstOrDefault() as TraceTelemetry;
             Assert.IsNotNull(telemetry, "Didn't get the log event from the channel");
 
             Assert.AreEqual("DEBUG Message", telemetry.Message);
@@ -192,11 +192,11 @@
         [TestCategory("NLogTarget")]
         public void TraceMessageWithoutLayoutDefaultsToMessagePassed()
         {
-            Logger aiLogger = this.CreateTargetWithGivenInstrumentationKey();
+            Logger aiLogger = this.CreateTargetWithGivenConnectionString();
 
             aiLogger.Debug("My Message");
 
-            TraceTelemetry? telemetry = this.adapterHelper.Channel.SentItems.FirstOrDefault() as TraceTelemetry;
+            TraceTelemetry telemetry = this.adapterHelper.Channel.SentItems.FirstOrDefault() as TraceTelemetry;
             Assert.IsNotNull(telemetry, "Didn't get the log event from the channel");
 
             Assert.AreEqual("My Message", telemetry.Message);
@@ -204,13 +204,13 @@
 
         [TestMethod]
         [TestCategory("NLogTarget")]
-        public void TraceHasSequesnceId()
+        public void TraceHasSequenceId()
         {
-            Logger aiLogger = this.CreateTargetWithGivenInstrumentationKey();
+            Logger aiLogger = this.CreateTargetWithGivenConnectionString();
 
             aiLogger.Debug("Message");
 
-            TraceTelemetry? telemetry = this.adapterHelper.Channel.SentItems.FirstOrDefault() as TraceTelemetry;
+            TraceTelemetry telemetry = this.adapterHelper.Channel.SentItems.FirstOrDefault() as TraceTelemetry;
             Assert.IsNotNull(telemetry, "Didn't get the log event from the channel");
 
             Assert.AreNotEqual("0", telemetry.Sequence);
@@ -220,13 +220,13 @@
         [TestCategory("NLogTarget")]
         public void TraceHasCustomProperties()
         {
-            Logger aiLogger = this.CreateTargetWithGivenInstrumentationKey();
+            Logger aiLogger = this.CreateTargetWithGivenConnectionString();
 
             var eventInfo = new LogEventInfo(LogLevel.Trace, "TestLogger", "Hello!");
             eventInfo.Properties["Name"] = "Value";
             aiLogger.Log(eventInfo);
 
-            TraceTelemetry? telemetry = this.adapterHelper.Channel.SentItems.FirstOrDefault() as TraceTelemetry;
+            TraceTelemetry telemetry = this.adapterHelper.Channel.SentItems.FirstOrDefault() as TraceTelemetry;
             Assert.IsNotNull(telemetry, "Didn't get the log event from the channel");
             Assert.AreEqual("Value", telemetry.Properties["Name"]);
         }
@@ -236,14 +236,14 @@
         [TestCategory("NLogTarget")]
         public void GlobalDiagnosticContextPropertiesAreAddedToProperties()
         {
-            ApplicationInsightsTarget target = new ApplicationInsightsTarget();
+            using ApplicationInsightsTarget target = new();
             target.ContextProperties.Add(new TargetPropertyWithContext("global_prop", "${gdc:item=global_prop}"));
-            Logger aiLogger = this.CreateTargetWithGivenInstrumentationKey(target: target);
+            Logger aiLogger = this.CreateTargetWithGivenConnectionString(target: target);
 
             NLog.GlobalDiagnosticsContext.Set("global_prop", "global_value");
             aiLogger.Debug("Message");
 
-            TraceTelemetry? telemetry = this.adapterHelper.Channel.SentItems.FirstOrDefault() as TraceTelemetry;
+            TraceTelemetry telemetry = this.adapterHelper.Channel.SentItems.FirstOrDefault() as TraceTelemetry;
             Assert.AreEqual("global_value", telemetry.Properties["global_prop"]);
         }
 
@@ -251,9 +251,9 @@
         [TestCategory("NLogTarget")]
         public void GlobalDiagnosticContextPropertiesSupplementEventProperties()
         {
-            ApplicationInsightsTarget target = new ApplicationInsightsTarget();
+            using ApplicationInsightsTarget target = new();
             target.ContextProperties.Add(new TargetPropertyWithContext("global_prop", "${gdc:item=global_prop}"));
-            Logger aiLogger = this.CreateTargetWithGivenInstrumentationKey(target: target);
+            Logger aiLogger = this.CreateTargetWithGivenConnectionString(target: target);
 
             NLog.GlobalDiagnosticsContext.Set("global_prop", "global_value");
 
@@ -261,7 +261,7 @@
             eventInfo.Properties["Name"] = "Value";
             aiLogger.Log(eventInfo);
 
-            TraceTelemetry? telemetry = this.adapterHelper.Channel.SentItems.FirstOrDefault() as TraceTelemetry;
+            TraceTelemetry telemetry = this.adapterHelper.Channel.SentItems.FirstOrDefault() as TraceTelemetry;
             Assert.AreEqual("global_value", telemetry.Properties["global_prop"]);
             Assert.AreEqual("Value", telemetry.Properties["Name"]);
         }
@@ -272,16 +272,16 @@
         public void EventPropertyKeyNameIsAppendedWith_1_IfSameAsGlobalDiagnosticContextKeyName()
 #pragma warning restore CA1707 // Identifiers should not contain underscores
         {
-            ApplicationInsightsTarget target = new ApplicationInsightsTarget();
+            using ApplicationInsightsTarget target = new();
             target.ContextProperties.Add(new TargetPropertyWithContext("Name", "${gdc:item=Name}"));
-            Logger aiLogger = this.CreateTargetWithGivenInstrumentationKey(target: target);
+            Logger aiLogger = this.CreateTargetWithGivenConnectionString(target: target);
 
             NLog.GlobalDiagnosticsContext.Set("Name", "Global Value");
             var eventInfo = new LogEventInfo(LogLevel.Trace, "TestLogger", "Hello!");
             eventInfo.Properties["Name"] = "Value";
             aiLogger.Log(eventInfo);
 
-            TraceTelemetry? telemetry = this.adapterHelper.Channel.SentItems.FirstOrDefault() as TraceTelemetry;
+            TraceTelemetry telemetry = this.adapterHelper.Channel.SentItems.FirstOrDefault() as TraceTelemetry;
             Assert.IsTrue(telemetry.Properties.ContainsKey("Name"));
             Assert.AreEqual("Global Value", telemetry.Properties["Name"]);
             Assert.IsTrue(telemetry.Properties.ContainsKey("Name_1"), "Key name altered");
@@ -292,8 +292,8 @@
         [TestCategory("NLogTarget")]
         public void TraceAreEnqueuedInChannelAndContainExceptionMessage()
         {
-            string instrumentationKey = "F8474271-D231-45B6-8DD4-D344C309AE69";
-            Logger aiLogger = this.CreateTargetWithGivenInstrumentationKey(instrumentationKey);
+            string connectionString = "InstrumentationKey=F8474271-D231-45B6-8DD4-D344C309AE69;IngestionEndpoint=https://westeurope.in.applicationinsights.azure.example.com/;LiveEndpoint=https://westeurope.livediagnostics.monitor.azure.example.com/";
+            Logger aiLogger = this.CreateTargetWithGivenConnectionString(connectionString);
             Exception expectedException;
 
             try
@@ -315,7 +315,7 @@
         [TestCategory("NLogTarget")]
         public void CustomMessageIsAddedToExceptionTelemetryCustomProperties()
         {
-            Logger aiLogger = this.CreateTargetWithGivenInstrumentationKey();
+            Logger aiLogger = this.CreateTargetWithGivenConnectionString();
 
             try
             {
@@ -335,11 +335,11 @@
         [TestCategory("NLogTarget")]
         public void NLogTraceIsSentAsVerboseTraceItem()
         {
-            var aiLogger = this.CreateTargetWithGivenInstrumentationKey("F8474271-D231-45B6-8DD4-D344C309AE69");
+            var aiLogger = this.CreateTargetWithGivenConnectionString("InstrumentationKey=F8474271-D231-45B6-8DD4-D344C309AE69;IngestionEndpoint=https://westeurope.in.applicationinsights.azure.example.com/;LiveEndpoint=https://westeurope.livediagnostics.monitor.azure.example.com/");
 
             aiLogger.Trace("trace");
 
-            TraceTelemetry? telemetry = this.adapterHelper.Channel.SentItems.FirstOrDefault() as TraceTelemetry;
+            TraceTelemetry telemetry = this.adapterHelper.Channel.SentItems.FirstOrDefault() as TraceTelemetry;
             Assert.AreEqual(SeverityLevel.Verbose, telemetry.SeverityLevel);
         }
 
@@ -347,11 +347,11 @@
         [TestCategory("NLogTarget")]
         public void NLogDebugIsSentAsVerboseTraceItem()
         {
-            var aiLogger = this.CreateTargetWithGivenInstrumentationKey("F8474271-D231-45B6-8DD4-D344C309AE69");
+            var aiLogger = this.CreateTargetWithGivenConnectionString("InstrumentationKey=F8474271-D231-45B6-8DD4-D344C309AE69;IngestionEndpoint=https://westeurope.in.applicationinsights.azure.example.com/;LiveEndpoint=https://westeurope.livediagnostics.monitor.azure.example.com/");
 
             aiLogger.Debug("trace");
 
-            TraceTelemetry? telemetry = this.adapterHelper.Channel.SentItems.FirstOrDefault() as TraceTelemetry;
+            TraceTelemetry telemetry = this.adapterHelper.Channel.SentItems.FirstOrDefault() as TraceTelemetry;
             Assert.AreEqual(SeverityLevel.Verbose, telemetry.SeverityLevel);
         }
 
@@ -359,11 +359,11 @@
         [TestCategory("NLogTarget")]
         public void NLogInfoIsSentAsInformationTraceItem()
         {
-            var aiLogger = this.CreateTargetWithGivenInstrumentationKey("F8474271-D231-45B6-8DD4-D344C309AE69");
+            var aiLogger = this.CreateTargetWithGivenConnectionString("InstrumentationKey=F8474271-D231-45B6-8DD4-D344C309AE69;IngestionEndpoint=https://westeurope.in.applicationinsights.azure.example.com/;LiveEndpoint=https://westeurope.livediagnostics.monitor.azure.example.com/");
 
             aiLogger.Info("trace");
 
-            TraceTelemetry? telemetry = this.adapterHelper.Channel.SentItems.FirstOrDefault() as TraceTelemetry;
+            TraceTelemetry telemetry = this.adapterHelper.Channel.SentItems.FirstOrDefault() as TraceTelemetry;
             Assert.AreEqual(SeverityLevel.Information, telemetry.SeverityLevel);
         }
 
@@ -371,11 +371,11 @@
         [TestCategory("NLogTarget")]
         public void NLogWarnIsSentAsWarningTraceItem()
         {
-            var aiLogger = this.CreateTargetWithGivenInstrumentationKey("F8474271-D231-45B6-8DD4-D344C309AE69");
+            var aiLogger = this.CreateTargetWithGivenConnectionString("InstrumentationKey=F8474271-D231-45B6-8DD4-D344C309AE69;IngestionEndpoint=https://westeurope.in.applicationinsights.azure.example.com/;LiveEndpoint=https://westeurope.livediagnostics.monitor.azure.example.com/");
 
             aiLogger.Warn("trace");
 
-            TraceTelemetry? telemetry = this.adapterHelper.Channel.SentItems.FirstOrDefault() as TraceTelemetry;
+            TraceTelemetry telemetry = this.adapterHelper.Channel.SentItems.FirstOrDefault() as TraceTelemetry;
             Assert.AreEqual(SeverityLevel.Warning, telemetry.SeverityLevel);
         }
 
@@ -383,11 +383,11 @@
         [TestCategory("NLogTarget")]
         public void NLogErrorIsSentAsErrorTraceItem()
         {
-            var aiLogger = this.CreateTargetWithGivenInstrumentationKey("F8474271-D231-45B6-8DD4-D344C309AE69");
+            var aiLogger = this.CreateTargetWithGivenConnectionString("InstrumentationKey=F8474271-D231-45B6-8DD4-D344C309AE69;IngestionEndpoint=https://westeurope.in.applicationinsights.azure.example.com/;LiveEndpoint=https://westeurope.livediagnostics.monitor.azure.example.com/");
 
             aiLogger.Error("trace");
 
-            TraceTelemetry? telemetry = this.adapterHelper.Channel.SentItems.FirstOrDefault() as TraceTelemetry;
+            TraceTelemetry telemetry = this.adapterHelper.Channel.SentItems.FirstOrDefault() as TraceTelemetry;
             Assert.AreEqual(SeverityLevel.Error, telemetry.SeverityLevel);
         }
 
@@ -395,11 +395,11 @@
         [TestCategory("NLogTarget")]
         public void NLogFatalIsSentAsCriticalTraceItem()
         {
-            var aiLogger = this.CreateTargetWithGivenInstrumentationKey("F8474271-D231-45B6-8DD4-D344C309AE69");
+            var aiLogger = this.CreateTargetWithGivenConnectionString("InstrumentationKey=F8474271-D231-45B6-8DD4-D344C309AE69;IngestionEndpoint=https://westeurope.in.applicationinsights.azure.example.com/;LiveEndpoint=https://westeurope.livediagnostics.monitor.azure.example.com/");
 
             aiLogger.Fatal("trace");
 
-            TraceTelemetry? telemetry = this.adapterHelper.Channel.SentItems.FirstOrDefault() as TraceTelemetry;
+            TraceTelemetry telemetry = this.adapterHelper.Channel.SentItems.FirstOrDefault() as TraceTelemetry;
             Assert.AreEqual(SeverityLevel.Critical, telemetry.SeverityLevel);
         }
 
@@ -407,7 +407,7 @@
         [TestCategory("NLogTarget")]
         public void NLogPropertyDuplicateKeyDuplicateValue()
         {
-            var aiTarget = new ApplicationInsightsTarget();
+            using var aiTarget = new ApplicationInsightsTarget();
             var logEventInfo = new LogEventInfo();
             var loggerNameVal = "thisisaloggername";
 
@@ -426,7 +426,7 @@
         [TestCategory("NLogTarget")]
         public void NLogPropertyDuplicateKeyDifferentValue()
         {
-            var aiTarget = new ApplicationInsightsTarget();
+            using var aiTarget = new ApplicationInsightsTarget();
             var logEventInfo = new LogEventInfo();
             var loggerNameVal = "thisisaloggername";
             var loggerNameVal2 = "thisisadifferentloggername";
@@ -450,9 +450,9 @@
         [TestCategory("NLogTarget")]
         public void NLogTargetFlushesTelemetryClient()
         {
-            var aiLogger = this.CreateTargetWithGivenInstrumentationKey();
+            var aiLogger = this.CreateTargetWithGivenConnectionString();
 
-            var flushEvent = new System.Threading.ManualResetEvent(false);
+            using var flushEvent = new System.Threading.ManualResetEvent(false);
             Exception flushException = null;
             void asyncContinuation(Exception ex) { flushException = ex; flushEvent.Set(); }
             aiLogger.Factory.Flush(asyncContinuation, 5000);
@@ -478,8 +478,8 @@
         {
             var aiLogger = this.CreateTargetWithGivenConnectionString("InstrumentationKey=00000000-0000-0000-0000-000000000000;IngestionEndpoint=https://westeurope.in.applicationinsights.azure.example.com/;LiveEndpoint=https://westeurope.livediagnostics.monitor.azure.example.com/");
             aiLogger.Trace("Trace message");
-            
-            TraceTelemetry? telemetry = this.adapterHelper.Channel.SentItems.FirstOrDefault() as TraceTelemetry;
+
+            TraceTelemetry telemetry = this.adapterHelper.Channel.SentItems.FirstOrDefault() as TraceTelemetry;
             Assert.AreEqual("Trace message", telemetry.Message);
         }
 
@@ -490,7 +490,7 @@
             var aiLogger = this.CreateTargetWithGivenConnectionString("InstrumentationKey=00000000-0000-0000-0000-000000000000;IngestionEndpoint=https://westeurope.in.applicationinsights.azure.example.com/;LiveEndpoint=https://westeurope.livediagnostics.monitor.azure.example.com/");
             aiLogger.Debug("Debug Message");
 
-            TraceTelemetry? telemetry = this.adapterHelper.Channel.SentItems.FirstOrDefault() as TraceTelemetry;
+            TraceTelemetry telemetry = this.adapterHelper.Channel.SentItems.FirstOrDefault() as TraceTelemetry;
             Assert.AreEqual("Debug Message", telemetry.Message);
         }
 
@@ -502,7 +502,7 @@
 
             aiLogger.Warn("Warn message");
 
-            TraceTelemetry? telemetry = this.adapterHelper.Channel.SentItems.FirstOrDefault() as TraceTelemetry;
+            TraceTelemetry telemetry = this.adapterHelper.Channel.SentItems.FirstOrDefault() as TraceTelemetry;
             Assert.AreEqual("Warn message", telemetry.Message);
         }
 
@@ -513,7 +513,7 @@
             var aiLogger = this.CreateTargetWithGivenConnectionString("InstrumentationKey=00000000-0000-0000-0000-000000000000;IngestionEndpoint=https://westeurope.in.applicationinsights.azure.example.com/;LiveEndpoint=https://westeurope.livediagnostics.monitor.azure.example.com/");
             aiLogger.Error("Error Message");
 
-            TraceTelemetry? telemetry = this.adapterHelper.Channel.SentItems.FirstOrDefault() as TraceTelemetry;
+            TraceTelemetry telemetry = this.adapterHelper.Channel.SentItems.FirstOrDefault() as TraceTelemetry;
             Assert.AreEqual("Error Message", telemetry.Message);
         }
 
@@ -529,58 +529,28 @@
             AdapterHelper.ValidateChannel(this.adapterHelper, instrumentationKey, 6);
         }
 
-        private Logger CreateTargetWithGivenInstrumentationKey(
-            string? instrumentationKey = "TEST",
-            Action<Logger>? loggerAction = null,
-            ApplicationInsightsTarget? target = null)
+        private Logger CreateTargetWithGivenConnectionString(
+            string connectionString = "InstrumentationKey=00000000-0000-0000-0000-000000000000;IngestionEndpoint=https://westeurope.in.applicationinsights.azure.example.com/;LiveEndpoint=https://westeurope.livediagnostics.monitor.azure.example.com/",
+            Action<Logger> loggerAction = null,
+            ApplicationInsightsTarget target = null)
         {
-            // Mock channel to validate that our appender is trying to send logs
-#pragma warning disable CS0618 // Type or member is obsolete
-            TelemetryConfiguration.Active.TelemetryChannel = this.adapterHelper.Channel;
-#pragma warning restore CS0618 // Type or member is obsolete
-
             target ??= new ApplicationInsightsTarget();
+            // Mock channel to validate that our appender is trying to send logs
+            target.TelemetryChannel = this.adapterHelper.Channel;
 
-            target.InstrumentationKey = instrumentationKey;
+            target.ConnectionString = connectionString;
+
             LoggingRule rule = new LoggingRule("*", LogLevel.Trace, target);
             LoggingConfiguration config = new LoggingConfiguration();
             config.AddTarget("AITarget", target);
             config.LoggingRules.Add(rule);
 
-            LogManager.Configuration = config;
-            Logger aiLogger = LogManager.GetLogger("AITarget");
-
-            if (loggerAction != null)
+            LogFactory logFactory = new()
             {
-                loggerAction(aiLogger);
-                target.Dispose();
-                return null;
-            }
-
-            return aiLogger;
-        }
-
-        private Logger CreateTargetWithGivenConnectionString(
-            string? connectionString = "InstrumentationKey=00000000-0000-0000-0000-000000000000;IngestionEndpoint=https://westeurope.in.applicationinsights.azure.example.com/;LiveEndpoint=https://westeurope.livediagnostics.monitor.azure.example.com/",
-            Action<Logger>? loggerAction = null)
-        {
-            // Mock channel to validate that our appender is trying to send logs
-#pragma warning disable CS0618 // Type or member is obsolete
-            TelemetryConfiguration.Active.TelemetryChannel = this.adapterHelper.Channel;
-#pragma warning restore CS0618 // Type or member is obsolete
-
-            ApplicationInsightsTarget target = new ApplicationInsightsTarget
-            {
-                ConnectionString = connectionString
+                Configuration = config
             };
 
-            LoggingRule rule = new LoggingRule("*", LogLevel.Trace, target);
-            LoggingConfiguration config = new LoggingConfiguration();
-            config.AddTarget("AITarget", target);
-            config.LoggingRules.Add(rule);
-
-            LogManager.Configuration = config;
-            Logger aiLogger = LogManager.GetLogger("AITarget");
+            Logger aiLogger = logFactory.GetLogger("AITarget");
 
             if (loggerAction != null)
             {
@@ -591,6 +561,5 @@
 
             return aiLogger;
         }
-
     }
 }

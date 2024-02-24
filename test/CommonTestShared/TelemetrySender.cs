@@ -18,11 +18,11 @@
         /// </summary>
         /// <param name="telemetryItem">Telemetry item to validate.</param>
         /// <returns>Empty string if no errors found. Response if validation failed.</returns>
-        public static async Task<string?> ValidateEndpointSend(ITelemetry telemetryItem)
+        public static async Task<string> ValidateEndpointSend(ITelemetry telemetryItem)
         {
             telemetryItem.Context.InstrumentationKey = "fafa4b10-03d3-4bb0-98f4-364f0bdf5df8";
 
-            string? response = null;
+            string response = null;
 
             string json = Encoding.UTF8.GetString(JsonSerializer.Serialize(new List<ITelemetry> { telemetryItem }, false));
 

@@ -29,10 +29,9 @@ namespace Microsoft.ApplicationInsights.NLogTarget
     [Target("ApplicationInsightsTarget")]
     public sealed class ApplicationInsightsTarget : TargetWithContext
     {
-        private TelemetryConfiguration? telemetryConfiguration;
+        private readonly TelemetryConfiguration telemetryConfiguration = TelemetryConfiguration.CreateDefault();
         private TelemetryClient? telemetryClient;
         private DateTime lastLogEventTime;
-        private NLog.Layouts.Layout instrumentationKeyLayout = string.Empty;
         private NLog.Layouts.Layout connectionStringLayout = string.Empty;
 
         /// <summary>
@@ -45,15 +44,6 @@ namespace Microsoft.ApplicationInsights.NLogTarget
         }
 
         /// <summary>
-        /// Gets or sets the Application Insights instrumentationKey for your application. 
-        /// </summary>
-        public string? InstrumentationKey
-        {
-            get => (this.instrumentationKeyLayout as NLog.Layouts.SimpleLayout)?.Text ?? null;
-            set => this.instrumentationKeyLayout = value ?? string.Empty;
-        }
-
-        /// <summary>
         /// Gets or sets the Application Insights connectionstring for your application.
         /// </summary>
         public string? ConnectionString
@@ -62,10 +52,7 @@ namespace Microsoft.ApplicationInsights.NLogTarget
             set => this.connectionStringLayout = value ?? string.Empty;
         }
 
-        /// <summary>
-        /// Gets the logging controller we will be using.
-        /// </summary>
-        internal TelemetryClient? TelemetryClient => this.telemetryClient;
+        internal ITelemetryChannel TelemetryChannel { set => this.telemetryConfiguration.TelemetryChannel = value; }
 
         internal void BuildPropertyBag(LogEventInfo logEvent, ITelemetry trace)
         {
@@ -119,26 +106,8 @@ namespace Microsoft.ApplicationInsights.NLogTarget
         {
             base.InitializeTarget();
 
-            var config = TelemetryConfiguration.CreateDefault();
-            string connectionString = this.connectionStringLayout.Render(LogEventInfo.CreateNullEvent());
-
-            // Check if nlog application insights target has connectionstring in config file then
-            // configure telemetryclient with the connectionstring otherwise using instrumentationkey.
-            if (!string.IsNullOrWhiteSpace(connectionString))
-            {
-                config.ConnectionString = connectionString;
-            }
-            else
-            {
-                string instrumentationKey = this.instrumentationKeyLayout.Render(LogEventInfo.CreateNullEvent());
-                if (!string.IsNullOrWhiteSpace(instrumentationKey))
-                {
-                    config.InstrumentationKey = instrumentationKey;
-                }
-            }
-
-            this.telemetryConfiguration = config;
-            this.telemetryClient = new TelemetryClient(config);
+            this.telemetryConfiguration.ConnectionString = this.connectionStringLayout.Render(LogEventInfo.CreateNullEvent());
+            this.telemetryClient = new TelemetryClient(this.telemetryConfiguration);
             this.telemetryClient.Context.GetInternalContext().SdkVersion = SdkVersionUtils.GetSdkVersion("nlog:");
         }
 
@@ -188,7 +157,7 @@ namespace Microsoft.ApplicationInsights.NLogTarget
                 {
                     // Documentation says it is important to wait after flush, else nothing will happen
                     // https://docs.microsoft.com/azure/application-insights/app-insights-api-custom-events-metrics#flushing-data
-                    System.Threading.Tasks.Task.Delay(TimeSpan.FromMilliseconds(500)).ContinueWith((task) => asyncContinuation(null));
+                    _ = Task.Delay(TimeSpan.FromMilliseconds(500)).ContinueWith((task) => asyncContinuation(null));
                 }
             }
             catch (Exception ex)

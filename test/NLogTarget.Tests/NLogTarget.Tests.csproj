@@ -3,6 +3,7 @@
     <RootNamespace>hangy.NLog.Targets.ApplicationInsights.Tests</RootNamespace>
     <AssemblyName>hangy.NLog.Targets.ApplicationInsights.Tests</AssemblyName>
     <TargetFrameworks>net462;net472;net48;net6.0;net8.0</TargetFrameworks>
+    <Nullable>disable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>
