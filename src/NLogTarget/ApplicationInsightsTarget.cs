@@ -71,21 +71,12 @@ namespace Microsoft.ApplicationInsights.NLogTarget
             trace.Timestamp = logEvent.TimeStamp;
             trace.Sequence = logEvent.SequenceID.ToString(CultureInfo.InvariantCulture);
 
-            IDictionary<string, string> propertyBag;
+            if (trace is not ISupportProperties traceWithProperties)
+            {
+                return;
+            }
 
-            if (trace is ExceptionTelemetry exceptionTelemetry)
-            {
-                propertyBag = exceptionTelemetry.Properties;
-            }
-            else if (trace is TraceTelemetry traceTelemetry)
-            {
-                propertyBag = traceTelemetry.Properties;
-            }
-            else
-            {
-                int initialSize = this.ContextProperties.Count + (logEvent.HasProperties ? logEvent.Properties.Count : 0) + 3;
-                propertyBag = new Dictionary<string, string>(initialSize);
-            }
+            var propertyBag = traceWithProperties.Properties;
 
             if (!string.IsNullOrEmpty(logEvent.LoggerName))
             {
