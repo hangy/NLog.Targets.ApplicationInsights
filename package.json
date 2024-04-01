@@ -2,7 +2,7 @@
     "name": "NLog.Targets.ApplicationInsights",
     "devDependencies": {
         "@droidsolutions-oss/semantic-release-nuget": "^2.0.1",
-        "@droidsolutions-oss/semantic-release-update-file": "^1.3.2",
+        "@droidsolutions-oss/semantic-release-update-file": "^1.4.0",
         "@semantic-release/changelog": "^6.0.3",
         "@semantic-release/git": "^10.0.1",
         "semantic-release": "^23.0.6"
