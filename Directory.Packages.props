@@ -7,7 +7,7 @@
   <ItemGroup Label="Runtime">
     <PackageVersion Include="Microsoft.ApplicationInsights" Version="2.22.0" />
     <PackageVersion Include="Microsoft.Diagnostics.Tracing.EventRegister" Version="1.1.28" />
-    <PackageVersion Include="NLog" Version="5.3.3" />
+    <PackageVersion Include="NLog" Version="5.3.4" />
   </ItemGroup>
   <ItemGroup Label="Test">
     <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.11.0" />
