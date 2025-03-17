@@ -147,18 +147,7 @@ namespace Microsoft.ApplicationInsights.NLogTarget
 
             try
             {
-                this.telemetryClient?.Flush();
-                if (DateTime.UtcNow.AddSeconds(-30) > this.lastLogEventTime)
-                {
-                    // Nothing has been written, so nothing to wait for
-                    asyncContinuation(null);
-                }
-                else
-                {
-                    // Documentation says it is important to wait after flush, else nothing will happen
-                    // https://docs.microsoft.com/azure/application-insights/app-insights-api-custom-events-metrics#flushing-data
-                    _ = Task.Delay(TimeSpan.FromMilliseconds(500)).ContinueWith((task) => asyncContinuation(null));
-                }
+                this.telemetryClient.FlushAsync(System.Threading.CancellationToken.None).ContinueWith(t => asyncContinuation(t.Exception));
             }
             catch (Exception ex)
             {
