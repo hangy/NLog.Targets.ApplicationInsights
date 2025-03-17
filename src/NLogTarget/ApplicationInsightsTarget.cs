@@ -29,9 +29,9 @@ namespace Microsoft.ApplicationInsights.NLogTarget
     [Target("ApplicationInsightsTarget")]
     public sealed class ApplicationInsightsTarget : TargetWithContext
     {
-        private readonly TelemetryConfiguration telemetryConfiguration = TelemetryConfiguration.CreateDefault();
         private TelemetryClient? telemetryClient;
-        private DateTime lastLogEventTime;
+        private TelemetryConfiguration? telemetryConfiguration;
+        private NLog.Layouts.Layout instrumentationKeyLayout = string.Empty;
         private NLog.Layouts.Layout connectionStringLayout = string.Empty;
 
         /// <summary>
@@ -52,7 +52,16 @@ namespace Microsoft.ApplicationInsights.NLogTarget
             set => this.connectionStringLayout = value ?? string.Empty;
         }
 
-        internal ITelemetryChannel TelemetryChannel { set => this.telemetryConfiguration.TelemetryChannel = value; }
+        /// <summary>
+        /// Gets the array of custom attributes to be passed into the logevent context.
+        /// </summary>
+        [ArrayParameter(typeof(TargetPropertyWithContext), "contextproperty")]
+        public IList<TargetPropertyWithContext> ContextProperties { get; } = new List<TargetPropertyWithContext>();
+
+        /// <summary>
+        /// Gets or sets the factory for creating TelemetryConfiguration, so unit-tests can override in-memory-channel.
+        /// </summary>
+        internal Func<TelemetryConfiguration> TelemetryConfigurationFactory { get; set; }
 
         internal void BuildPropertyBag(LogEventInfo logEvent, ITelemetry trace)
         {
@@ -99,16 +108,47 @@ namespace Microsoft.ApplicationInsights.NLogTarget
         }
 
         /// <summary>
-        /// Initializes the Target and perform instrumentationKey validation.
+        /// Initializes the Target and configures TelemetryClient.
         /// </summary>
-        /// <exception cref="NLogConfigurationException">Will throw when <see cref="InstrumentationKey"/> is not set.</exception>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2000:DisposeObjectsBeforeLosingScope", Justification = "ApplicationInsightsTarget class handles ownership of TelemetryConfiguration with Dispose.")]
         protected override void InitializeTarget()
         {
             base.InitializeTarget();
 
-            this.telemetryConfiguration.ConnectionString = this.connectionStringLayout.Render(LogEventInfo.CreateNullEvent());
-            this.telemetryClient = new TelemetryClient(this.telemetryConfiguration);
+            string connectionString = this.connectionStringLayout.Render(LogEventInfo.CreateNullEvent());
+
+            // Check if nlog application insights target has connectionstring in config file then
+            // configure new telemetryclient with the connectionstring otherwise using legacy instrumentationkey.
+            if (!string.IsNullOrWhiteSpace(connectionString))
+            {
+                this.telemetryConfiguration = this.TelemetryConfigurationFactory?.Invoke() ?? TelemetryConfiguration.CreateDefault();
+                this.telemetryConfiguration.ConnectionString = connectionString;
+                this.telemetryClient = new TelemetryClient(this.telemetryConfiguration);
+            }
+            else
+            {
+#pragma warning disable CS0618 // Type or member is obsolete: TelemtryConfiguration.Active is used in TelemetryClient constructor.
+                this.telemetryClient = new TelemetryClient();
+#pragma warning restore CS0618 // Type or member is obsolete
+                string instrumentationKey = this.instrumentationKeyLayout.Render(LogEventInfo.CreateNullEvent());
+                if (!string.IsNullOrWhiteSpace(instrumentationKey))
+                {
+                    this.telemetryClient.Context.InstrumentationKey = instrumentationKey;
+                }
+            }
+
             this.telemetryClient.Context.GetInternalContext().SdkVersion = SdkVersionUtils.GetSdkVersion("nlog:");
+        }
+
+        /// <summary>
+        /// Closes the target and releases resources used by the current instance of the <see cref="ApplicationInsightsTarget"/> class.
+        /// </summary>
+        protected override void CloseTarget()
+        {
+            this.telemetryConfiguration?.Dispose();
+            this.telemetryConfiguration = null;
+
+            base.CloseTarget();
         }
 
         /// <summary>
@@ -121,8 +161,6 @@ namespace Microsoft.ApplicationInsights.NLogTarget
             {
                 throw new ArgumentNullException(nameof(logEvent));
             }
-
-            this.lastLogEventTime = DateTime.UtcNow;
 
             if (logEvent.Exception != null)
             {
@@ -155,16 +193,19 @@ namespace Microsoft.ApplicationInsights.NLogTarget
             }
         }
 
-        /// <inheritdoc/>
+        /// <summary>
+        /// Releases resources used by the current instance of the <see cref="ApplicationInsightsTarget"/> class.
+        /// </summary>
+        /// <param name="disposing">Dispose managed state (managed objects).</param>
         protected override void Dispose(bool disposing)
         {
+            base.Dispose(disposing);
+
             if (disposing)
             {
                 this.telemetryConfiguration?.Dispose();
-                this.telemetryClient?.Flush();
+                this.telemetryConfiguration = null;
             }
-
-            base.Dispose(disposing);
         }
 
         private static SeverityLevel? GetSeverityLevel(LogLevel logEventLevel)
