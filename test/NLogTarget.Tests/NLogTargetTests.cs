@@ -236,8 +236,11 @@
         [TestCategory("NLogTarget")]
         public void GlobalDiagnosticContextPropertiesAreAddedToProperties()
         {
-            using ApplicationInsightsTarget target = new();
-            target.ContextProperties.Add(new TargetPropertyWithContext("global_prop", "${gdc:item=global_prop}"));
+            using ApplicationInsightsTarget target = new()
+            {
+                IncludeGdc = true,
+                ContextProperties = { new("global_prop", "${gdc:item=global_prop}") }
+            };
             var aiLogger = this.CreateTargetWithGivenConnectionString(target: target);
 
             NLog.GlobalDiagnosticsContext.Set("global_prop", "global_value");
@@ -251,8 +254,11 @@
         [TestCategory("NLogTarget")]
         public void GlobalDiagnosticContextPropertiesSupplementEventProperties()
         {
-            using ApplicationInsightsTarget target = new();
-            target.ContextProperties.Add(new TargetPropertyWithContext("global_prop", "${gdc:item=global_prop}"));
+            using ApplicationInsightsTarget target = new()
+            {
+                IncludeGdc = true,
+                ContextProperties = { new("global_prop", "${gdc:item=global_prop}") }
+            };
             var aiLogger = this.CreateTargetWithGivenConnectionString(target: target);
 
             NLog.GlobalDiagnosticsContext.Set("global_prop", "global_value");
