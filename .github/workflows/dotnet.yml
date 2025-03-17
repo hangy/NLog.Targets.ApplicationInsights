@@ -6,12 +6,14 @@ on:
       - main
       - next
       - beta
+      - dev
       - "*.x"
   pull_request:
     branches:
       - main
       - next
       - beta
+      - dev
       - "*.x"
 
 jobs:
