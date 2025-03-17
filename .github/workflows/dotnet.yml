@@ -6,12 +6,14 @@ on:
       - main
       - next
       - beta
+      - dev
       - "*.x"
   pull_request:
     branches:
       - main
       - next
       - beta
+      - dev
       - "*.x"
 
 jobs:
@@ -23,10 +25,16 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: 8.0.x
+          global-json-file: global.json
+      - name: Restore tools
+        run: dotnet tool restore
       - name: Restore dependencies
-        run: dotnet restore
+        run: dotnet restore --locked-mode
       - name: Build
         run: dotnet build --no-restore
       - name: Test
-        run: dotnet test --no-build --verbosity normal
+        run: dotnet test --no-build -p:TestingPlatformCommandLineArguments="--report-trx --coverage --coverage-output-format cobertura --coverage-output coverage.cobertura.xml"
+      - name: Convert test results
+        if: ${{ !cancelled() }}
+        run: |
+          find . -name "*.trx" -exec dotnet tool run trx2junit --output TestResults/JUnit {} +

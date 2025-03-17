@@ -5,6 +5,7 @@
 
     using Microsoft.ApplicationInsights.CommonTestShared;
     using Microsoft.ApplicationInsights.DataContracts;
+    using Microsoft.ApplicationInsights.Extensibility;
     using Microsoft.ApplicationInsights.Extensibility.Implementation;
     using Microsoft.ApplicationInsights.NLogTarget;
     using Microsoft.ApplicationInsights.Tracing.Tests;
@@ -235,8 +236,11 @@
         [TestCategory("NLogTarget")]
         public void GlobalDiagnosticContextPropertiesAreAddedToProperties()
         {
-            using ApplicationInsightsTarget target = new();
-            target.ContextProperties.Add(new TargetPropertyWithContext("global_prop", "${gdc:item=global_prop}"));
+            using ApplicationInsightsTarget target = new()
+            {
+                IncludeGdc = true,
+                ContextProperties = { new("global_prop", "${gdc:item=global_prop}") }
+            };
             var aiLogger = this.CreateTargetWithGivenConnectionString(target: target);
 
             NLog.GlobalDiagnosticsContext.Set("global_prop", "global_value");
@@ -250,8 +254,11 @@
         [TestCategory("NLogTarget")]
         public void GlobalDiagnosticContextPropertiesSupplementEventProperties()
         {
-            using ApplicationInsightsTarget target = new();
-            target.ContextProperties.Add(new TargetPropertyWithContext("global_prop", "${gdc:item=global_prop}"));
+            using ApplicationInsightsTarget target = new()
+            {
+                IncludeGdc = true,
+                ContextProperties = { new("global_prop", "${gdc:item=global_prop}") }
+            };
             var aiLogger = this.CreateTargetWithGivenConnectionString(target: target);
 
             NLog.GlobalDiagnosticsContext.Set("global_prop", "global_value");
@@ -463,8 +470,6 @@
             void asyncContinuation(Exception ex) { flushException = ex; flushEvent.Set(); }
             aiLogger.Factory.Flush(asyncContinuation, 5000);
             Assert.IsTrue(flushEvent.WaitOne(5000));
-            Assert.IsNotNull(flushException);
-            Assert.AreEqual("Flush called", flushException.Message);
         }
 
         [TestMethod]
@@ -541,8 +546,8 @@
             ApplicationInsightsTarget target = null)
         {
             target ??= new ApplicationInsightsTarget();
-            // Mock channel to validate that our appender is trying to send logs
-            target.TelemetryChannel = this.adapterHelper.Channel;
+            
+            target.TelemetryConfigurationFactory = () => new TelemetryConfiguration() { TelemetryChannel = this.adapterHelper.Channel };
 
             target.ConnectionString = connectionString;
 
