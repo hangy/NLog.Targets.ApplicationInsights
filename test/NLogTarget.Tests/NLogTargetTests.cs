@@ -535,15 +535,23 @@
         {
             Activity activity = new("NLogInfoContainsCurrentActivity");
             activity.Start();
+            var originalActivity = Activity.Current;
             Activity.Current = activity;
 
-            var aiLogger = this.CreateTargetWithGivenConnectionString("InstrumentationKey=00000000-0000-0000-0000-000000000000;IngestionEndpoint=https://westeurope.in.applicationinsights.azure.example.com/;LiveEndpoint=https://westeurope.livediagnostics.monitor.azure.example.com/", includeActivity: true);
-            aiLogger.Info("Info message");
+            try
+            {
+                var aiLogger = this.CreateTargetWithGivenConnectionString("InstrumentationKey=00000000-0000-0000-0000-000000000000;IngestionEndpoint=https://westeurope.in.applicationinsights.azure.example.com/;LiveEndpoint=https://westeurope.livediagnostics.monitor.azure.example.com/", includeActivity: true);
+                aiLogger.Info("Info message");
 
-            var telemetry = (TraceTelemetry)this.adapterHelper.Channel.SentItems.First();
-            Assert.AreEqual($"Info message", telemetry.Message);
-            Assert.AreEqual(activity.TraceId.ToString(), telemetry.Context.Operation.Id);
-            Assert.AreEqual(activity.ParentSpanId.ToHexString(), telemetry.Context.Operation.ParentId);
+                var telemetry = (TraceTelemetry)this.adapterHelper.Channel.SentItems.First();
+                Assert.AreEqual($"Info message", telemetry.Message);
+                Assert.AreEqual(activity.TraceId.ToString(), telemetry.Context.Operation.Id);
+                Assert.AreEqual(activity.ParentSpanId.ToHexString(), telemetry.Context.Operation.ParentId);
+            }
+            finally
+            {
+                Activity.Current = originalActivity;
+            }
         }
 
         private void VerifyMessagesInMockChannel(Logger aiLogger, string instrumentationKey)
