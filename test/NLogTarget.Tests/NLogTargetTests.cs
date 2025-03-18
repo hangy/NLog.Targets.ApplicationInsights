@@ -554,6 +554,31 @@
             }
         }
 
+        [TestMethod]
+        [TestCategory("NLogTarget")]
+        public void NLogErrorContainsCurrentActivity()
+        {
+            Activity activity = new("NLogInfoContainsCurrentActivity");
+            activity.Start();
+            var originalActivity = Activity.Current;
+            Activity.Current = activity;
+
+            try
+            {
+                var aiLogger = this.CreateTargetWithGivenConnectionString("InstrumentationKey=00000000-0000-0000-0000-000000000000;IngestionEndpoint=https://westeurope.in.applicationinsights.azure.example.com/;LiveEndpoint=https://westeurope.livediagnostics.monitor.azure.example.com/", includeActivity: true);
+                aiLogger.Error("Error Message");
+
+                var telemetry = this.adapterHelper.Channel.SentItems.FirstOrDefault() as TraceTelemetry;
+                Assert.AreEqual("Error Message", telemetry.Message);
+                Assert.AreEqual(activity.TraceId.ToString(), telemetry.Context.Operation.Id);
+                Assert.AreEqual(activity.ParentSpanId.ToHexString(), telemetry.Context.Operation.ParentId);
+            }
+            finally
+            {
+                Activity.Current = originalActivity;
+            }
+        }
+
         private void VerifyMessagesInMockChannel(Logger aiLogger, string instrumentationKey)
         {
             aiLogger.Trace("Sample trace message");
@@ -573,7 +598,7 @@
             bool includeActivity = false)
         {
             target ??= new ApplicationInsightsTarget();
-            
+
             target.TelemetryConfigurationFactory = () => new TelemetryConfiguration() { TelemetryChannel = this.adapterHelper.Channel };
 
             target.ConnectionString = connectionString;

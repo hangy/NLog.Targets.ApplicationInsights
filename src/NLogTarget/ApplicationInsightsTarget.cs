@@ -261,7 +261,7 @@ namespace Microsoft.ApplicationInsights.NLogTarget
             if (activity != null)
             {
                 exceptionTelemetry.Context.Operation.Id = activity.TraceId.ToHexString();
-                exceptionTelemetry.Context.Operation.ParentId = activity.SpanId.ToHexString();
+                exceptionTelemetry.Context.Operation.ParentId = activity.ParentSpanId.ToHexString();
             }
 
             this.BuildPropertyBag(logEvent, exceptionTelemetry);
@@ -280,7 +280,7 @@ namespace Microsoft.ApplicationInsights.NLogTarget
             if (activity != null)
             {
                 trace.Context.Operation.Id = activity.TraceId.ToHexString();
-                trace.Context.Operation.ParentId = activity.SpanId.ToHexString();
+                trace.Context.Operation.ParentId = activity.ParentSpanId.ToHexString();
             }
 
             this.BuildPropertyBag(logEvent, trace);
