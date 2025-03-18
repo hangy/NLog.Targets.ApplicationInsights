@@ -2,15 +2,6 @@
   "version": 2,
   "dependencies": {
     ".NETFramework,Version=v4.6.2": {
-      "Microsoft.ApplicationInsights": {
-        "type": "Direct",
-        "requested": "[2.23.0, )",
-        "resolved": "2.23.0",
-        "contentHash": "nWArUZTdU7iqZLycLKWe0TDms48KKGE6pONH2terYNa8REXiqixrMOkf1sk5DHGMaUTqONU2YkS4SAXBhLStgw==",
-        "dependencies": {
-          "System.Diagnostics.DiagnosticSource": "5.0.0"
-        }
-      },
       "Microsoft.NET.Test.Sdk": {
         "type": "Direct",
         "requested": "[17.13.0, )",
@@ -48,12 +39,6 @@
         "dependencies": {
           "MSTest.Analyzers": "3.8.2"
         }
-      },
-      "NLog": {
-        "type": "Direct",
-        "requested": "[5.4.0, )",
-        "resolved": "5.4.0",
-        "contentHash": "LwMcGSW3soF3/SL68rlJN3Eh3ktrAPycC3zZR/07OYBPraZUu0bygEC7kIN10lUQgMXT4s84Fi1chglGdGrQEg=="
       },
       "Microsoft.CodeCoverage": {
         "type": "Transitive",
@@ -180,11 +165,9 @@
           "Microsoft.ApplicationInsights": "[2.23.0, )",
           "NLog": "[5.4.0, )"
         }
-      }
-    },
-    ".NETFramework,Version=v4.7.2": {
+      },
       "Microsoft.ApplicationInsights": {
-        "type": "Direct",
+        "type": "CentralTransitive",
         "requested": "[2.23.0, )",
         "resolved": "2.23.0",
         "contentHash": "nWArUZTdU7iqZLycLKWe0TDms48KKGE6pONH2terYNa8REXiqixrMOkf1sk5DHGMaUTqONU2YkS4SAXBhLStgw==",
@@ -192,6 +175,18 @@
           "System.Diagnostics.DiagnosticSource": "5.0.0"
         }
       },
+      "NLog": {
+        "type": "CentralTransitive",
+        "requested": "[5.4.0, )",
+        "resolved": "5.4.0",
+        "contentHash": "LwMcGSW3soF3/SL68rlJN3Eh3ktrAPycC3zZR/07OYBPraZUu0bygEC7kIN10lUQgMXT4s84Fi1chglGdGrQEg=="
+      }
+    },
+    ".NETFramework,Version=v4.6.2/linux-x64": {},
+    ".NETFramework,Version=v4.6.2/osx-x64": {},
+    ".NETFramework,Version=v4.6.2/win-x64": {},
+    ".NETFramework,Version=v4.6.2/win-x86": {},
+    ".NETFramework,Version=v4.7.2": {
       "Microsoft.NET.Test.Sdk": {
         "type": "Direct",
         "requested": "[17.13.0, )",
@@ -229,12 +224,6 @@
         "dependencies": {
           "MSTest.Analyzers": "3.8.2"
         }
-      },
-      "NLog": {
-        "type": "Direct",
-        "requested": "[5.4.0, )",
-        "resolved": "5.4.0",
-        "contentHash": "LwMcGSW3soF3/SL68rlJN3Eh3ktrAPycC3zZR/07OYBPraZUu0bygEC7kIN10lUQgMXT4s84Fi1chglGdGrQEg=="
       },
       "Microsoft.CodeCoverage": {
         "type": "Transitive",
@@ -361,11 +350,9 @@
           "Microsoft.ApplicationInsights": "[2.23.0, )",
           "NLog": "[5.4.0, )"
         }
-      }
-    },
-    ".NETFramework,Version=v4.8": {
+      },
       "Microsoft.ApplicationInsights": {
-        "type": "Direct",
+        "type": "CentralTransitive",
         "requested": "[2.23.0, )",
         "resolved": "2.23.0",
         "contentHash": "nWArUZTdU7iqZLycLKWe0TDms48KKGE6pONH2terYNa8REXiqixrMOkf1sk5DHGMaUTqONU2YkS4SAXBhLStgw==",
@@ -373,6 +360,18 @@
           "System.Diagnostics.DiagnosticSource": "5.0.0"
         }
       },
+      "NLog": {
+        "type": "CentralTransitive",
+        "requested": "[5.4.0, )",
+        "resolved": "5.4.0",
+        "contentHash": "LwMcGSW3soF3/SL68rlJN3Eh3ktrAPycC3zZR/07OYBPraZUu0bygEC7kIN10lUQgMXT4s84Fi1chglGdGrQEg=="
+      }
+    },
+    ".NETFramework,Version=v4.7.2/linux-x64": {},
+    ".NETFramework,Version=v4.7.2/osx-x64": {},
+    ".NETFramework,Version=v4.7.2/win-x64": {},
+    ".NETFramework,Version=v4.7.2/win-x86": {},
+    ".NETFramework,Version=v4.8": {
       "Microsoft.NET.Test.Sdk": {
         "type": "Direct",
         "requested": "[17.13.0, )",
@@ -410,12 +409,6 @@
         "dependencies": {
           "MSTest.Analyzers": "3.8.2"
         }
-      },
-      "NLog": {
-        "type": "Direct",
-        "requested": "[5.4.0, )",
-        "resolved": "5.4.0",
-        "contentHash": "LwMcGSW3soF3/SL68rlJN3Eh3ktrAPycC3zZR/07OYBPraZUu0bygEC7kIN10lUQgMXT4s84Fi1chglGdGrQEg=="
       },
       "Microsoft.CodeCoverage": {
         "type": "Transitive",
@@ -542,18 +535,28 @@
           "Microsoft.ApplicationInsights": "[2.23.0, )",
           "NLog": "[5.4.0, )"
         }
+      },
+      "Microsoft.ApplicationInsights": {
+        "type": "CentralTransitive",
+        "requested": "[2.23.0, )",
+        "resolved": "2.23.0",
+        "contentHash": "nWArUZTdU7iqZLycLKWe0TDms48KKGE6pONH2terYNa8REXiqixrMOkf1sk5DHGMaUTqONU2YkS4SAXBhLStgw==",
+        "dependencies": {
+          "System.Diagnostics.DiagnosticSource": "5.0.0"
+        }
+      },
+      "NLog": {
+        "type": "CentralTransitive",
+        "requested": "[5.4.0, )",
+        "resolved": "5.4.0",
+        "contentHash": "LwMcGSW3soF3/SL68rlJN3Eh3ktrAPycC3zZR/07OYBPraZUu0bygEC7kIN10lUQgMXT4s84Fi1chglGdGrQEg=="
       }
     },
+    ".NETFramework,Version=v4.8/linux-x64": {},
+    ".NETFramework,Version=v4.8/osx-x64": {},
+    ".NETFramework,Version=v4.8/win-x64": {},
+    ".NETFramework,Version=v4.8/win-x86": {},
     "net6.0": {
-      "Microsoft.ApplicationInsights": {
-        "type": "Direct",
-        "requested": "[2.23.0, )",
-        "resolved": "2.23.0",
-        "contentHash": "nWArUZTdU7iqZLycLKWe0TDms48KKGE6pONH2terYNa8REXiqixrMOkf1sk5DHGMaUTqONU2YkS4SAXBhLStgw==",
-        "dependencies": {
-          "System.Diagnostics.DiagnosticSource": "5.0.0"
-        }
-      },
       "Microsoft.NET.Test.Sdk": {
         "type": "Direct",
         "requested": "[17.13.0, )",
@@ -582,12 +585,6 @@
         "dependencies": {
           "MSTest.Analyzers": "3.8.2"
         }
-      },
-      "NLog": {
-        "type": "Direct",
-        "requested": "[5.4.0, )",
-        "resolved": "5.4.0",
-        "contentHash": "LwMcGSW3soF3/SL68rlJN3Eh3ktrAPycC3zZR/07OYBPraZUu0bygEC7kIN10lUQgMXT4s84Fi1chglGdGrQEg=="
       },
       "Microsoft.CodeCoverage": {
         "type": "Transitive",
@@ -678,18 +675,28 @@
           "Microsoft.ApplicationInsights": "[2.23.0, )",
           "NLog": "[5.4.0, )"
         }
+      },
+      "Microsoft.ApplicationInsights": {
+        "type": "CentralTransitive",
+        "requested": "[2.23.0, )",
+        "resolved": "2.23.0",
+        "contentHash": "nWArUZTdU7iqZLycLKWe0TDms48KKGE6pONH2terYNa8REXiqixrMOkf1sk5DHGMaUTqONU2YkS4SAXBhLStgw==",
+        "dependencies": {
+          "System.Diagnostics.DiagnosticSource": "5.0.0"
+        }
+      },
+      "NLog": {
+        "type": "CentralTransitive",
+        "requested": "[5.4.0, )",
+        "resolved": "5.4.0",
+        "contentHash": "LwMcGSW3soF3/SL68rlJN3Eh3ktrAPycC3zZR/07OYBPraZUu0bygEC7kIN10lUQgMXT4s84Fi1chglGdGrQEg=="
       }
     },
+    "net6.0/linux-x64": {},
+    "net6.0/osx-x64": {},
+    "net6.0/win-x64": {},
+    "net6.0/win-x86": {},
     "net8.0": {
-      "Microsoft.ApplicationInsights": {
-        "type": "Direct",
-        "requested": "[2.23.0, )",
-        "resolved": "2.23.0",
-        "contentHash": "nWArUZTdU7iqZLycLKWe0TDms48KKGE6pONH2terYNa8REXiqixrMOkf1sk5DHGMaUTqONU2YkS4SAXBhLStgw==",
-        "dependencies": {
-          "System.Diagnostics.DiagnosticSource": "5.0.0"
-        }
-      },
       "Microsoft.NET.Test.Sdk": {
         "type": "Direct",
         "requested": "[17.13.0, )",
@@ -718,12 +725,6 @@
         "dependencies": {
           "MSTest.Analyzers": "3.8.2"
         }
-      },
-      "NLog": {
-        "type": "Direct",
-        "requested": "[5.4.0, )",
-        "resolved": "5.4.0",
-        "contentHash": "LwMcGSW3soF3/SL68rlJN3Eh3ktrAPycC3zZR/07OYBPraZUu0bygEC7kIN10lUQgMXT4s84Fi1chglGdGrQEg=="
       },
       "Microsoft.CodeCoverage": {
         "type": "Transitive",
@@ -814,18 +815,28 @@
           "Microsoft.ApplicationInsights": "[2.23.0, )",
           "NLog": "[5.4.0, )"
         }
+      },
+      "Microsoft.ApplicationInsights": {
+        "type": "CentralTransitive",
+        "requested": "[2.23.0, )",
+        "resolved": "2.23.0",
+        "contentHash": "nWArUZTdU7iqZLycLKWe0TDms48KKGE6pONH2terYNa8REXiqixrMOkf1sk5DHGMaUTqONU2YkS4SAXBhLStgw==",
+        "dependencies": {
+          "System.Diagnostics.DiagnosticSource": "5.0.0"
+        }
+      },
+      "NLog": {
+        "type": "CentralTransitive",
+        "requested": "[5.4.0, )",
+        "resolved": "5.4.0",
+        "contentHash": "LwMcGSW3soF3/SL68rlJN3Eh3ktrAPycC3zZR/07OYBPraZUu0bygEC7kIN10lUQgMXT4s84Fi1chglGdGrQEg=="
       }
     },
+    "net8.0/linux-x64": {},
+    "net8.0/osx-x64": {},
+    "net8.0/win-x64": {},
+    "net8.0/win-x86": {},
     "net9.0": {
-      "Microsoft.ApplicationInsights": {
-        "type": "Direct",
-        "requested": "[2.23.0, )",
-        "resolved": "2.23.0",
-        "contentHash": "nWArUZTdU7iqZLycLKWe0TDms48KKGE6pONH2terYNa8REXiqixrMOkf1sk5DHGMaUTqONU2YkS4SAXBhLStgw==",
-        "dependencies": {
-          "System.Diagnostics.DiagnosticSource": "5.0.0"
-        }
-      },
       "Microsoft.NET.Test.Sdk": {
         "type": "Direct",
         "requested": "[17.13.0, )",
@@ -854,12 +865,6 @@
         "dependencies": {
           "MSTest.Analyzers": "3.8.2"
         }
-      },
-      "NLog": {
-        "type": "Direct",
-        "requested": "[5.4.0, )",
-        "resolved": "5.4.0",
-        "contentHash": "LwMcGSW3soF3/SL68rlJN3Eh3ktrAPycC3zZR/07OYBPraZUu0bygEC7kIN10lUQgMXT4s84Fi1chglGdGrQEg=="
       },
       "Microsoft.CodeCoverage": {
         "type": "Transitive",
@@ -950,7 +955,26 @@
           "Microsoft.ApplicationInsights": "[2.23.0, )",
           "NLog": "[5.4.0, )"
         }
+      },
+      "Microsoft.ApplicationInsights": {
+        "type": "CentralTransitive",
+        "requested": "[2.23.0, )",
+        "resolved": "2.23.0",
+        "contentHash": "nWArUZTdU7iqZLycLKWe0TDms48KKGE6pONH2terYNa8REXiqixrMOkf1sk5DHGMaUTqONU2YkS4SAXBhLStgw==",
+        "dependencies": {
+          "System.Diagnostics.DiagnosticSource": "5.0.0"
+        }
+      },
+      "NLog": {
+        "type": "CentralTransitive",
+        "requested": "[5.4.0, )",
+        "resolved": "5.4.0",
+        "contentHash": "LwMcGSW3soF3/SL68rlJN3Eh3ktrAPycC3zZR/07OYBPraZUu0bygEC7kIN10lUQgMXT4s84Fi1chglGdGrQEg=="
       }
-    }
+    },
+    "net9.0/linux-x64": {},
+    "net9.0/osx-x64": {},
+    "net9.0/win-x64": {},
+    "net9.0/win-x86": {}
   }
 }

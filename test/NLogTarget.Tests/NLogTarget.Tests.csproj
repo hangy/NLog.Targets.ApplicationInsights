@@ -3,12 +3,11 @@
     <RootNamespace>hangy.NLog.Targets.ApplicationInsights.Tests</RootNamespace>
     <AssemblyName>hangy.NLog.Targets.ApplicationInsights.Tests</AssemblyName>
     <TargetFrameworks>net462;net472;net48;net6.0;net8.0;net9.0</TargetFrameworks>
+    <RuntimeIdentifiers>win-x64;win-x86;linux-x64;osx-x64</RuntimeIdentifiers>
     <Nullable>disable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="NLog" />
-    <PackageReference Include="Microsoft.ApplicationInsights" />
     <ProjectReference Include="..\..\src\NLogTarget\NLogTarget.csproj" />
   </ItemGroup>
 
