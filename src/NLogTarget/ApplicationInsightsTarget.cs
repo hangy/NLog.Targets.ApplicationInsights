@@ -53,12 +53,6 @@ namespace Microsoft.ApplicationInsights.NLogTarget
         }
 
         /// <summary>
-        /// Gets the array of custom attributes to be passed into the logevent context.
-        /// </summary>
-        [ArrayParameter(typeof(TargetPropertyWithContext), "contextproperty")]
-        public IList<TargetPropertyWithContext> ContextProperties { get; } = new List<TargetPropertyWithContext>();
-
-        /// <summary>
         /// Gets or sets the factory for creating TelemetryConfiguration, so unit-tests can override in-memory-channel.
         /// </summary>
         internal Func<TelemetryConfiguration> TelemetryConfigurationFactory { get; set; }
