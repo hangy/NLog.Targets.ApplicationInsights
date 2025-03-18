@@ -1,6 +1,7 @@
 ﻿namespace Microsoft.ApplicationInsights.NLogTarget.Tests
 {
     using System;
+    using System.Diagnostics;
     using System.Linq;
 
     using Microsoft.ApplicationInsights.CommonTestShared;
@@ -528,6 +529,23 @@
             Assert.AreEqual("Error Message", telemetry.Message);
         }
 
+        [TestMethod]
+        [TestCategory("NLogTarget")]
+        public void NLogInfoContainsCurrentActivity()
+        {
+            Activity activity = new("NLogInfoContainsCurrentActivity");
+            activity.Start();
+            Activity.Current = activity;
+
+            var aiLogger = this.CreateTargetWithGivenConnectionString("InstrumentationKey=00000000-0000-0000-0000-000000000000;IngestionEndpoint=https://westeurope.in.applicationinsights.azure.example.com/;LiveEndpoint=https://westeurope.livediagnostics.monitor.azure.example.com/", includeActivity: true);
+            aiLogger.Info("Info message");
+
+            var telemetry = (TraceTelemetry)this.adapterHelper.Channel.SentItems.First();
+            Assert.AreEqual($"Info message", telemetry.Message);
+            Assert.AreEqual(activity.TraceId.ToString(), telemetry.Context.Operation.Id);
+            Assert.AreEqual(activity.ParentSpanId.ToHexString(), telemetry.Context.Operation.ParentId);
+        }
+
         private void VerifyMessagesInMockChannel(Logger aiLogger, string instrumentationKey)
         {
             aiLogger.Trace("Sample trace message");
@@ -543,13 +561,15 @@
         private Logger CreateTargetWithGivenConnectionString(
             string connectionString = "InstrumentationKey=00000000-0000-0000-0000-000000000000;IngestionEndpoint=https://westeurope.in.applicationinsights.azure.example.com/;LiveEndpoint=https://westeurope.livediagnostics.monitor.azure.example.com/",
             Action<Logger> loggerAction = null,
-            ApplicationInsightsTarget target = null)
+            ApplicationInsightsTarget target = null,
+            bool includeActivity = false)
         {
             target ??= new ApplicationInsightsTarget();
             
             target.TelemetryConfigurationFactory = () => new TelemetryConfiguration() { TelemetryChannel = this.adapterHelper.Channel };
 
             target.ConnectionString = connectionString;
+            target.IncludeActivity = includeActivity;
 
             var rule = new LoggingRule("*", LogLevel.Trace, target);
             var config = new LoggingConfiguration();

@@ -18,6 +18,7 @@ To use the NLog target, follow these steps:
            <target xsi:type="ApplicationInsightsTarget" name="aiTarget">
                <connectionString>Your_ApplicationInsights_ConnectionString</connectionString> <!-- Only required if not using ApplicationInsights.config -->
                <contextproperty name="threadid" layout="${threadid}" /> <!-- Can be repeated with more context -->
+               <includeActivity>true</includeActivity>
            </target>
        </targets>
        <rules>
