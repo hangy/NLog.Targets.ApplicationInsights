@@ -15,10 +15,9 @@ To use the NLog target, follow these steps:
            <add assembly="hangy.NLog.Targets.ApplicationInsights" />
        </extensions>
        <targets>
-           <target xsi:type="ApplicationInsightsTarget" name="aiTarget">
+           <target xsi:type="ApplicationInsightsTarget" name="aiTarget" includeActivity="true">
                <connectionString>Your_ApplicationInsights_ConnectionString</connectionString> <!-- Only required if not using ApplicationInsights.config -->
                <contextproperty name="threadid" layout="${threadid}" /> <!-- Can be repeated with more context -->
-               <includeActivity>true</includeActivity>
            </target>
        </targets>
        <rules>
@@ -31,3 +30,4 @@ To use the NLog target, follow these steps:
 
 1. Complex objects are flattened when written to `customDimensions`. [#8](https://github.com/hangy/NLog.Targets.ApplicationInsights/issues/8)
 1. Properties with the same name are overwritten. For example, if you have a GDC value named `Name`, and a log event property of the same name, the GDC value will be logged. [#10](https://github.com/hangy/NLog.Targets.ApplicationInsights/issues/10)
+1. `includeActivity=true` (default: `false`) will _not_ work as expected if the target is wrapped in an asynchronous target wrapper (ie. using `<targets async="true">` du to the `Activity` being scoped to a thread.
