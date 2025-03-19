@@ -20,6 +20,7 @@ namespace Microsoft.ApplicationInsights.NLogTarget
     using NLog;
     using NLog.Common;
     using NLog.Targets;
+    using NLog.Layouts;
 
     /// <summary>
     /// NLog Target that routes all logging output to the Application Insights logging framework.
@@ -30,8 +31,8 @@ namespace Microsoft.ApplicationInsights.NLogTarget
     {
         private TelemetryClient? telemetryClient;
         private TelemetryConfiguration? telemetryConfiguration;
-        private readonly NLog.Layouts.Layout instrumentationKeyLayout = string.Empty;
-        private NLog.Layouts.Layout connectionStringLayout = string.Empty;
+        private readonly Layout instrumentationKeyLayout = string.Empty;
+        private Layout connectionStringLayout = string.Empty;
 
         /// <summary>
         /// Initializers a new instance of ApplicationInsightsTarget type.
@@ -47,14 +48,36 @@ namespace Microsoft.ApplicationInsights.NLogTarget
         /// </summary>
         public string? ConnectionString
         {
-            get => (this.connectionStringLayout as NLog.Layouts.SimpleLayout)?.Text ?? null;
+            get => (this.connectionStringLayout as SimpleLayout)?.Text ?? null;
             set => this.connectionStringLayout = value ?? string.Empty;
         }
 
         /// <summary>
-        /// Gets or sets a value indicating whether to send <see cref="Activity.Current"/> information to Application Insights.
+        /// Gets or sets the layout that renders the trace identifier for the log event.
+        /// If not set, it retrieves the TraceId from the current Activity context.
         /// </summary>
-        public bool IncludeActivity { get; set; } = false;
+        /// <remarks>
+        /// The trace identifier is used to correlate log events across different components
+        /// in distributed tracing scenarios. By default, it uses the TraceId from the current
+        /// Activity if available.
+        /// </remarks>
+        /// <value>
+        /// A layout that renders an ActivityTraceId. Default value retrieves TraceId from <see>System.Diagnostics.Activity.Current</see>.
+        /// </value>
+        public Layout<ActivityTraceId?> TraceId { get; set; } = Layout<ActivityTraceId?>.FromMethod(static evt => Activity.Current?.TraceId);
+
+        /// <summary>
+        /// Gets or sets the span ID for the Application Insights telemetry.
+        /// The span ID is used to correlate distributed tracing events across different components.
+        /// By default, it retrieves the SpanId from the current Activity context.
+        /// </summary>
+        /// <remarks>
+        /// If no Activity is currently active, this will return null.
+        /// </remarks>        
+        /// <value>
+        /// A layout that renders an ActivitySpanId. Default value retrieves SpanId from <see>System.Diagnostics.Activity.Current</see>.
+        /// </value>
+        public Layout<ActivitySpanId?> SpanId { get; set; } = Layout<ActivitySpanId?>.FromMethod(static evt => Activity.Current?.SpanId);
 
         /// <summary>
         /// Gets or sets the factory for creating TelemetryConfiguration, so unit-tests can override in-memory-channel.
@@ -257,7 +280,7 @@ namespace Microsoft.ApplicationInsights.NLogTarget
                 exceptionTelemetry.Properties.Add("Message", logMessage);
             }
 
-            this.AddActivityIfEnabled(exceptionTelemetry);
+            this.AddActivityIfEnabled(logEvent, exceptionTelemetry);
             this.BuildPropertyBag(logEvent, exceptionTelemetry);
             this.telemetryClient?.Track(exceptionTelemetry);
         }
@@ -270,23 +293,23 @@ namespace Microsoft.ApplicationInsights.NLogTarget
                 SeverityLevel = GetSeverityLevel(logEvent.Level),
             };
 
-            this.AddActivityIfEnabled(trace);
+            this.AddActivityIfEnabled(logEvent, trace);
             this.BuildPropertyBag(logEvent, trace);
             this.telemetryClient?.Track(trace);
         }
 
-        private void AddActivityIfEnabled(ITelemetry trace)
+        private void AddActivityIfEnabled(LogEventInfo logEvent, ITelemetry trace)
         {
-            if (!this.IncludeActivity)
+            var traceId = this.RenderLogEvent(this.TraceId, logEvent);
+            if (traceId is not null)
             {
-                return;
+                trace.Context.Operation.Id = traceId.Value.ToHexString();
             }
 
-            var activity = Activity.Current;
-            if (activity != null)
+            var spanId = this.RenderLogEvent(this.SpanId, logEvent);
+            if (spanId is not null)
             {
-                trace.Context.Operation.Id = activity.TraceId.ToHexString();
-                trace.Context.Operation.ParentId = activity.SpanId.ToHexString();
+                trace.Context.Operation.ParentId = spanId.Value.ToHexString();
             }
         }
     }
