@@ -8,8 +8,8 @@
 namespace Microsoft.ApplicationInsights.NLogTarget
 {
     using System;
-    using System.Collections.Generic;
     using System.Globalization;
+    using System.Diagnostics;
 
     using Microsoft.ApplicationInsights.Channel;
     using Microsoft.ApplicationInsights.DataContracts;
@@ -19,7 +19,6 @@ namespace Microsoft.ApplicationInsights.NLogTarget
 
     using NLog;
     using NLog.Common;
-    using NLog.Config;
     using NLog.Targets;
 
     /// <summary>
@@ -31,7 +30,7 @@ namespace Microsoft.ApplicationInsights.NLogTarget
     {
         private TelemetryClient? telemetryClient;
         private TelemetryConfiguration? telemetryConfiguration;
-        private NLog.Layouts.Layout instrumentationKeyLayout = string.Empty;
+        private readonly NLog.Layouts.Layout instrumentationKeyLayout = string.Empty;
         private NLog.Layouts.Layout connectionStringLayout = string.Empty;
 
         /// <summary>
@@ -53,9 +52,14 @@ namespace Microsoft.ApplicationInsights.NLogTarget
         }
 
         /// <summary>
+        /// Gets or sets a value indicating whether to send <see cref="Activity.Current"/> information to Application Insights.
+        /// </summary>
+        public bool IncludeActivity { get; set; } = false;
+
+        /// <summary>
         /// Gets or sets the factory for creating TelemetryConfiguration, so unit-tests can override in-memory-channel.
         /// </summary>
-        internal Func<TelemetryConfiguration> TelemetryConfigurationFactory { get; set; }
+        internal Func<TelemetryConfiguration>? TelemetryConfigurationFactory { get; set; }
 
         internal void BuildPropertyBag(LogEventInfo logEvent, ITelemetry trace)
         {
@@ -179,7 +183,7 @@ namespace Microsoft.ApplicationInsights.NLogTarget
 
             try
             {
-                this.telemetryClient.FlushAsync(System.Threading.CancellationToken.None).ContinueWith(t => asyncContinuation(t.Exception));
+                this.telemetryClient?.FlushAsync(default).ContinueWith(t => asyncContinuation(t.Exception));
             }
             catch (Exception ex)
             {
@@ -253,6 +257,13 @@ namespace Microsoft.ApplicationInsights.NLogTarget
                 exceptionTelemetry.Properties.Add("Message", logMessage);
             }
 
+            var activity = Activity.Current;
+            if (activity != null)
+            {
+                exceptionTelemetry.Context.Operation.Id = activity.TraceId.ToHexString();
+                exceptionTelemetry.Context.Operation.ParentId = activity.ParentSpanId.ToHexString();
+            }
+
             this.BuildPropertyBag(logEvent, exceptionTelemetry);
             this.telemetryClient?.Track(exceptionTelemetry);
         }
@@ -264,6 +275,13 @@ namespace Microsoft.ApplicationInsights.NLogTarget
             {
                 SeverityLevel = GetSeverityLevel(logEvent.Level),
             };
+
+            var activity = Activity.Current;
+            if (activity != null)
+            {
+                trace.Context.Operation.Id = activity.TraceId.ToHexString();
+                trace.Context.Operation.ParentId = activity.ParentSpanId.ToHexString();
+            }
 
             this.BuildPropertyBag(logEvent, trace);
             this.telemetryClient?.Track(trace);
