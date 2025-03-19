@@ -15,9 +15,6 @@
 
   <ItemGroup>
     <PackageReference Include="NLog" />
-    <PackageReference Include="Microsoft.Diagnostics.Tracing.EventRegister">
-      <PrivateAssets>All</PrivateAssets>
-    </PackageReference>
     <PackageReference Include="Microsoft.ApplicationInsights" />
   </ItemGroup>
 

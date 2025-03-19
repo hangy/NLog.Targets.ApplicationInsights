@@ -11,12 +11,6 @@
           "System.Diagnostics.DiagnosticSource": "5.0.0"
         }
       },
-      "Microsoft.Diagnostics.Tracing.EventRegister": {
-        "type": "Direct",
-        "requested": "[1.1.28, )",
-        "resolved": "1.1.28",
-        "contentHash": "VXTPYySeOmpMFejW2t4uau3t5h92LYKT9zM3kR06qeUNM9vQxG3S5nB6EhuKyf+F7Ze92Y6614MvjkxH14NJkQ=="
-      },
       "NETStandard.Library": {
         "type": "Direct",
         "requested": "[2.0.3, )",
