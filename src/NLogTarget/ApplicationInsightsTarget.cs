@@ -257,13 +257,7 @@ namespace Microsoft.ApplicationInsights.NLogTarget
                 exceptionTelemetry.Properties.Add("Message", logMessage);
             }
 
-            var activity = Activity.Current;
-            if (activity != null)
-            {
-                exceptionTelemetry.Context.Operation.Id = activity.TraceId.ToHexString();
-                exceptionTelemetry.Context.Operation.ParentId = activity.ParentSpanId.ToHexString();
-            }
-
+            this.AddActivityIfEnabled(exceptionTelemetry);
             this.BuildPropertyBag(logEvent, exceptionTelemetry);
             this.telemetryClient?.Track(exceptionTelemetry);
         }
@@ -276,15 +270,24 @@ namespace Microsoft.ApplicationInsights.NLogTarget
                 SeverityLevel = GetSeverityLevel(logEvent.Level),
             };
 
+            this.AddActivityIfEnabled(trace);
+            this.BuildPropertyBag(logEvent, trace);
+            this.telemetryClient?.Track(trace);
+        }
+
+        private void AddActivityIfEnabled(ITelemetry trace)
+        {
+            if (!this.IncludeActivity)
+            {
+                return;
+            }
+
             var activity = Activity.Current;
             if (activity != null)
             {
                 trace.Context.Operation.Id = activity.TraceId.ToHexString();
                 trace.Context.Operation.ParentId = activity.ParentSpanId.ToHexString();
             }
-
-            this.BuildPropertyBag(logEvent, trace);
-            this.telemetryClient?.Track(trace);
         }
     }
 }
