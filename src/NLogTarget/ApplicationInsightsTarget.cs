@@ -286,7 +286,7 @@ namespace Microsoft.ApplicationInsights.NLogTarget
             if (activity != null)
             {
                 trace.Context.Operation.Id = activity.TraceId.ToHexString();
-                trace.Context.Operation.ParentId = activity.ParentSpanId.ToHexString();
+                trace.Context.Operation.ParentId = activity.SpanId.ToHexString();
             }
         }
     }
