@@ -18,7 +18,7 @@ on:
 
 jobs:
   build:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v4
@@ -29,11 +29,11 @@ jobs:
       - name: Restore tools
         run: dotnet tool restore
       - name: Restore dependencies
-        run: dotnet restore --force-evaluate
+        run: dotnet restore --locked-mode
       - name: Build
         run: dotnet build --no-restore
       - name: Test
-        run: dotnet test --no-build -p:TestingPlatformCommandLineArguments="--report-trx --coverage --coverage-output-format cobertura --coverage-output coverage.cobertura.xml"
+        run: dotnet test --no-build -p:TestingPlatformCommandLineArguments="--report-trx --coverage --coverage-output-format cobertura --coverage-output coverage.cobertura.xml" -f net9.0 -r linux-x64
       - name: Convert test results
         if: ${{ !cancelled() }}
         run: |
