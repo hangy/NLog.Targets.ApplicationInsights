@@ -546,7 +546,7 @@
                 var telemetry = (TraceTelemetry)this.adapterHelper.Channel.SentItems.First();
                 Assert.AreEqual($"Info message", telemetry.Message);
                 Assert.AreEqual(activity.TraceId.ToString(), telemetry.Context.Operation.Id);
-                Assert.AreEqual(activity.ParentSpanId.ToHexString(), telemetry.Context.Operation.ParentId);
+                Assert.AreEqual(activity.SpanId.ToHexString(), telemetry.Context.Operation.ParentId);
             }
             finally
             {
@@ -571,7 +571,7 @@
                 var telemetry = this.adapterHelper.Channel.SentItems.FirstOrDefault() as TraceTelemetry;
                 Assert.AreEqual("Error Message", telemetry.Message);
                 Assert.AreEqual(activity.TraceId.ToString(), telemetry.Context.Operation.Id);
-                Assert.AreEqual(activity.ParentSpanId.ToHexString(), telemetry.Context.Operation.ParentId);
+                Assert.AreEqual(activity.SpanId.ToHexString(), telemetry.Context.Operation.ParentId);
             }
             finally
             {
@@ -597,7 +597,9 @@
             ApplicationInsightsTarget target = null,
             bool includeActivity = false)
         {
+#pragma warning disable CA2000 // Dispose objects before losing scope - Caller is responsible for disposal
             target ??= new ApplicationInsightsTarget();
+#pragma warning restore CA2000 // Dispose objects before losing scope - Caller is responsible for disposal
 
             target.TelemetryConfigurationFactory = () => new TelemetryConfiguration() { TelemetryChannel = this.adapterHelper.Channel };
 
