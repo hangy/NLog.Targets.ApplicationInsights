@@ -29,6 +29,8 @@ namespace Microsoft.ApplicationInsights.NLogTarget
     [Target("ApplicationInsightsTarget")]
     public sealed class ApplicationInsightsTarget : TargetWithContext
     {
+        private static readonly string EmptyTraceId = default(ActivityTraceId).ToHexString();
+        private static readonly string EmptySpanId = default(ActivitySpanId).ToHexString();
         private TelemetryClient? telemetryClient;
         private TelemetryConfiguration? telemetryConfiguration;
         private readonly Layout instrumentationKeyLayout = string.Empty;
@@ -301,15 +303,19 @@ namespace Microsoft.ApplicationInsights.NLogTarget
         private void AddActivityIfEnabled(LogEventInfo logEvent, ITelemetry trace)
         {
             var traceId = this.RenderLogEvent(this.TraceId, logEvent);
-            if (traceId is not null)
+            if (traceId is not null
+                && traceId.Value.ToHexString() is string traceIdString
+                && !traceIdString.Equals(EmptyTraceId, StringComparison.OrdinalIgnoreCase))
             {
-                trace.Context.Operation.Id = traceId.Value.ToHexString();
+                trace.Context.Operation.Id = traceIdString;
             }
 
             var spanId = this.RenderLogEvent(this.SpanId, logEvent);
-            if (spanId is not null)
+            if (spanId is not null
+                && spanId.Value.ToHexString() is string spanIdString
+                && !spanIdString.Equals(EmptySpanId, StringComparison.OrdinalIgnoreCase))
             {
-                trace.Context.Operation.ParentId = spanId.Value.ToHexString();
+                trace.Context.Operation.ParentId = spanIdString;
             }
         }
     }
