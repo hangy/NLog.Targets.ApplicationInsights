@@ -534,107 +534,71 @@
         [TestCategory("NLogTarget")]
         public void NLogInfoContainsCurrentActivity()
         {
-            Activity activity = new(nameof(NLogInfoContainsCurrentActivity));
+            using Activity activity = new(nameof(NLogInfoContainsCurrentActivity));
             activity.Start();
-            var originalActivity = Activity.Current;
-            Activity.Current = activity;
 
-            try
-            {
-                var aiLogger = this.CreateTargetWithGivenConnectionString("InstrumentationKey=00000000-0000-0000-0000-000000000000;IngestionEndpoint=https://westeurope.in.applicationinsights.azure.example.com/;LiveEndpoint=https://westeurope.livediagnostics.monitor.azure.example.com/");
-                aiLogger.Info("Info message");
+            var aiLogger = this.CreateTargetWithGivenConnectionString("InstrumentationKey=00000000-0000-0000-0000-000000000000;IngestionEndpoint=https://westeurope.in.applicationinsights.azure.example.com/;LiveEndpoint=https://westeurope.livediagnostics.monitor.azure.example.com/");
+            aiLogger.Info("Info message");
 
-                var telemetry = (TraceTelemetry)this.adapterHelper.Channel.SentItems.First();
-                Assert.AreEqual($"Info message", telemetry.Message);
-                Assert.AreEqual(activity.TraceId.ToString(), telemetry.Context.Operation.Id);
-                Assert.AreEqual(activity.SpanId.ToHexString(), telemetry.Context.Operation.ParentId);
-            }
-            finally
-            {
-                Activity.Current = originalActivity;
-            }
+            var telemetry = (TraceTelemetry)this.adapterHelper.Channel.SentItems.First();
+            Assert.AreEqual($"Info message", telemetry.Message);
+            Assert.AreEqual(activity.TraceId.ToString(), telemetry.Context.Operation.Id);
+            Assert.AreEqual(activity.SpanId.ToHexString(), telemetry.Context.Operation.ParentId);
         }
 
         [TestMethod]
         [TestCategory("NLogTarget")]
         public void NLogErrorContainsCurrentActivity()
         {
-            Activity activity = new(nameof(NLogErrorContainsCurrentActivity));
+            using Activity activity = new(nameof(NLogErrorContainsCurrentActivity));
             activity.Start();
-            var originalActivity = Activity.Current;
-            Activity.Current = activity;
 
-            try
-            {
-                var aiLogger = this.CreateTargetWithGivenConnectionString("InstrumentationKey=00000000-0000-0000-0000-000000000000;IngestionEndpoint=https://westeurope.in.applicationinsights.azure.example.com/;LiveEndpoint=https://westeurope.livediagnostics.monitor.azure.example.com/");
-                aiLogger.Error("Error Message");
+            var aiLogger = this.CreateTargetWithGivenConnectionString("InstrumentationKey=00000000-0000-0000-0000-000000000000;IngestionEndpoint=https://westeurope.in.applicationinsights.azure.example.com/;LiveEndpoint=https://westeurope.livediagnostics.monitor.azure.example.com/");
+            aiLogger.Error("Error Message");
 
-                var telemetry = this.adapterHelper.Channel.SentItems.FirstOrDefault() as TraceTelemetry;
-                Assert.AreEqual("Error Message", telemetry.Message);
-                Assert.AreEqual(activity.TraceId.ToString(), telemetry.Context.Operation.Id);
-                Assert.AreEqual(activity.SpanId.ToHexString(), telemetry.Context.Operation.ParentId);
-            }
-            finally
-            {
-                Activity.Current = originalActivity;
-            }
+            var telemetry = this.adapterHelper.Channel.SentItems.FirstOrDefault() as TraceTelemetry;
+            Assert.AreEqual("Error Message", telemetry.Message);
+            Assert.AreEqual(activity.TraceId.ToString(), telemetry.Context.Operation.Id);
+            Assert.AreEqual(activity.SpanId.ToHexString(), telemetry.Context.Operation.ParentId);
         }
 
         [TestMethod]
         [TestCategory("NLogTarget")]
         public void NLogInfoDoesNotContainTraceIdIfLayoutIsEmpty()
         {
-            Activity activity = new(nameof(NLogInfoDoesNotContainTraceIdIfLayoutIsEmpty));
+            using Activity activity = new(nameof(NLogInfoDoesNotContainTraceIdIfLayoutIsEmpty));
             activity.Start();
-            var originalActivity = Activity.Current;
-            Activity.Current = activity;
 
-            try
-            {
-                var aiLogger = this.CreateTargetWithGivenConnectionString("InstrumentationKey=00000000-0000-0000-0000-000000000000;IngestionEndpoint=https://westeurope.in.applicationinsights.azure.example.com/;LiveEndpoint=https://westeurope.livediagnostics.monitor.azure.example.com/", traceIdLayout: string.Empty);
-                aiLogger.Info("Info message");
+            var aiLogger = this.CreateTargetWithGivenConnectionString("InstrumentationKey=00000000-0000-0000-0000-000000000000;IngestionEndpoint=https://westeurope.in.applicationinsights.azure.example.com/;LiveEndpoint=https://westeurope.livediagnostics.monitor.azure.example.com/", traceIdLayout: string.Empty);
+            aiLogger.Info("Info message");
 
-                var telemetry = (TraceTelemetry)this.adapterHelper.Channel.SentItems.First();
-                Assert.AreEqual($"Info message", telemetry.Message);
-                Assert.IsTrue(string.IsNullOrWhiteSpace(telemetry.Context.Operation.Id));
-                Assert.AreEqual(activity.SpanId.ToHexString(), telemetry.Context.Operation.ParentId);
-            }
-            finally
-            {
-                Activity.Current = originalActivity;
-            }
+            var telemetry = (TraceTelemetry)this.adapterHelper.Channel.SentItems.First();
+            Assert.AreEqual($"Info message", telemetry.Message);
+            Assert.IsTrue(string.IsNullOrWhiteSpace(telemetry.Context.Operation.Id));
+            Assert.AreEqual(activity.SpanId.ToHexString(), telemetry.Context.Operation.ParentId);
         }
 
         [TestMethod]
         [TestCategory("NLogTarget")]
         public void NLogErrorDoesNotContainTraceIdIfLayoutIsEmpty()
         {
-            Activity activity = new(nameof(NLogErrorDoesNotContainTraceIdIfLayoutIsEmpty));
+            using Activity activity = new(nameof(NLogErrorDoesNotContainTraceIdIfLayoutIsEmpty));
             activity.Start();
-            var originalActivity = Activity.Current;
-            Activity.Current = activity;
 
-            try
-            {
-                var aiLogger = this.CreateTargetWithGivenConnectionString("InstrumentationKey=00000000-0000-0000-0000-000000000000;IngestionEndpoint=https://westeurope.in.applicationinsights.azure.example.com/;LiveEndpoint=https://westeurope.livediagnostics.monitor.azure.example.com/", traceIdLayout: string.Empty);
-                aiLogger.Error("Error Message");
+            var aiLogger = this.CreateTargetWithGivenConnectionString("InstrumentationKey=00000000-0000-0000-0000-000000000000;IngestionEndpoint=https://westeurope.in.applicationinsights.azure.example.com/;LiveEndpoint=https://westeurope.livediagnostics.monitor.azure.example.com/", traceIdLayout: string.Empty);
+            aiLogger.Error("Error Message");
 
-                var telemetry = this.adapterHelper.Channel.SentItems.FirstOrDefault() as TraceTelemetry;
-                Assert.AreEqual("Error Message", telemetry.Message);
-                Assert.IsTrue(string.IsNullOrWhiteSpace(telemetry.Context.Operation.Id));
-                Assert.AreEqual(activity.SpanId.ToHexString(), telemetry.Context.Operation.ParentId);
-            }
-            finally
-            {
-                Activity.Current = originalActivity;
-            }
-        }        
+            var telemetry = this.adapterHelper.Channel.SentItems.FirstOrDefault() as TraceTelemetry;
+            Assert.AreEqual("Error Message", telemetry.Message);
+            Assert.IsTrue(string.IsNullOrWhiteSpace(telemetry.Context.Operation.Id));
+            Assert.AreEqual(activity.SpanId.ToHexString(), telemetry.Context.Operation.ParentId);
+        }
 
         [TestMethod]
         [TestCategory("NLogTarget")]
         public void NLogInfoDoesNotContainSpanIdIfLayoutIsEmpty()
         {
-            Activity activity = new(nameof(NLogInfoDoesNotContainSpanIdIfLayoutIsEmpty));
+            using Activity activity = new(nameof(NLogInfoDoesNotContainSpanIdIfLayoutIsEmpty));
             activity.Start();
             var originalActivity = Activity.Current;
             Activity.Current = activity;
@@ -659,77 +623,99 @@
         [TestCategory("NLogTarget")]
         public void NLogErrorDoesNotContainSpanIdIfLayoutIsEmpty()
         {
-            Activity activity = new(nameof(NLogErrorDoesNotContainSpanIdIfLayoutIsEmpty));
+            using Activity activity = new(nameof(NLogErrorDoesNotContainSpanIdIfLayoutIsEmpty));
             activity.Start();
-            var originalActivity = Activity.Current;
-            Activity.Current = activity;
 
+            var aiLogger = this.CreateTargetWithGivenConnectionString("InstrumentationKey=00000000-0000-0000-0000-000000000000;IngestionEndpoint=https://westeurope.in.applicationinsights.azure.example.com/;LiveEndpoint=https://westeurope.livediagnostics.monitor.azure.example.com/", spanIdLayout: string.Empty);
+            aiLogger.Error("Error Message");
+
+            var telemetry = this.adapterHelper.Channel.SentItems.FirstOrDefault() as TraceTelemetry;
+            Assert.AreEqual("Error Message", telemetry.Message);
+            Assert.AreEqual(activity.TraceId.ToString(), telemetry.Context.Operation.Id);
+            Assert.IsTrue(string.IsNullOrWhiteSpace(telemetry.Context.Operation.ParentId));
+        }
+
+#if NET6_0_OR_GREATER
+        [TestMethod]
+        [TestCategory("NLogTarget")]
+        public void NLogInfoDoesNotContainTraceIdIfValueIsAllZeroes()
+        {
+            Activity.TraceIdGenerator = () => default;
             try
             {
-                var aiLogger = this.CreateTargetWithGivenConnectionString("InstrumentationKey=00000000-0000-0000-0000-000000000000;IngestionEndpoint=https://westeurope.in.applicationinsights.azure.example.com/;LiveEndpoint=https://westeurope.livediagnostics.monitor.azure.example.com/", spanIdLayout: string.Empty);
-                aiLogger.Error("Error Message");
+                using Activity activity = new(nameof(NLogInfoDoesNotContainTraceIdIfValueIsAllZeroes));
+                activity.Start();
+                var aiLogger = this.CreateTargetWithGivenConnectionString("InstrumentationKey=00000000-0000-0000-0000-000000000000;IngestionEndpoint=https://westeurope.in.applicationinsights.azure.example.com/;LiveEndpoint=https://westeurope.livediagnostics.monitor.azure.example.com/");
+                aiLogger.Info("Info message");
 
-                var telemetry = this.adapterHelper.Channel.SentItems.FirstOrDefault() as TraceTelemetry;
-                Assert.AreEqual("Error Message", telemetry.Message);
-                Assert.AreEqual(activity.TraceId.ToString(), telemetry.Context.Operation.Id);
-                Assert.IsTrue(string.IsNullOrWhiteSpace(telemetry.Context.Operation.ParentId));
+                var telemetry = (TraceTelemetry)this.adapterHelper.Channel.SentItems.First();
+                Assert.AreEqual($"Info message", telemetry.Message);
+                Assert.IsTrue(string.IsNullOrWhiteSpace(telemetry.Context.Operation.Id));
+                Assert.AreEqual(activity.SpanId.ToHexString(), telemetry.Context.Operation.ParentId);
             }
             finally
             {
-                Activity.Current = originalActivity;
+                Activity.TraceIdGenerator = ActivityTraceId.CreateRandom;
             }
         }
 
         [TestMethod]
         [TestCategory("NLogTarget")]
-        public void NLogInfoContainsCurrentActivityAsyncTarget()
+        public void NLogErrorDoesNotContainTraceIdIfValueIsAllZeroes()
         {
-            Activity activity = new(nameof(NLogInfoContainsCurrentActivityAsyncTarget));
-            activity.Start();
-            var originalActivity = Activity.Current;
-            Activity.Current = activity;
-
+            Activity.TraceIdGenerator = () => default;
             try
             {
-                var aiLogger = this.CreateAsyncTargetWithGivenConnectionString("InstrumentationKey=00000000-0000-0000-0000-000000000000;IngestionEndpoint=https://westeurope.in.applicationinsights.azure.example.com/;LiveEndpoint=https://westeurope.livediagnostics.monitor.azure.example.com/");
-                aiLogger.Info("Info message");
-                aiLogger.Factory.Flush();
+                using Activity activity = new(nameof(NLogErrorDoesNotContainTraceIdIfValueIsAllZeroes));
+                activity.Start();
 
-                var telemetry = (TraceTelemetry)this.adapterHelper.Channel.SentItems.First();
-                Assert.AreEqual($"Info message", telemetry.Message);
-                Assert.AreEqual(activity.TraceId.ToString(), telemetry.Context.Operation.Id);
+                var aiLogger = this.CreateTargetWithGivenConnectionString("InstrumentationKey=00000000-0000-0000-0000-000000000000;IngestionEndpoint=https://westeurope.in.applicationinsights.azure.example.com/;LiveEndpoint=https://westeurope.livediagnostics.monitor.azure.example.com/");
+                aiLogger.Error("Error Message");
+
+                var telemetry = this.adapterHelper.Channel.SentItems.FirstOrDefault() as TraceTelemetry;
+                Assert.AreEqual("Error Message", telemetry.Message);
+                Assert.IsTrue(string.IsNullOrWhiteSpace(telemetry.Context.Operation.Id));
                 Assert.AreEqual(activity.SpanId.ToHexString(), telemetry.Context.Operation.ParentId);
             }
             finally
             {
-                Activity.Current = originalActivity;
+                Activity.TraceIdGenerator = ActivityTraceId.CreateRandom;
             }
+        }
+#endif // NET6_0_OR_GREATER
+
+        [TestMethod]
+        [TestCategory("NLogTarget")]
+        public void NLogInfoContainsCurrentActivityAsyncTarget()
+        {
+            using Activity activity = new(nameof(NLogInfoContainsCurrentActivityAsyncTarget));
+            activity.Start();
+
+            var aiLogger = this.CreateAsyncTargetWithGivenConnectionString("InstrumentationKey=00000000-0000-0000-0000-000000000000;IngestionEndpoint=https://westeurope.in.applicationinsights.azure.example.com/;LiveEndpoint=https://westeurope.livediagnostics.monitor.azure.example.com/");
+            aiLogger.Info("Info message");
+            aiLogger.Factory.Flush();
+
+            var telemetry = (TraceTelemetry)this.adapterHelper.Channel.SentItems.First();
+            Assert.AreEqual($"Info message", telemetry.Message);
+            Assert.AreEqual(activity.TraceId.ToString(), telemetry.Context.Operation.Id);
+            Assert.AreEqual(activity.SpanId.ToHexString(), telemetry.Context.Operation.ParentId);
         }
 
         [TestMethod]
         [TestCategory("NLogTarget")]
         public void NLogErrorContainsCurrentActivityAsyncTarget()
         {
-            Activity activity = new(nameof(NLogErrorContainsCurrentActivityAsyncTarget));
+            using Activity activity = new(nameof(NLogErrorContainsCurrentActivityAsyncTarget));
             activity.Start();
-            var originalActivity = Activity.Current;
-            Activity.Current = activity;
 
-            try
-            {
-                var aiLogger = this.CreateAsyncTargetWithGivenConnectionString("InstrumentationKey=00000000-0000-0000-0000-000000000000;IngestionEndpoint=https://westeurope.in.applicationinsights.azure.example.com/;LiveEndpoint=https://westeurope.livediagnostics.monitor.azure.example.com/");
-                aiLogger.Error("Error Message");
-                aiLogger.Factory.Flush();
+            var aiLogger = this.CreateAsyncTargetWithGivenConnectionString("InstrumentationKey=00000000-0000-0000-0000-000000000000;IngestionEndpoint=https://westeurope.in.applicationinsights.azure.example.com/;LiveEndpoint=https://westeurope.livediagnostics.monitor.azure.example.com/");
+            aiLogger.Error("Error Message");
+            aiLogger.Factory.Flush();
 
-                var telemetry = this.adapterHelper.Channel.SentItems.FirstOrDefault() as TraceTelemetry;
-                Assert.AreEqual("Error Message", telemetry.Message);
-                Assert.AreEqual(activity.TraceId.ToString(), telemetry.Context.Operation.Id);
-                Assert.AreEqual(activity.SpanId.ToHexString(), telemetry.Context.Operation.ParentId);
-            }
-            finally
-            {
-                Activity.Current = originalActivity;
-            }
+            var telemetry = this.adapterHelper.Channel.SentItems.FirstOrDefault() as TraceTelemetry;
+            Assert.AreEqual("Error Message", telemetry.Message);
+            Assert.AreEqual(activity.TraceId.ToString(), telemetry.Context.Operation.Id);
+            Assert.AreEqual(activity.SpanId.ToHexString(), telemetry.Context.Operation.ParentId);
         }
 
         private void VerifyMessagesInMockChannel(Logger aiLogger, string instrumentationKey)
