@@ -66,7 +66,7 @@ namespace Microsoft.ApplicationInsights.NLogTarget
         /// <value>
         /// A layout that renders an ActivityTraceId. Default value retrieves TraceId from <see>System.Diagnostics.Activity.Current</see>.
         /// </value>
-        public Layout<ActivityTraceId?> TraceId { get; set; } = Layout<ActivityTraceId?>.FromMethod(static evt => Activity.Current?.TraceId);
+        public Layout<ActivityTraceId?> TraceId { get; set; } = Layout<ActivityTraceId?>.FromMethod(static _ => GetTraceIdFromActivity());
 
         /// <summary>
         /// Gets or sets the span ID for the Application Insights telemetry.
@@ -79,7 +79,7 @@ namespace Microsoft.ApplicationInsights.NLogTarget
         /// <value>
         /// A layout that renders an ActivitySpanId. Default value retrieves SpanId from <see>System.Diagnostics.Activity.Current</see>.
         /// </value>
-        public Layout<ActivitySpanId?> SpanId { get; set; } = Layout<ActivitySpanId?>.FromMethod(static evt => Activity.Current?.SpanId);
+        public Layout<ActivitySpanId?> SpanId { get; set; } = Layout<ActivitySpanId?>.FromMethod(static _ => GetSpanIdFromActivity());
 
         /// <summary>
         /// Gets or sets the factory for creating TelemetryConfiguration, so unit-tests can override in-memory-channel.
@@ -303,20 +303,34 @@ namespace Microsoft.ApplicationInsights.NLogTarget
         private void AddActivityIfEnabled(LogEventInfo logEvent, ITelemetry trace)
         {
             var traceId = this.RenderLogEvent(this.TraceId, logEvent);
-            if (traceId is not null
-                && traceId.Value.ToHexString() is string traceIdString
-                && !traceIdString.Equals(EmptyTraceId, StringComparison.OrdinalIgnoreCase))
+            if (traceId is not null)
             {
-                trace.Context.Operation.Id = traceIdString;
+                trace.Context.Operation.Id = traceId.Value.ToHexString();
             }
 
             var spanId = this.RenderLogEvent(this.SpanId, logEvent);
-            if (spanId is not null
-                && spanId.Value.ToHexString() is string spanIdString
-                && !spanIdString.Equals(EmptySpanId, StringComparison.OrdinalIgnoreCase))
+            if (spanId is not null)
             {
-                trace.Context.Operation.ParentId = spanIdString;
+                trace.Context.Operation.ParentId = spanId.Value.ToHexString();
             }
+        }
+
+        private static ActivityTraceId? GetTraceIdFromActivity()
+        {
+            // This string comparison is a workaround for https://github.com/hangy/NLog.Targets.ApplicationInsights/issues/57#issuecomment-2741828127
+            return Activity.Current?.TraceId is ActivityTraceId activityTraceId && 
+               !EmptyTraceId.Equals(activityTraceId.ToHexString(), StringComparison.Ordinal) 
+               ? activityTraceId 
+               : null;
+        }
+
+        private static ActivitySpanId? GetSpanIdFromActivity()
+        {
+            // This string comparison is a workaround for https://github.com/hangy/NLog.Targets.ApplicationInsights/issues/57#issuecomment-2741828127
+            return Activity.Current?.SpanId is ActivitySpanId activitySpanId && 
+               !EmptySpanId.Equals(activitySpanId.ToHexString(), StringComparison.Ordinal) 
+               ? activitySpanId 
+               : null;
         }
     }
 }
