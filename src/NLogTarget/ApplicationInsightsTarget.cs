@@ -8,8 +8,8 @@
 namespace Microsoft.ApplicationInsights.NLogTarget
 {
     using System;
-    using System.Collections.Generic;
     using System.Globalization;
+    using System.Diagnostics;
 
     using Microsoft.ApplicationInsights.Channel;
     using Microsoft.ApplicationInsights.DataContracts;
@@ -19,8 +19,8 @@ namespace Microsoft.ApplicationInsights.NLogTarget
 
     using NLog;
     using NLog.Common;
-    using NLog.Config;
     using NLog.Targets;
+    using NLog.Layouts;
 
     /// <summary>
     /// NLog Target that routes all logging output to the Application Insights logging framework.
@@ -29,10 +29,12 @@ namespace Microsoft.ApplicationInsights.NLogTarget
     [Target("ApplicationInsightsTarget")]
     public sealed class ApplicationInsightsTarget : TargetWithContext
     {
+        private static readonly string EmptyTraceId = default(ActivityTraceId).ToHexString();
+        private static readonly string EmptySpanId = default(ActivitySpanId).ToHexString();
         private TelemetryClient? telemetryClient;
         private TelemetryConfiguration? telemetryConfiguration;
-        private NLog.Layouts.Layout instrumentationKeyLayout = string.Empty;
-        private NLog.Layouts.Layout connectionStringLayout = string.Empty;
+        private readonly Layout instrumentationKeyLayout = string.Empty;
+        private Layout connectionStringLayout = string.Empty;
 
         /// <summary>
         /// Initializers a new instance of ApplicationInsightsTarget type.
@@ -48,14 +50,41 @@ namespace Microsoft.ApplicationInsights.NLogTarget
         /// </summary>
         public string? ConnectionString
         {
-            get => (this.connectionStringLayout as NLog.Layouts.SimpleLayout)?.Text ?? null;
+            get => (this.connectionStringLayout as SimpleLayout)?.Text ?? null;
             set => this.connectionStringLayout = value ?? string.Empty;
         }
 
         /// <summary>
+        /// Gets or sets the layout that renders the trace identifier for the log event.
+        /// If not set, it retrieves the TraceId from the current Activity context.
+        /// </summary>
+        /// <remarks>
+        /// The trace identifier is used to correlate log events across different components
+        /// in distributed tracing scenarios. By default, it uses the TraceId from the current
+        /// Activity if available.
+        /// </remarks>
+        /// <value>
+        /// A layout that renders an ActivityTraceId. Default value retrieves TraceId from <see>System.Diagnostics.Activity.Current</see>.
+        /// </value>
+        public Layout<ActivityTraceId?> TraceId { get; set; } = Layout<ActivityTraceId?>.FromMethod(static _ => GetTraceIdFromActivity());
+
+        /// <summary>
+        /// Gets or sets the span ID for the Application Insights telemetry.
+        /// The span ID is used to correlate distributed tracing events across different components.
+        /// By default, it retrieves the SpanId from the current Activity context.
+        /// </summary>
+        /// <remarks>
+        /// If no Activity is currently active, this will return null.
+        /// </remarks>        
+        /// <value>
+        /// A layout that renders an ActivitySpanId. Default value retrieves SpanId from <see>System.Diagnostics.Activity.Current</see>.
+        /// </value>
+        public Layout<ActivitySpanId?> SpanId { get; set; } = Layout<ActivitySpanId?>.FromMethod(static _ => GetSpanIdFromActivity());
+
+        /// <summary>
         /// Gets or sets the factory for creating TelemetryConfiguration, so unit-tests can override in-memory-channel.
         /// </summary>
-        internal Func<TelemetryConfiguration> TelemetryConfigurationFactory { get; set; }
+        internal Func<TelemetryConfiguration>? TelemetryConfigurationFactory { get; set; }
 
         internal void BuildPropertyBag(LogEventInfo logEvent, ITelemetry trace)
         {
@@ -179,7 +208,7 @@ namespace Microsoft.ApplicationInsights.NLogTarget
 
             try
             {
-                this.telemetryClient.FlushAsync(System.Threading.CancellationToken.None).ContinueWith(t => asyncContinuation(t.Exception));
+                this.telemetryClient?.FlushAsync(default).ContinueWith(t => asyncContinuation(t.Exception));
             }
             catch (Exception ex)
             {
@@ -253,6 +282,7 @@ namespace Microsoft.ApplicationInsights.NLogTarget
                 exceptionTelemetry.Properties.Add("Message", logMessage);
             }
 
+            this.AddActivityIfEnabled(logEvent, exceptionTelemetry);
             this.BuildPropertyBag(logEvent, exceptionTelemetry);
             this.telemetryClient?.Track(exceptionTelemetry);
         }
@@ -265,8 +295,42 @@ namespace Microsoft.ApplicationInsights.NLogTarget
                 SeverityLevel = GetSeverityLevel(logEvent.Level),
             };
 
+            this.AddActivityIfEnabled(logEvent, trace);
             this.BuildPropertyBag(logEvent, trace);
             this.telemetryClient?.Track(trace);
+        }
+
+        private void AddActivityIfEnabled(LogEventInfo logEvent, ITelemetry trace)
+        {
+            var traceId = this.RenderLogEvent(this.TraceId, logEvent);
+            if (traceId is not null)
+            {
+                trace.Context.Operation.Id = traceId.Value.ToHexString();
+            }
+
+            var spanId = this.RenderLogEvent(this.SpanId, logEvent);
+            if (spanId is not null)
+            {
+                trace.Context.Operation.ParentId = spanId.Value.ToHexString();
+            }
+        }
+
+        private static ActivityTraceId? GetTraceIdFromActivity()
+        {
+            // This string comparison is a workaround for https://github.com/hangy/NLog.Targets.ApplicationInsights/issues/57#issuecomment-2741828127
+            return Activity.Current?.TraceId is ActivityTraceId activityTraceId && 
+               !EmptyTraceId.Equals(activityTraceId.ToHexString(), StringComparison.Ordinal) 
+               ? activityTraceId 
+               : null;
+        }
+
+        private static ActivitySpanId? GetSpanIdFromActivity()
+        {
+            // This string comparison is a workaround for https://github.com/hangy/NLog.Targets.ApplicationInsights/issues/57#issuecomment-2741828127
+            return Activity.Current?.SpanId is ActivitySpanId activitySpanId && 
+               !EmptySpanId.Equals(activitySpanId.ToHexString(), StringComparison.Ordinal) 
+               ? activitySpanId 
+               : null;
         }
     }
 }

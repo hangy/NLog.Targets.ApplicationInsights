@@ -1,6 +1,7 @@
 ﻿namespace Microsoft.ApplicationInsights.NLogTarget.Tests
 {
     using System;
+    using System.Diagnostics;
     using System.Linq;
 
     using Microsoft.ApplicationInsights.CommonTestShared;
@@ -14,6 +15,7 @@
     using NLog;
     using NLog.Config;
     using NLog.Targets;
+    using NLog.Targets.Wrappers;
 
     [TestClass]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1001:TypesThatOwnDisposableFieldsShouldBeDisposable", Justification = "Disposing the object on the TestCleanup method")]
@@ -528,6 +530,194 @@
             Assert.AreEqual("Error Message", telemetry.Message);
         }
 
+        [TestMethod]
+        [TestCategory("NLogTarget")]
+        public void NLogInfoContainsCurrentActivity()
+        {
+            using Activity activity = new(nameof(NLogInfoContainsCurrentActivity));
+            activity.Start();
+
+            var aiLogger = this.CreateTargetWithGivenConnectionString("InstrumentationKey=00000000-0000-0000-0000-000000000000;IngestionEndpoint=https://westeurope.in.applicationinsights.azure.example.com/;LiveEndpoint=https://westeurope.livediagnostics.monitor.azure.example.com/");
+            aiLogger.Info("Info message");
+
+            var telemetry = (TraceTelemetry)this.adapterHelper.Channel.SentItems.First();
+            Assert.AreEqual($"Info message", telemetry.Message);
+            Assert.AreEqual(activity.TraceId.ToString(), telemetry.Context.Operation.Id);
+            Assert.AreEqual(activity.SpanId.ToHexString(), telemetry.Context.Operation.ParentId);
+        }
+
+        [TestMethod]
+        [TestCategory("NLogTarget")]
+        public void NLogErrorContainsCurrentActivity()
+        {
+            using Activity activity = new(nameof(NLogErrorContainsCurrentActivity));
+            activity.Start();
+
+            var aiLogger = this.CreateTargetWithGivenConnectionString("InstrumentationKey=00000000-0000-0000-0000-000000000000;IngestionEndpoint=https://westeurope.in.applicationinsights.azure.example.com/;LiveEndpoint=https://westeurope.livediagnostics.monitor.azure.example.com/");
+            aiLogger.Error("Error Message");
+
+            var telemetry = this.adapterHelper.Channel.SentItems.FirstOrDefault() as TraceTelemetry;
+            Assert.AreEqual("Error Message", telemetry.Message);
+            Assert.AreEqual(activity.TraceId.ToString(), telemetry.Context.Operation.Id);
+            Assert.AreEqual(activity.SpanId.ToHexString(), telemetry.Context.Operation.ParentId);
+        }
+
+        [TestMethod]
+        [TestCategory("NLogTarget")]
+        public void NLogInfoDoesNotContainTraceIdIfLayoutIsEmpty()
+        {
+            using Activity activity = new(nameof(NLogInfoDoesNotContainTraceIdIfLayoutIsEmpty));
+            activity.Start();
+
+            var aiLogger = this.CreateTargetWithGivenConnectionString("InstrumentationKey=00000000-0000-0000-0000-000000000000;IngestionEndpoint=https://westeurope.in.applicationinsights.azure.example.com/;LiveEndpoint=https://westeurope.livediagnostics.monitor.azure.example.com/", traceIdLayout: string.Empty);
+            aiLogger.Info("Info message");
+
+            var telemetry = (TraceTelemetry)this.adapterHelper.Channel.SentItems.First();
+            Assert.AreEqual($"Info message", telemetry.Message);
+            Assert.IsTrue(string.IsNullOrWhiteSpace(telemetry.Context.Operation.Id));
+            Assert.AreEqual(activity.SpanId.ToHexString(), telemetry.Context.Operation.ParentId);
+        }
+
+        [TestMethod]
+        [TestCategory("NLogTarget")]
+        public void NLogErrorDoesNotContainTraceIdIfLayoutIsEmpty()
+        {
+            using Activity activity = new(nameof(NLogErrorDoesNotContainTraceIdIfLayoutIsEmpty));
+            activity.Start();
+
+            var aiLogger = this.CreateTargetWithGivenConnectionString("InstrumentationKey=00000000-0000-0000-0000-000000000000;IngestionEndpoint=https://westeurope.in.applicationinsights.azure.example.com/;LiveEndpoint=https://westeurope.livediagnostics.monitor.azure.example.com/", traceIdLayout: string.Empty);
+            aiLogger.Error("Error Message");
+
+            var telemetry = this.adapterHelper.Channel.SentItems.FirstOrDefault() as TraceTelemetry;
+            Assert.AreEqual("Error Message", telemetry.Message);
+            Assert.IsTrue(string.IsNullOrWhiteSpace(telemetry.Context.Operation.Id));
+            Assert.AreEqual(activity.SpanId.ToHexString(), telemetry.Context.Operation.ParentId);
+        }
+
+        [TestMethod]
+        [TestCategory("NLogTarget")]
+        public void NLogInfoDoesNotContainSpanIdIfLayoutIsEmpty()
+        {
+            using Activity activity = new(nameof(NLogInfoDoesNotContainSpanIdIfLayoutIsEmpty));
+            activity.Start();
+            var originalActivity = Activity.Current;
+            Activity.Current = activity;
+
+            try
+            {
+                var aiLogger = this.CreateTargetWithGivenConnectionString("InstrumentationKey=00000000-0000-0000-0000-000000000000;IngestionEndpoint=https://westeurope.in.applicationinsights.azure.example.com/;LiveEndpoint=https://westeurope.livediagnostics.monitor.azure.example.com/", spanIdLayout: string.Empty);
+                aiLogger.Info("Info message");
+
+                var telemetry = (TraceTelemetry)this.adapterHelper.Channel.SentItems.First();
+                Assert.AreEqual($"Info message", telemetry.Message);
+                Assert.AreEqual(activity.TraceId.ToString(), telemetry.Context.Operation.Id);
+                Assert.IsTrue(string.IsNullOrWhiteSpace(telemetry.Context.Operation.ParentId));
+            }
+            finally
+            {
+                Activity.Current = originalActivity;
+            }
+        }
+
+        [TestMethod]
+        [TestCategory("NLogTarget")]
+        public void NLogErrorDoesNotContainSpanIdIfLayoutIsEmpty()
+        {
+            using Activity activity = new(nameof(NLogErrorDoesNotContainSpanIdIfLayoutIsEmpty));
+            activity.Start();
+
+            var aiLogger = this.CreateTargetWithGivenConnectionString("InstrumentationKey=00000000-0000-0000-0000-000000000000;IngestionEndpoint=https://westeurope.in.applicationinsights.azure.example.com/;LiveEndpoint=https://westeurope.livediagnostics.monitor.azure.example.com/", spanIdLayout: string.Empty);
+            aiLogger.Error("Error Message");
+
+            var telemetry = this.adapterHelper.Channel.SentItems.FirstOrDefault() as TraceTelemetry;
+            Assert.AreEqual("Error Message", telemetry.Message);
+            Assert.AreEqual(activity.TraceId.ToString(), telemetry.Context.Operation.Id);
+            Assert.IsTrue(string.IsNullOrWhiteSpace(telemetry.Context.Operation.ParentId));
+        }
+
+#if NET6_0_OR_GREATER
+        [TestMethod]
+        [TestCategory("NLogTarget")]
+        public void NLogInfoDoesNotContainTraceIdIfValueIsAllZeroes()
+        {
+            Activity.TraceIdGenerator = () => default;
+            try
+            {
+                using Activity activity = new(nameof(NLogInfoDoesNotContainTraceIdIfValueIsAllZeroes));
+                activity.Start();
+                var aiLogger = this.CreateTargetWithGivenConnectionString("InstrumentationKey=00000000-0000-0000-0000-000000000000;IngestionEndpoint=https://westeurope.in.applicationinsights.azure.example.com/;LiveEndpoint=https://westeurope.livediagnostics.monitor.azure.example.com/");
+                aiLogger.Info("Info message");
+
+                var telemetry = (TraceTelemetry)this.adapterHelper.Channel.SentItems.First();
+                Assert.AreEqual($"Info message", telemetry.Message);
+                Assert.IsTrue(string.IsNullOrWhiteSpace(telemetry.Context.Operation.Id));
+                Assert.AreEqual(activity.SpanId.ToHexString(), telemetry.Context.Operation.ParentId);
+            }
+            finally
+            {
+                Activity.TraceIdGenerator = ActivityTraceId.CreateRandom;
+            }
+        }
+
+        [TestMethod]
+        [TestCategory("NLogTarget")]
+        public void NLogErrorDoesNotContainTraceIdIfValueIsAllZeroes()
+        {
+            Activity.TraceIdGenerator = () => default;
+            try
+            {
+                using Activity activity = new(nameof(NLogErrorDoesNotContainTraceIdIfValueIsAllZeroes));
+                activity.Start();
+
+                var aiLogger = this.CreateTargetWithGivenConnectionString("InstrumentationKey=00000000-0000-0000-0000-000000000000;IngestionEndpoint=https://westeurope.in.applicationinsights.azure.example.com/;LiveEndpoint=https://westeurope.livediagnostics.monitor.azure.example.com/");
+                aiLogger.Error("Error Message");
+
+                var telemetry = this.adapterHelper.Channel.SentItems.FirstOrDefault() as TraceTelemetry;
+                Assert.AreEqual("Error Message", telemetry.Message);
+                Assert.IsTrue(string.IsNullOrWhiteSpace(telemetry.Context.Operation.Id));
+                Assert.AreEqual(activity.SpanId.ToHexString(), telemetry.Context.Operation.ParentId);
+            }
+            finally
+            {
+                Activity.TraceIdGenerator = ActivityTraceId.CreateRandom;
+            }
+        }
+#endif // NET6_0_OR_GREATER
+
+        [TestMethod]
+        [TestCategory("NLogTarget")]
+        public void NLogInfoContainsCurrentActivityAsyncTarget()
+        {
+            using Activity activity = new(nameof(NLogInfoContainsCurrentActivityAsyncTarget));
+            activity.Start();
+
+            var aiLogger = this.CreateAsyncTargetWithGivenConnectionString("InstrumentationKey=00000000-0000-0000-0000-000000000000;IngestionEndpoint=https://westeurope.in.applicationinsights.azure.example.com/;LiveEndpoint=https://westeurope.livediagnostics.monitor.azure.example.com/");
+            aiLogger.Info("Info message");
+            aiLogger.Factory.Flush();
+
+            var telemetry = (TraceTelemetry)this.adapterHelper.Channel.SentItems.First();
+            Assert.AreEqual($"Info message", telemetry.Message);
+            Assert.AreEqual(activity.TraceId.ToString(), telemetry.Context.Operation.Id);
+            Assert.AreEqual(activity.SpanId.ToHexString(), telemetry.Context.Operation.ParentId);
+        }
+
+        [TestMethod]
+        [TestCategory("NLogTarget")]
+        public void NLogErrorContainsCurrentActivityAsyncTarget()
+        {
+            using Activity activity = new(nameof(NLogErrorContainsCurrentActivityAsyncTarget));
+            activity.Start();
+
+            var aiLogger = this.CreateAsyncTargetWithGivenConnectionString("InstrumentationKey=00000000-0000-0000-0000-000000000000;IngestionEndpoint=https://westeurope.in.applicationinsights.azure.example.com/;LiveEndpoint=https://westeurope.livediagnostics.monitor.azure.example.com/");
+            aiLogger.Error("Error Message");
+            aiLogger.Factory.Flush();
+
+            var telemetry = this.adapterHelper.Channel.SentItems.FirstOrDefault() as TraceTelemetry;
+            Assert.AreEqual("Error Message", telemetry.Message);
+            Assert.AreEqual(activity.TraceId.ToString(), telemetry.Context.Operation.Id);
+            Assert.AreEqual(activity.SpanId.ToHexString(), telemetry.Context.Operation.ParentId);
+        }
+
         private void VerifyMessagesInMockChannel(Logger aiLogger, string instrumentationKey)
         {
             aiLogger.Trace("Sample trace message");
@@ -543,17 +733,88 @@
         private Logger CreateTargetWithGivenConnectionString(
             string connectionString = "InstrumentationKey=00000000-0000-0000-0000-000000000000;IngestionEndpoint=https://westeurope.in.applicationinsights.azure.example.com/;LiveEndpoint=https://westeurope.livediagnostics.monitor.azure.example.com/",
             Action<Logger> loggerAction = null,
-            ApplicationInsightsTarget target = null)
+            ApplicationInsightsTarget target = null,
+            string traceIdLayout = null,
+            string spanIdLayout = null)
         {
+#pragma warning disable CA2000 // Dispose objects before losing scope - Caller is responsible for disposal
             target ??= new ApplicationInsightsTarget();
-            
+#pragma warning restore CA2000 // Dispose objects before losing scope - Caller is responsible for disposal
+
             target.TelemetryConfigurationFactory = () => new TelemetryConfiguration() { TelemetryChannel = this.adapterHelper.Channel };
 
             target.ConnectionString = connectionString;
+            if (traceIdLayout != null)
+            {
+                target.TraceId = traceIdLayout;
+            }
+
+            if (spanIdLayout != null)
+            {
+                target.SpanId = spanIdLayout;
+            }
 
             var rule = new LoggingRule("*", LogLevel.Trace, target);
             var config = new LoggingConfiguration();
             config.AddTarget("AITarget", target);
+            config.LoggingRules.Add(rule);
+
+            LogFactory logFactory = new()
+            {
+                Configuration = config
+            };
+
+            var aiLogger = logFactory.GetLogger("AITarget");
+
+            if (loggerAction != null)
+            {
+                loggerAction(aiLogger);
+                target.Dispose();
+                return null;
+            }
+
+            return aiLogger;
+        }
+
+        private Logger CreateAsyncTargetWithGivenConnectionString(
+            string connectionString = "InstrumentationKey=00000000-0000-0000-0000-000000000000;IngestionEndpoint=https://westeurope.in.applicationinsights.azure.example.com/;LiveEndpoint=https://westeurope.livediagnostics.monitor.azure.example.com/",
+            Action<Logger> loggerAction = null,
+            ApplicationInsightsTarget target = null,
+            string traceIdLayout = null,
+            string spanIdLayout = null)
+        {
+#pragma warning disable CA2000 // Dispose objects before losing scope - Caller is responsible for disposal
+            target ??= new ApplicationInsightsTarget();
+#pragma warning restore CA2000 // Dispose objects before losing scope - Caller is responsible for disposal
+
+            target.TelemetryConfigurationFactory = () => new TelemetryConfiguration() { TelemetryChannel = this.adapterHelper.Channel };
+
+            target.ConnectionString = connectionString;
+            if (traceIdLayout != null)
+            {
+                target.TraceId = traceIdLayout;
+            }
+
+            if (spanIdLayout != null)
+            {
+                target.SpanId = spanIdLayout;
+            }
+
+#pragma warning disable CA2000 // Dispose objects before losing scope - Caller is responsible for disposal
+            var asyncWrapper = new AsyncTargetWrapper
+            {
+                Name = "async",
+                WrappedTarget = target,
+                QueueLimit = 5000,
+                BatchSize = 100,
+                TimeToSleepBetweenBatches = 100,
+                OverflowAction = AsyncTargetWrapperOverflowAction.Grow
+            };
+#pragma warning restore CA2000 // Dispose objects before losing scope - Caller is responsible for disposal
+
+            var rule = new LoggingRule("*", LogLevel.Trace, asyncWrapper);
+            var config = new LoggingConfiguration();
+            config.AddTarget("AITarget", asyncWrapper);
             config.LoggingRules.Add(rule);
 
             LogFactory logFactory = new()

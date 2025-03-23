@@ -6,7 +6,6 @@
   </PropertyGroup>
   <ItemGroup Label="Runtime">
     <PackageVersion Include="Microsoft.ApplicationInsights" Version="2.23.0" />
-    <PackageVersion Include="Microsoft.Diagnostics.Tracing.EventRegister" Version="1.1.28" />
     <PackageVersion Include="NLog" Version="5.4.0" />
   </ItemGroup>
 </Project>

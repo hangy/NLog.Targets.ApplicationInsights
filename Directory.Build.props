@@ -6,7 +6,7 @@
     <EnableNETAnalyzers>true</EnableNETAnalyzers>
     <AnalysisMode>AllEnabledByDefault</AnalysisMode>
     <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
-    <TestingExtensionsProfile>None</TestingExtensionsProfile>
+    <TestingExtensionsProfile>AllMicrosoft</TestingExtensionsProfile>
   </PropertyGroup>
 
   <PropertyGroup>
@@ -18,8 +18,8 @@
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <RepositoryBranch>main</RepositoryBranch>
-    <RepositoryCommit>eb547e17a1c2795af48e62fd54897af202ce34b8</RepositoryCommit>
-    <Version>1.1.0</Version>
+    <RepositoryCommit>e6b1277c19338036105a780700e1ee06e8a11245</RepositoryCommit>
+    <Version>1.2.0-beta.6</Version>
   </PropertyGroup>
 
 </Project>

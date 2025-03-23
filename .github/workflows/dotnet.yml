@@ -18,7 +18,7 @@ on:
 
 jobs:
   build:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v4
@@ -29,12 +29,23 @@ jobs:
       - name: Restore tools
         run: dotnet tool restore
       - name: Restore dependencies
-        run: dotnet restore --locked-mode
+        run: dotnet restore --force-evaluate
       - name: Build
         run: dotnet build --no-restore
       - name: Test
-        run: dotnet test --no-build -p:TestingPlatformCommandLineArguments="--report-trx --coverage --coverage-output-format cobertura --coverage-output coverage.cobertura.xml"
+        run: dotnet test --no-build -p:TestingPlatformCommandLineArguments="--report-trx --coverage --coverage-output-format cobertura --coverage-output coverage.cobertura.xml" -f net9.0
       - name: Convert test results
         if: ${{ !cancelled() }}
         run: |
           find . -name "*.trx" -exec dotnet tool run trx2junit --output TestResults/JUnit {} +
+      - name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v5
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          slug: hangy/NLog.Targets.ApplicationInsights
+      - name: Upload test results to Codecov
+        if: ${{ !cancelled() }}
+        uses: codecov/test-results-action@v1
+        with:
+          files: TestResults/JUnit/*.xml
+          token: ${{ secrets.CODECOV_TOKEN }}
