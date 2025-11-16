@@ -330,7 +330,7 @@
         "type": "Project",
         "dependencies": {
           "Microsoft.ApplicationInsights": "[2.23.0, )",
-          "NLog": "[5.4.0, )"
+          "NLog": "[5.5.0, )"
         }
       },
       "Microsoft.ApplicationInsights": {
@@ -344,9 +344,9 @@
       },
       "NLog": {
         "type": "CentralTransitive",
-        "requested": "[5.4.0, )",
-        "resolved": "5.4.0",
-        "contentHash": "LwMcGSW3soF3/SL68rlJN3Eh3ktrAPycC3zZR/07OYBPraZUu0bygEC7kIN10lUQgMXT4s84Fi1chglGdGrQEg=="
+        "requested": "[5.5.0, )",
+        "resolved": "5.5.0",
+        "contentHash": "FCH8s7GWlonH5JXV9/EpeNJ8pRZQMVZOSWX3JrHPU8rzdHJhS5+lUGGvJIUOtzkGV1clYBFR0WXOI5FnUwVCMA=="
       }
     },
     ".NETFramework,Version=v4.6.2/linux-x64": {
@@ -798,7 +798,7 @@
         "type": "Project",
         "dependencies": {
           "Microsoft.ApplicationInsights": "[2.23.0, )",
-          "NLog": "[5.4.0, )"
+          "NLog": "[5.5.0, )"
         }
       },
       "Microsoft.ApplicationInsights": {
@@ -812,9 +812,9 @@
       },
       "NLog": {
         "type": "CentralTransitive",
-        "requested": "[5.4.0, )",
-        "resolved": "5.4.0",
-        "contentHash": "LwMcGSW3soF3/SL68rlJN3Eh3ktrAPycC3zZR/07OYBPraZUu0bygEC7kIN10lUQgMXT4s84Fi1chglGdGrQEg=="
+        "requested": "[5.5.0, )",
+        "resolved": "5.5.0",
+        "contentHash": "FCH8s7GWlonH5JXV9/EpeNJ8pRZQMVZOSWX3JrHPU8rzdHJhS5+lUGGvJIUOtzkGV1clYBFR0WXOI5FnUwVCMA=="
       }
     },
     ".NETFramework,Version=v4.7.2/linux-x64": {
@@ -1266,7 +1266,7 @@
         "type": "Project",
         "dependencies": {
           "Microsoft.ApplicationInsights": "[2.23.0, )",
-          "NLog": "[5.4.0, )"
+          "NLog": "[5.5.0, )"
         }
       },
       "Microsoft.ApplicationInsights": {
@@ -1280,9 +1280,9 @@
       },
       "NLog": {
         "type": "CentralTransitive",
-        "requested": "[5.4.0, )",
-        "resolved": "5.4.0",
-        "contentHash": "LwMcGSW3soF3/SL68rlJN3Eh3ktrAPycC3zZR/07OYBPraZUu0bygEC7kIN10lUQgMXT4s84Fi1chglGdGrQEg=="
+        "requested": "[5.5.0, )",
+        "resolved": "5.5.0",
+        "contentHash": "FCH8s7GWlonH5JXV9/EpeNJ8pRZQMVZOSWX3JrHPU8rzdHJhS5+lUGGvJIUOtzkGV1clYBFR0WXOI5FnUwVCMA=="
       }
     },
     ".NETFramework,Version=v4.8/linux-x64": {
@@ -1708,7 +1708,7 @@
         "type": "Project",
         "dependencies": {
           "Microsoft.ApplicationInsights": "[2.23.0, )",
-          "NLog": "[5.4.0, )"
+          "NLog": "[5.5.0, )"
         }
       },
       "Microsoft.ApplicationInsights": {
@@ -1722,9 +1722,9 @@
       },
       "NLog": {
         "type": "CentralTransitive",
-        "requested": "[5.4.0, )",
-        "resolved": "5.4.0",
-        "contentHash": "LwMcGSW3soF3/SL68rlJN3Eh3ktrAPycC3zZR/07OYBPraZUu0bygEC7kIN10lUQgMXT4s84Fi1chglGdGrQEg=="
+        "requested": "[5.5.0, )",
+        "resolved": "5.5.0",
+        "contentHash": "FCH8s7GWlonH5JXV9/EpeNJ8pRZQMVZOSWX3JrHPU8rzdHJhS5+lUGGvJIUOtzkGV1clYBFR0WXOI5FnUwVCMA=="
       }
     },
     "net6.0/linux-x64": {
@@ -2231,7 +2231,7 @@
         "type": "Project",
         "dependencies": {
           "Microsoft.ApplicationInsights": "[2.23.0, )",
-          "NLog": "[5.4.0, )"
+          "NLog": "[5.5.0, )"
         }
       },
       "Microsoft.ApplicationInsights": {
@@ -2245,9 +2245,9 @@
       },
       "NLog": {
         "type": "CentralTransitive",
-        "requested": "[5.4.0, )",
-        "resolved": "5.4.0",
-        "contentHash": "LwMcGSW3soF3/SL68rlJN3Eh3ktrAPycC3zZR/07OYBPraZUu0bygEC7kIN10lUQgMXT4s84Fi1chglGdGrQEg=="
+        "requested": "[5.5.0, )",
+        "resolved": "5.5.0",
+        "contentHash": "FCH8s7GWlonH5JXV9/EpeNJ8pRZQMVZOSWX3JrHPU8rzdHJhS5+lUGGvJIUOtzkGV1clYBFR0WXOI5FnUwVCMA=="
       }
     },
     "net8.0/linux-x64": {
@@ -2754,7 +2754,7 @@
         "type": "Project",
         "dependencies": {
           "Microsoft.ApplicationInsights": "[2.23.0, )",
-          "NLog": "[5.4.0, )"
+          "NLog": "[5.5.0, )"
         }
       },
       "Microsoft.ApplicationInsights": {
@@ -2768,9 +2768,9 @@
       },
       "NLog": {
         "type": "CentralTransitive",
-        "requested": "[5.4.0, )",
-        "resolved": "5.4.0",
-        "contentHash": "LwMcGSW3soF3/SL68rlJN3Eh3ktrAPycC3zZR/07OYBPraZUu0bygEC7kIN10lUQgMXT4s84Fi1chglGdGrQEg=="
+        "requested": "[5.5.0, )",
+        "resolved": "5.5.0",
+        "contentHash": "FCH8s7GWlonH5JXV9/EpeNJ8pRZQMVZOSWX3JrHPU8rzdHJhS5+lUGGvJIUOtzkGV1clYBFR0WXOI5FnUwVCMA=="
       }
     },
     "net9.0/linux-x64": {
