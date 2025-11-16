@@ -64,7 +64,7 @@ namespace Microsoft.ApplicationInsights.NLogTarget.Tests
             var requests = this.mockServer.LogEntries.ToList();
             Assert.IsTrue(requests.Count > 0, "No requests received by mock server");
 
-            var trackRequest = requests.FirstOrDefault(r => r.RequestMessage.Path.Contains("track"));
+            var trackRequest = requests.FirstOrDefault(r => r.RequestMessage.Path.Contains("track", StringComparison.OrdinalIgnoreCase));
             Assert.IsNotNull(trackRequest, "No track request found");
             Assert.AreEqual("POST", trackRequest.RequestMessage.Method);
         }
@@ -87,7 +87,7 @@ namespace Microsoft.ApplicationInsights.NLogTarget.Tests
 
             // Verify request was received
             var requests = this.mockServer.LogEntries.ToList();
-            var trackRequest = requests.FirstOrDefault(r => r.RequestMessage.Path.Contains("track"));
+            var trackRequest = requests.FirstOrDefault(r => r.RequestMessage.Path.Contains("track", StringComparison.OrdinalIgnoreCase));
             Assert.IsNotNull(trackRequest, "No track request found");
 
             // Parse the request body
@@ -117,7 +117,7 @@ namespace Microsoft.ApplicationInsights.NLogTarget.Tests
 
             // Verify requests were received
             var requests = this.mockServer.LogEntries.ToList();
-            var trackRequests = requests.Where(r => r.RequestMessage.Path.Contains("track")).ToList();
+            var trackRequests = requests.Where(r => r.RequestMessage.Path.Contains("track", StringComparison.OrdinalIgnoreCase)).ToList();
             
             // Should have received multiple track requests (may be batched)
             Assert.IsTrue(trackRequests.Count > 0, "No track requests received");
@@ -143,7 +143,7 @@ namespace Microsoft.ApplicationInsights.NLogTarget.Tests
             {
                 throw new InvalidOperationException(exceptionMessage);
             }
-            catch (Exception ex)
+            catch (InvalidOperationException ex)
             {
                 logger.Error(ex, "Exception occurred during test");
             }
@@ -156,7 +156,7 @@ namespace Microsoft.ApplicationInsights.NLogTarget.Tests
 
             // Verify request was received
             var requests = this.mockServer.LogEntries.ToList();
-            var trackRequest = requests.FirstOrDefault(r => r.RequestMessage.Path.Contains("track"));
+            var trackRequest = requests.FirstOrDefault(r => r.RequestMessage.Path.Contains("track", StringComparison.OrdinalIgnoreCase));
             Assert.IsNotNull(trackRequest, "No track request found");
 
             var body = trackRequest.RequestMessage.Body;
@@ -184,7 +184,7 @@ namespace Microsoft.ApplicationInsights.NLogTarget.Tests
 
             // Verify request was received
             var requests = this.mockServer.LogEntries.ToList();
-            var trackRequest = requests.FirstOrDefault(r => r.RequestMessage.Path.Contains("track"));
+            var trackRequest = requests.FirstOrDefault(r => r.RequestMessage.Path.Contains("track", StringComparison.OrdinalIgnoreCase));
             Assert.IsNotNull(trackRequest, "No track request found");
 
             var body = trackRequest.RequestMessage.Body;
@@ -212,7 +212,7 @@ namespace Microsoft.ApplicationInsights.NLogTarget.Tests
 
             // Verify request was received
             var requests = this.mockServer.LogEntries.ToList();
-            var trackRequest = requests.FirstOrDefault(r => r.RequestMessage.Path.Contains("track"));
+            var trackRequest = requests.FirstOrDefault(r => r.RequestMessage.Path.Contains("track", StringComparison.OrdinalIgnoreCase));
             Assert.IsNotNull(trackRequest, "No track request found");
 
             var body = trackRequest.RequestMessage.Body;
