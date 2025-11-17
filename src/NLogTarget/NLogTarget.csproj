@@ -16,6 +16,7 @@
   <ItemGroup>
     <PackageReference Include="NLog" />
     <PackageReference Include="Microsoft.ApplicationInsights" />
+    <PackageReference Include="System.Text.Json" />
   </ItemGroup>
 
   <Import Project="..\CommonShared\CommonShared.projitems" Label="Shared" />

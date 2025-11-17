@@ -233,6 +233,88 @@
             Assert.AreEqual("Value", telemetry.Properties["Name"]);
         }
 
+        [TestMethod]
+        [TestCategory("NLogTarget")]
+        public void TraceHasComplexPropertiesSerializedAsJson()
+        {
+            var aiLogger = this.CreateTargetWithGivenConnectionString();
+
+            var complexObject = new
+            {
+                Name = "John Doe",
+                Age = 30,
+                Address = new
+                {
+                    Street = "123 Main St",
+                    City = "New York",
+                    ZipCode = "10001"
+                },
+                Tags = new[] { "tag1", "tag2", "tag3" }
+            };
+
+            var eventInfo = new LogEventInfo(LogLevel.Trace, "TestLogger", "Hello!");
+            eventInfo.Properties["ComplexObject"] = complexObject;
+            eventInfo.Properties["SimpleString"] = "SimpleValue";
+            aiLogger.Log(eventInfo);
+
+            var telemetry = this.adapterHelper.Channel.SentItems.FirstOrDefault() as TraceTelemetry;
+            Assert.IsNotNull(telemetry, "Didn't get the log event from the channel");
+            
+            // Simple string should remain as is
+            Assert.AreEqual("SimpleValue", telemetry.Properties["SimpleString"]);
+            
+            // Complex object should be serialized to JSON
+            Assert.IsTrue(telemetry.Properties.ContainsKey("ComplexObject"), "ComplexObject property not found");
+            var complexJson = telemetry.Properties["ComplexObject"];
+            
+            // Verify it's JSON and contains expected properties
+            Assert.IsTrue(complexJson.Contains("\"Name\""), "JSON should contain Name property");
+            Assert.IsTrue(complexJson.Contains("\"John Doe\""), "JSON should contain Name value");
+            Assert.IsTrue(complexJson.Contains("\"Age\""), "JSON should contain Age property");
+            Assert.IsTrue(complexJson.Contains("30"), "JSON should contain Age value");
+            Assert.IsTrue(complexJson.Contains("\"Address\""), "JSON should contain Address property");
+            Assert.IsTrue(complexJson.Contains("\"Street\""), "JSON should contain nested Street property");
+            Assert.IsTrue(complexJson.Contains("\"123 Main St\""), "JSON should contain nested Street value");
+            Assert.IsTrue(complexJson.Contains("\"Tags\""), "JSON should contain Tags array");
+            Assert.IsTrue(complexJson.Contains("\"tag1\""), "JSON should contain array values");
+        }
+
+        [TestMethod]
+        [TestCategory("NLogTarget")]
+        public void TraceHandlesVariousPropertyTypes()
+        {
+            var aiLogger = this.CreateTargetWithGivenConnectionString();
+
+            var eventInfo = new LogEventInfo(LogLevel.Info, "TestLogger", "Testing various types");
+            eventInfo.Properties["String"] = "Simple string";
+            eventInfo.Properties["Int"] = 42;
+            eventInfo.Properties["Bool"] = true;
+            eventInfo.Properties["Decimal"] = 3.14m;
+            eventInfo.Properties["DateTime"] = new DateTime(2024, 1, 1, 12, 0, 0, DateTimeKind.Utc);
+            eventInfo.Properties["Array"] = new[] { 1, 2, 3 };
+            eventInfo.Properties["Dictionary"] = new Dictionary<string, object> { { "key1", "value1" }, { "key2", 123 } };
+            eventInfo.Properties["Null"] = null;
+            
+            aiLogger.Log(eventInfo);
+
+            var telemetry = this.adapterHelper.Channel.SentItems.FirstOrDefault() as TraceTelemetry;
+            Assert.IsNotNull(telemetry, "Didn't get the log event from the channel");
+            
+            // Simple types should be preserved as strings
+            Assert.AreEqual("Simple string", telemetry.Properties["String"]);
+            Assert.AreEqual("42", telemetry.Properties["Int"]);
+            Assert.AreEqual("True", telemetry.Properties["Bool"]);
+            Assert.IsTrue(telemetry.Properties["Decimal"].Contains("3.14"), "Decimal value should contain 3.14");
+            
+            // Complex types should be serialized to JSON
+            Assert.IsTrue(telemetry.Properties["Array"].Contains("["), "Array should be JSON array");
+            Assert.IsTrue(telemetry.Properties["Array"].Contains("1"), "Array should contain values");
+            Assert.IsTrue(telemetry.Properties["Dictionary"].Contains("key1"), "Dictionary should be serialized");
+            Assert.IsTrue(telemetry.Properties["Dictionary"].Contains("value1"), "Dictionary should contain values");
+            
+            // Null should be empty string
+            Assert.AreEqual(string.Empty, telemetry.Properties["Null"]);
+        }
 
         [TestMethod]
         [TestCategory("NLogTarget")]
