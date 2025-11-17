@@ -10,6 +10,7 @@ namespace Microsoft.ApplicationInsights.NLogTarget
     using System;
     using System.Collections;
     using System.Collections.Generic;
+    using System.Text.Json;
 
     /// <summary>
     /// Converts from NLog Object-properties to ApplicationInsight String-properties
@@ -101,7 +102,31 @@ namespace Microsoft.ApplicationInsights.NLogTarget
         {
             try
             {
-                return Convert.ToString(value, System.Globalization.CultureInfo.InvariantCulture);
+                if (value == null)
+                {
+                    return string.Empty;
+                }
+
+                // Handle primitive types and strings directly
+                if (value is string str)
+                {
+                    return str;
+                }
+
+                // Check if the value is a primitive type or a simple type that Convert.ToString handles well
+                var type = value.GetType();
+                if (type.IsPrimitive || type.IsEnum || value is decimal || value is DateTime || value is DateTimeOffset || value is Guid || value is TimeSpan)
+                {
+                    return Convert.ToString(value, System.Globalization.CultureInfo.InvariantCulture);
+                }
+
+                // For complex objects, serialize to JSON
+                return JsonSerializer.Serialize(value, new JsonSerializerOptions
+                {
+                    WriteIndented = false,
+                    PropertyNamingPolicy = null,
+                    DefaultIgnoreCondition = System.Text.Json.Serialization.JsonIgnoreCondition.Never
+                });
             }
             catch
             {

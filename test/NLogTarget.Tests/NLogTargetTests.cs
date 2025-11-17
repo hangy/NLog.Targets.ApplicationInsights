@@ -233,6 +233,51 @@
             Assert.AreEqual("Value", telemetry.Properties["Name"]);
         }
 
+        [TestMethod]
+        [TestCategory("NLogTarget")]
+        public void TraceHasComplexPropertiesSerializedAsJson()
+        {
+            var aiLogger = this.CreateTargetWithGivenConnectionString();
+
+            var complexObject = new
+            {
+                Name = "John Doe",
+                Age = 30,
+                Address = new
+                {
+                    Street = "123 Main St",
+                    City = "New York",
+                    ZipCode = "10001"
+                },
+                Tags = new[] { "tag1", "tag2", "tag3" }
+            };
+
+            var eventInfo = new LogEventInfo(LogLevel.Trace, "TestLogger", "Hello!");
+            eventInfo.Properties["ComplexObject"] = complexObject;
+            eventInfo.Properties["SimpleString"] = "SimpleValue";
+            aiLogger.Log(eventInfo);
+
+            var telemetry = this.adapterHelper.Channel.SentItems.FirstOrDefault() as TraceTelemetry;
+            Assert.IsNotNull(telemetry, "Didn't get the log event from the channel");
+            
+            // Simple string should remain as is
+            Assert.AreEqual("SimpleValue", telemetry.Properties["SimpleString"]);
+            
+            // Complex object should be serialized to JSON
+            Assert.IsTrue(telemetry.Properties.ContainsKey("ComplexObject"), "ComplexObject property not found");
+            var complexJson = telemetry.Properties["ComplexObject"];
+            
+            // Verify it's JSON and contains expected properties
+            Assert.IsTrue(complexJson.Contains("\"Name\""), "JSON should contain Name property");
+            Assert.IsTrue(complexJson.Contains("\"John Doe\""), "JSON should contain Name value");
+            Assert.IsTrue(complexJson.Contains("\"Age\""), "JSON should contain Age property");
+            Assert.IsTrue(complexJson.Contains("30"), "JSON should contain Age value");
+            Assert.IsTrue(complexJson.Contains("\"Address\""), "JSON should contain Address property");
+            Assert.IsTrue(complexJson.Contains("\"Street\""), "JSON should contain nested Street property");
+            Assert.IsTrue(complexJson.Contains("\"123 Main St\""), "JSON should contain nested Street value");
+            Assert.IsTrue(complexJson.Contains("\"Tags\""), "JSON should contain Tags array");
+            Assert.IsTrue(complexJson.Contains("\"tag1\""), "JSON should contain array values");
+        }
 
         [TestMethod]
         [TestCategory("NLogTarget")]
