@@ -281,6 +281,43 @@
 
         [TestMethod]
         [TestCategory("NLogTarget")]
+        public void TraceHandlesVariousPropertyTypes()
+        {
+            var aiLogger = this.CreateTargetWithGivenConnectionString();
+
+            var eventInfo = new LogEventInfo(LogLevel.Info, "TestLogger", "Testing various types");
+            eventInfo.Properties["String"] = "Simple string";
+            eventInfo.Properties["Int"] = 42;
+            eventInfo.Properties["Bool"] = true;
+            eventInfo.Properties["Decimal"] = 3.14m;
+            eventInfo.Properties["DateTime"] = new DateTime(2024, 1, 1, 12, 0, 0, DateTimeKind.Utc);
+            eventInfo.Properties["Array"] = new[] { 1, 2, 3 };
+            eventInfo.Properties["Dictionary"] = new Dictionary<string, object> { { "key1", "value1" }, { "key2", 123 } };
+            eventInfo.Properties["Null"] = null;
+            
+            aiLogger.Log(eventInfo);
+
+            var telemetry = this.adapterHelper.Channel.SentItems.FirstOrDefault() as TraceTelemetry;
+            Assert.IsNotNull(telemetry, "Didn't get the log event from the channel");
+            
+            // Simple types should be preserved as strings
+            Assert.AreEqual("Simple string", telemetry.Properties["String"]);
+            Assert.AreEqual("42", telemetry.Properties["Int"]);
+            Assert.AreEqual("True", telemetry.Properties["Bool"]);
+            Assert.IsTrue(telemetry.Properties["Decimal"].Contains("3.14"), "Decimal value should contain 3.14");
+            
+            // Complex types should be serialized to JSON
+            Assert.IsTrue(telemetry.Properties["Array"].Contains("["), "Array should be JSON array");
+            Assert.IsTrue(telemetry.Properties["Array"].Contains("1"), "Array should contain values");
+            Assert.IsTrue(telemetry.Properties["Dictionary"].Contains("key1"), "Dictionary should be serialized");
+            Assert.IsTrue(telemetry.Properties["Dictionary"].Contains("value1"), "Dictionary should contain values");
+            
+            // Null should be empty string
+            Assert.AreEqual(string.Empty, telemetry.Properties["Null"]);
+        }
+
+        [TestMethod]
+        [TestCategory("NLogTarget")]
         public void GlobalDiagnosticContextPropertiesAreAddedToProperties()
         {
             using ApplicationInsightsTarget target = new()
