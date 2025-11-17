@@ -172,7 +172,9 @@ namespace Microsoft.ApplicationInsights.NLogTarget
                 while (propertyBag.ContainsKey(propertyName));
             }
 
-            propertyBag[propertyName] = Convert.ToString(propertyValue, CultureInfo.InvariantCulture);
+            // Use StringDictionaryConverter to properly serialize complex objects to JSON
+            var converter = new StringDictionaryConverter(propertyBag);
+            converter[propertyName] = propertyValue;
         }
 
         /// <summary>
