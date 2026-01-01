@@ -126,8 +126,55 @@ namespace Microsoft.ApplicationInsights.NLogTarget
 
             if (this.ShouldIncludeProperties(logEvent) || this.ContextProperties.Count > 0)
             {
-                this.GetAllProperties(logEvent, new StringDictionaryConverter(propertyBag));
+                // Add event properties first (they take precedence)
+                if (this.IncludeEventProperties && logEvent.HasProperties)
+                {
+                    foreach (var property in logEvent.Properties)
+                    {
+                        var propertyKey = property.Key?.ToString();
+                        if (string.IsNullOrEmpty(propertyKey))
+                            continue;
+
+                        if (this.ExcludeProperties?.Contains(propertyKey) == true)
+                            continue;
+
+                        TryAddPropertyToPropertyBag(propertyBag, propertyKey, property.Value);
+                    }
+                }
+
+                // Add context properties second (with duplicate detection)
+                var contextProperties = this.GetContextProperties(logEvent);
+                if (contextProperties != null)
+                {
+                    foreach (var property in contextProperties)
+                    {
+                        if (string.IsNullOrEmpty(property.Key))
+                            continue;
+
+                        TryAddPropertyToPropertyBag(propertyBag, property.Key, property.Value);
+                    }
+                }
             }
+        }
+
+        private void TryAddPropertyToPropertyBag(IDictionary<string, string> propertyBag, string propertyName, object propertyValue)
+        {
+            // Handle duplicate keys by appending a suffix
+            var originalPropertyName = propertyName;
+            if (propertyBag.ContainsKey(propertyName))
+            {
+                int suffix = 1;
+                do
+                {
+                    propertyName = $"{originalPropertyName}_{suffix}";
+                    suffix++;
+                }
+                while (propertyBag.ContainsKey(propertyName));
+            }
+
+            // Use StringDictionaryConverter to properly serialize complex objects to JSON
+            var converter = new StringDictionaryConverter(propertyBag);
+            converter[propertyName] = propertyValue;
         }
 
         /// <summary>
