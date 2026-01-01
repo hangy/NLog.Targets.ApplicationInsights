@@ -114,35 +114,12 @@
       },
       "WireMock.Net": {
         "type": "Direct",
-        "requested": "[1.6.9, )",
-        "resolved": "1.6.9",
-        "contentHash": "nPr9GEqTBBh/AuVHqAUcMYmq+DEnCEr2pUo0MbzzeV1FBKw2O+dfO8CuE8c/KvPQcY67gWeEPeKvKucHkCZHlg==",
+        "requested": "[1.21.0, )",
+        "resolved": "1.21.0",
+        "contentHash": "37yaoueEXrlKKI4T/uF5jFTnjF3PXGRER0VYK+igmJrGJZZSDyAP2xFZLuBNikXyrPVV2y1yNMjWeNLRx+Djyg==",
         "dependencies": {
-          "AnyOf": "0.4.0",
-          "Handlebars.Net.Helpers": "2.4.6",
-          "Handlebars.Net.Helpers.DynamicLinq": "2.4.6",
-          "Handlebars.Net.Helpers.Humanizer": "2.4.6",
-          "Handlebars.Net.Helpers.Json": "2.4.6",
-          "Handlebars.Net.Helpers.Random": "2.4.6",
-          "Handlebars.Net.Helpers.XPath": "2.4.6",
-          "Handlebars.Net.Helpers.Xeger": "2.4.6",
-          "Handlebars.Net.Helpers.Xslt": "2.4.6",
-          "JmesPath.Net": "1.0.330",
-          "JsonConverter.Abstractions": "0.7.0",
-          "Microsoft.AspNetCore": "2.2.0",
-          "Microsoft.AspNetCore.Server.IIS": "2.2.6",
-          "Microsoft.IdentityModel.Protocols.OpenIdConnect": "6.34.0",
-          "NJsonSchema.Extensions": "0.1.0",
-          "NSwag.Core": "13.16.1",
-          "Newtonsoft.Json": "13.0.3",
-          "Scriban.Signed": "2.1.4",
-          "SimMetrics.Net": "1.0.5",
-          "System.Text.Encodings.Web": "4.7.2",
           "System.Text.RegularExpressions": "4.3.1",
-          "TinyMapper": "3.0.3",
-          "WireMock.Net.Abstractions": "1.6.9",
-          "WireMock.Net.OpenApiParser": "1.6.9",
-          "WireMock.Org.Abstractions": "1.6.9"
+          "WireMock.Net.Minimal": "1.21.0"
         }
       },
       "AnyOf": {
@@ -165,97 +142,85 @@
       },
       "Handlebars.Net.Helpers": {
         "type": "Transitive",
-        "resolved": "2.4.6",
-        "contentHash": "HnJ5aN3vwtp45dEAcaJLiDTCq9LxZRfVYtH5GkWfbe8wbqp6J3AXk725f4SdPVMr0cEakar1JkE828Phys7wGg==",
+        "resolved": "2.5.2",
+        "contentHash": "jgxIctjCNNBmSJRakKkZ71gc9uMpBzw5bbmedxbFxzoPGY8VMkACKa2iJyaJofLyxUZUUhACQTbBTyIrIgZ2+Q==",
         "dependencies": {
-          "Handlebars.Net.Helpers.Core": "2.4.6",
+          "Handlebars.Net.Helpers.Core": "2.5.2",
           "System.Text.RegularExpressions": "4.3.1"
         }
       },
       "Handlebars.Net.Helpers.Core": {
         "type": "Transitive",
-        "resolved": "2.4.6",
-        "contentHash": "Hhx+t0BfRNqZjK0OqshMOxmAgWYhxfCqWvo2MehgckfYAp0myTkQMuD0pWk4e753bLhYTQPRs56gsSEvOLR0JA==",
+        "resolved": "2.5.2",
+        "contentHash": "ruZrZfH/nCu3m5reG5URtdCHA0X8i4i2AumHGKKB3g9c9h3D5eMDGXWeT277Nw64OHNwS4+QZxxJiJ4OYkaIKw==",
         "dependencies": {
           "Handlebars.Net": "2.1.6",
           "Stef.Validation": "0.1.1",
           "System.Text.RegularExpressions": "4.3.1"
         }
       },
-      "Handlebars.Net.Helpers.DynamicLinq": {
-        "type": "Transitive",
-        "resolved": "2.4.6",
-        "contentHash": "AAmTOaKjimzBoVvWteOQkgUVs2O6Kl4dWYX+bTrgUANHDwOQJYmCubi1a+KlFaTif/qDP51M9qKJdcXq3fmtvA==",
-        "dependencies": {
-          "Handlebars.Net.Helpers": "2.4.6",
-          "Handlebars.Net.Helpers.Core": "2.4.6",
-          "Handlebars.Net.Helpers.Json": "2.4.6",
-          "System.Linq.Dynamic.Core": "1.3.12",
-          "System.Text.RegularExpressions": "4.3.1"
-        }
-      },
       "Handlebars.Net.Helpers.Humanizer": {
         "type": "Transitive",
-        "resolved": "2.4.6",
-        "contentHash": "Q2HlgQi5V8MIEQy2QbOMPqqrijvqbFepiNqk0Oxyn0Xz/UJNy601QLT7/YtFswk08L0NJ9K2FNJ0H9mdHPqdlw==",
+        "resolved": "2.5.2",
+        "contentHash": "uohCZ76ae+7fo55ULtwTk4G76N8VnBHdYjcV/q3oVBfNmVJV3ng7arFMpgdb64t0ZkymZSEoY/tBgzQ7ERWdBQ==",
         "dependencies": {
-          "Handlebars.Net.Helpers": "2.4.6",
-          "Handlebars.Net.Helpers.Core": "2.4.6",
+          "Handlebars.Net.Helpers": "2.5.2",
+          "Handlebars.Net.Helpers.Core": "2.5.2",
           "Humanizer": "2.14.1",
           "System.Text.RegularExpressions": "4.3.1"
         }
       },
       "Handlebars.Net.Helpers.Json": {
         "type": "Transitive",
-        "resolved": "2.4.6",
-        "contentHash": "8olzUUgeoXlVTk6G4dBlff63SBY4QfHRnsIIX10Q2e6p64qQ6ylDFQ8PGerv6KKDY75YoC+s1E7hdTYB2fihgg==",
+        "resolved": "2.5.2",
+        "contentHash": "uJRc55nIWXf1J+pWVYqcI1Jg4BsIJfEk1vccXVahKjCeB159fzhJeSCchhQddSbd6ihSj92u6bSCqXnV+q5qdQ==",
         "dependencies": {
-          "Handlebars.Net.Helpers": "2.4.6",
-          "Handlebars.Net.Helpers.Core": "2.4.6",
+          "Handlebars.Net.Helpers": "2.5.2",
+          "Handlebars.Net.Helpers.Core": "2.5.2",
           "Newtonsoft.Json": "13.0.3",
           "System.Text.RegularExpressions": "4.3.1"
         }
       },
       "Handlebars.Net.Helpers.Random": {
         "type": "Transitive",
-        "resolved": "2.4.6",
-        "contentHash": "1IRLwzsyEUaIP9xj/0aCGWojm1GE9mtkeJlyFaxzQjNR7HLiHdmVfeoRX+8qxLIrkxffEhxqjxQBhKTRSzanzg==",
+        "resolved": "2.5.2",
+        "contentHash": "eRoi7x0Jvik3rSe1da3o0QNRoWE1YCCT4H3Gfd/D6EkcxbefqmyR4mKqkDG+e9SzEgFwbjvWqI1wx4Mea8Jiuw==",
         "dependencies": {
-          "Handlebars.Net.Helpers": "2.4.6",
-          "Handlebars.Net.Helpers.Core": "2.4.6",
-          "RandomDataGenerator.Net": "1.0.18",
+          "Handlebars.Net.Helpers": "2.5.2",
+          "Handlebars.Net.Helpers.Core": "2.5.2",
+          "RandomDataGenerator.Net": "1.0.19",
           "System.Text.RegularExpressions": "4.3.1"
         }
       },
       "Handlebars.Net.Helpers.Xeger": {
         "type": "Transitive",
-        "resolved": "2.4.6",
-        "contentHash": "8irxKofQL6WxvuMZrO/3c7xz5R0pL0j0f8bv82h0RDjNCKXBVM/UQSTzpKlCR+6G4eRRQMb+CDaGYsO7XeHYNQ==",
+        "resolved": "2.5.2",
+        "contentHash": "rmhJfzuHAZMVCMpkDT3+mRCJQyk8xoJtj/9IUfo3bOEXE2M3HPgNfwvHlDcg0oGFC8eMXW+lOrYTQK2+UyvoKA==",
         "dependencies": {
           "Fare": "2.2.1",
-          "Handlebars.Net.Helpers": "2.4.6",
-          "Handlebars.Net.Helpers.Core": "2.4.6",
+          "Handlebars.Net.Helpers": "2.5.2",
+          "Handlebars.Net.Helpers.Core": "2.5.2",
           "System.Text.RegularExpressions": "4.3.1"
         }
       },
       "Handlebars.Net.Helpers.XPath": {
         "type": "Transitive",
-        "resolved": "2.4.6",
-        "contentHash": "LuOeT9DfUfyG+gRZE3CAzj1gAyZ40DfqYLn+n8mtk3rwCCmLLVTc25zoBQr4bNzHdH5EJSzzsUSVGmePE59HRw==",
+        "resolved": "2.5.2",
+        "contentHash": "miJUZQ3CS11YDMxwsCd4YyNI2hKDwkwCHEVtung0N23opIotJXXCpJcyiwwh5RbdbJhiCYaVfMaD3xAyZLrkmg==",
         "dependencies": {
-          "Handlebars.Net.Helpers": "2.4.6",
-          "Handlebars.Net.Helpers.Core": "2.4.6",
+          "Handlebars.Net.Helpers": "2.5.2",
+          "Handlebars.Net.Helpers.Core": "2.5.2",
           "System.Text.RegularExpressions": "4.3.1",
           "XPath2.Extensions": "1.1.5"
         }
       },
       "Handlebars.Net.Helpers.Xslt": {
         "type": "Transitive",
-        "resolved": "2.4.6",
-        "contentHash": "feDTYeIP+xzIIT2GZrktvJKZVf1Fu3jPJM4Ho9W8QggkZU4ukMlR7Fx0jxAwJ/T5Z7LEz4AFMJriTFNeoR2SVg==",
+        "resolved": "2.5.2",
+        "contentHash": "x8jsTWHEPLn5HLskYQ8AKE5hcaPzT0H/C2s55tvBpR29xCxaA2YJyERpYly0xdc/IbbChNnt5eOlWdebMf/wjQ==",
         "dependencies": {
-          "Handlebars.Net.Helpers": "2.4.6",
-          "Handlebars.Net.Helpers.Core": "2.4.6",
+          "Handlebars.Net.Helpers": "2.5.2",
+          "Handlebars.Net.Helpers.Core": "2.5.2",
           "System.Text.RegularExpressions": "4.3.1",
           "System.Xml.XmlDocument": "4.3.0"
         }
@@ -1337,20 +1302,6 @@
         "resolved": "1.0.3",
         "contentHash": "IzAV30z22ESCeQfxP29oVf4qEo8fBGXLXSU6oacv/9Iqe6PzgHDKCaWfwMBak7bSJQM0F5boXWoZS+kChztRIQ=="
       },
-      "Microsoft.OpenApi": {
-        "type": "Transitive",
-        "resolved": "1.2.3",
-        "contentHash": "Nug3rO+7Kl5/SBAadzSMAVgqDlfGjJZ0GenQrLywJ84XGKO0uRqkunz5Wyl0SDwcR71bAATXvSdbdzPrYRYKGw=="
-      },
-      "Microsoft.OpenApi.Readers": {
-        "type": "Transitive",
-        "resolved": "1.2.3",
-        "contentHash": "r1KBRewLxmCYuQ3fBksYQ2u/D1FtsN3zlPvOsZoiugzVgJbtq1wFD25Rgh/UAonUXgTpmlHciM5WHMavR9bk2g==",
-        "dependencies": {
-          "Microsoft.OpenApi": "1.2.3",
-          "SharpYaml": "1.6.5"
-        }
-      },
       "Microsoft.QualityTools.Testing.Fakes": {
         "type": "Transitive",
         "resolved": "18.1.1",
@@ -1454,20 +1405,15 @@
           "Newtonsoft.Json": "9.0.1"
         }
       },
-      "RamlToOpenApiConverter": {
+      "RamlToOpenApiConverter.SourceOnly": {
         "type": "Transitive",
-        "resolved": "0.6.1",
-        "contentHash": "Po3tkv67cXKDKJV+4CB5MAomZVwPB9fdnhAbt0fPIF7cL5O2lzjmI40w3PMwD4f8b6s8mn2yjCvYJd+dGPZyfg==",
-        "dependencies": {
-          "Microsoft.OpenApi.Readers": "1.2.3",
-          "System.ValueTuple": "4.3.0",
-          "YamlDotNet": "8.1.0"
-        }
+        "resolved": "0.11.0",
+        "contentHash": "uYuENc27+ly789oJITPXGDEjvq/gzXrIZ0STCaN2Gkg6rmYTLPkcQyqXuia6HFzMaNBDEI1+WT5V+G4mYYq6bQ=="
       },
       "RandomDataGenerator.Net": {
         "type": "Transitive",
-        "resolved": "1.0.18",
-        "contentHash": "bz6EjJ/tqCzqURrkpPnu/3hm1/3MDd73Adsv1a+LFbXfNGvcJCZOR5dros3hpNYN1AEi94xmrkvUoT+L3CqbCw==",
+        "resolved": "1.0.19",
+        "contentHash": "5VbGD7ZVmrclpJk/5es9xNJoNB13qBZtSeX669IqUUKh5M3/w7f0N8y/HGvpsNnEhuzFXVvh2N2tkdzzl2K5Jw==",
         "dependencies": {
           "Fare": "2.2.1",
           "Stef.Validation": "0.1.1",
@@ -1485,8 +1431,8 @@
       },
       "SharpYaml": {
         "type": "Transitive",
-        "resolved": "1.6.5",
-        "contentHash": "z4MKt+NxdGE5BsmNDNkcTylNx6evl9kvia/ER3jfBf+j2mLUUDz8pTbzoQLCTULR02tziDtX1Ij+eQcAey11Gw=="
+        "resolved": "2.1.3",
+        "contentHash": "qd6kDo2uZPG/AvQ3NS2CXr7fDtP+rjiNQ81No3mFGpn41DcG0FEklgnj/j5hVhgQ6YTgTYbvyzkdDnvT+RtuLQ=="
       },
       "SimMetrics.Net": {
         "type": "Transitive",
@@ -1554,11 +1500,6 @@
           "System.Memory": "4.6.3",
           "System.Threading.Tasks.Extensions": "4.6.3"
         }
-      },
-      "System.Linq.Dynamic.Core": {
-        "type": "Transitive",
-        "resolved": "1.3.12",
-        "contentHash": "uriIEVgq1Wp1wcGohFkS4VESynM2za9BhCH/Vtaxtq8cwvRCobjq9ZLnCrzRLwtJqexKRaH2ItBZwuMRISsclw=="
       },
       "System.Memory": {
         "type": "Transitive",
@@ -1677,38 +1618,85 @@
         "resolved": "4.3.0",
         "contentHash": "lJ8AxvkX7GQxpC6GFCeBj8ThYVyQczx2+f/cWHJU8tjS7YfI6Cv6bon70jVEgs2CiFbmmM8b9j1oZVx0dSI2Ww=="
       },
-      "TinyMapper": {
+      "TinyMapper.Signed": {
         "type": "Transitive",
-        "resolved": "3.0.3",
-        "contentHash": "a070h+NbFjMMclmWjEjGDnihUs4wE3ykx7R4BG7Oo38Jf66spzc3h3CbvbJYFlkbYl65dt5vbJFFH72vFdRr1A=="
+        "resolved": "4.0.0",
+        "contentHash": "W5uc9QXp8PUgP3VQ1Qyt3vK8ptyjj38tJ7nEAtRKA6R/4e6+2gsgYrAmRg9fCK1hhe3E0yeAm5acC14qx2CINg=="
       },
       "WireMock.Net.Abstractions": {
         "type": "Transitive",
-        "resolved": "1.6.9",
-        "contentHash": "cVhGa1mx1RyJKVB6egHXZQEW0tp5LnlglzA+msqbV6Y/G+27Wm1CO08r8y8enyKnV8CyL0/EG6cfjs8FIwD5dA==",
+        "resolved": "1.21.0",
+        "contentHash": "H3U3NLBOJVbffSzKNN9o/TDOyn5hCE6bLxEsSRkEj91IIs9ot9IbpzGCDzsoQjB62e2O+Un9KVU/+8eebygF0Q==",
         "dependencies": {
           "System.Net.Http": "4.3.4",
-          "System.Text.RegularExpressions": "4.3.1"
+          "System.Text.RegularExpressions": "4.3.1",
+          "System.ValueTuple": "4.5.0"
+        }
+      },
+      "WireMock.Net.Minimal": {
+        "type": "Transitive",
+        "resolved": "1.21.0",
+        "contentHash": "vGbnQyQEeH24Qdjy89ScQpfZ9EfqXQuB7uH5xS0a7xa6WAOF3WRS9hkLtzwDXgdaYh8cm1DzHiCWEcSyyr14Bw==",
+        "dependencies": {
+          "AnyOf": "0.4.0",
+          "Handlebars.Net.Helpers.Xslt": "2.5.2",
+          "JmesPath.Net": "1.0.330",
+          "JsonConverter.Abstractions": "0.7.0",
+          "Microsoft.AspNetCore": "2.2.0",
+          "Microsoft.AspNetCore.Server.IIS": "2.2.6",
+          "Microsoft.IdentityModel.Protocols.OpenIdConnect": "6.34.0",
+          "NJsonSchema.Extensions": "0.1.0",
+          "NSwag.Core": "13.16.1",
+          "Newtonsoft.Json": "13.0.3",
+          "Scriban.Signed": "2.1.4",
+          "SimMetrics.Net": "1.0.5",
+          "System.Text.RegularExpressions": "4.3.1",
+          "TinyMapper.Signed": "4.0.0",
+          "WireMock.Net.OpenApiParser": "1.21.0",
+          "WireMock.Net.Shared": "1.21.0",
+          "WireMock.Org.Abstractions": "1.21.0"
         }
       },
       "WireMock.Net.OpenApiParser": {
         "type": "Transitive",
-        "resolved": "1.6.9",
-        "contentHash": "Z1HE2mBfpm6rxyofYpcRxM3Wi2d5V1FyITt97kU2/GEZ6czp9Bc6bcHliPRp+G6BYxCU6kPdHD4tnDINypo11Q==",
+        "resolved": "1.21.0",
+        "contentHash": "8oJBn8PfrfynakDPXeut781sLBSzDGRl8RK9lKVILbipwGg0pyiiyjF0VzzX/J25oxNkpMtz72ZorrCeL9Wrig==",
         "dependencies": {
-          "Microsoft.OpenApi.Readers": "1.2.3",
           "Newtonsoft.Json": "13.0.3",
-          "RamlToOpenApiConverter": "0.6.1",
-          "RandomDataGenerator.Net": "1.0.18",
+          "RamlToOpenApiConverter.SourceOnly": "0.11.0",
+          "RandomDataGenerator.Net": "1.0.19",
+          "SharpYaml": "2.1.3",
+          "Stef.Validation": "0.1.1",
+          "System.Text.Json": "8.0.5",
+          "System.Text.RegularExpressions": "4.3.1",
+          "WireMock.Net.Abstractions": "1.21.0",
+          "YamlDotNet": "16.3.0"
+        }
+      },
+      "WireMock.Net.Shared": {
+        "type": "Transitive",
+        "resolved": "1.21.0",
+        "contentHash": "MEI+aqCg+xf6BPNeJtoF84mw3GU/0qVy4TkiexMj9Z4jkY9C/fi+WEa7r8sMt6LaHFyWBRDO8+0dKRjcp0V0Eg==",
+        "dependencies": {
+          "AnyOf": "0.4.0",
+          "Handlebars.Net.Helpers": "2.5.2",
+          "Handlebars.Net.Helpers.Humanizer": "2.5.2",
+          "Handlebars.Net.Helpers.Json": "2.5.2",
+          "Handlebars.Net.Helpers.Random": "2.5.2",
+          "Handlebars.Net.Helpers.XPath": "2.5.2",
+          "Handlebars.Net.Helpers.Xeger": "2.5.2",
+          "JsonConverter.Abstractions": "0.7.0",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "1.1.0",
+          "Newtonsoft.Json": "13.0.3",
           "Stef.Validation": "0.1.1",
           "System.Text.RegularExpressions": "4.3.1",
-          "WireMock.Net.Abstractions": "1.6.9"
+          "WireMock.Net.Abstractions": "1.21.0"
         }
       },
       "WireMock.Org.Abstractions": {
         "type": "Transitive",
-        "resolved": "1.6.9",
-        "contentHash": "urejAMTkDmvF21QuoS4F6D7eT+6R6VzZSUyuQNkJaBHRA3SF9s/DUjVK/EmqKKOj6zvLf6HiuKr2Kh95zxRjPA==",
+        "resolved": "1.21.0",
+        "contentHash": "kv0KlCQdB9ne0c6obpYGSqhipVpCIewICNHlUbcMI1jdrwvTm9bsM0ddZIa0kdug3L2b+wCXpsI2XlsFezqZTA==",
         "dependencies": {
           "System.Text.RegularExpressions": "4.3.1"
         }
@@ -1729,8 +1717,8 @@
       },
       "YamlDotNet": {
         "type": "Transitive",
-        "resolved": "8.1.0",
-        "contentHash": "U8UtsQJ7s6sHwt/4G7q6af0CuMzjPQcuS7/KuxqoLdDdMzwBilPldI0T3pUVwWYqrWfd3veokCrDyrGH/0tWAQ=="
+        "resolved": "16.3.0",
+        "contentHash": "SgMOdxbz8X65z8hraIs6hOEdnkH6hESTAIUa7viEngHOYaH+6q5XJmwr1+yb9vJpNQ19hCQY69xbFsLtXpobQA=="
       },
       "hangy.NLog.Targets.ApplicationInsights": {
         "type": "Project",
@@ -2165,35 +2153,12 @@
       },
       "WireMock.Net": {
         "type": "Direct",
-        "requested": "[1.6.9, )",
-        "resolved": "1.6.9",
-        "contentHash": "nPr9GEqTBBh/AuVHqAUcMYmq+DEnCEr2pUo0MbzzeV1FBKw2O+dfO8CuE8c/KvPQcY67gWeEPeKvKucHkCZHlg==",
+        "requested": "[1.21.0, )",
+        "resolved": "1.21.0",
+        "contentHash": "37yaoueEXrlKKI4T/uF5jFTnjF3PXGRER0VYK+igmJrGJZZSDyAP2xFZLuBNikXyrPVV2y1yNMjWeNLRx+Djyg==",
         "dependencies": {
-          "AnyOf": "0.4.0",
-          "Handlebars.Net.Helpers": "2.4.6",
-          "Handlebars.Net.Helpers.DynamicLinq": "2.4.6",
-          "Handlebars.Net.Helpers.Humanizer": "2.4.6",
-          "Handlebars.Net.Helpers.Json": "2.4.6",
-          "Handlebars.Net.Helpers.Random": "2.4.6",
-          "Handlebars.Net.Helpers.XPath": "2.4.6",
-          "Handlebars.Net.Helpers.Xeger": "2.4.6",
-          "Handlebars.Net.Helpers.Xslt": "2.4.6",
-          "JmesPath.Net": "1.0.330",
-          "JsonConverter.Abstractions": "0.7.0",
-          "Microsoft.AspNetCore": "2.2.0",
-          "Microsoft.AspNetCore.Server.IIS": "2.2.6",
-          "Microsoft.IdentityModel.Protocols.OpenIdConnect": "6.34.0",
-          "NJsonSchema.Extensions": "0.1.0",
-          "NSwag.Core": "13.16.1",
-          "Newtonsoft.Json": "13.0.3",
-          "Scriban.Signed": "2.1.4",
-          "SimMetrics.Net": "1.0.5",
-          "System.Text.Encodings.Web": "4.7.2",
           "System.Text.RegularExpressions": "4.3.1",
-          "TinyMapper": "3.0.3",
-          "WireMock.Net.Abstractions": "1.6.9",
-          "WireMock.Net.OpenApiParser": "1.6.9",
-          "WireMock.Org.Abstractions": "1.6.9"
+          "WireMock.Net.Minimal": "1.21.0"
         }
       },
       "AnyOf": {
@@ -2216,97 +2181,85 @@
       },
       "Handlebars.Net.Helpers": {
         "type": "Transitive",
-        "resolved": "2.4.6",
-        "contentHash": "HnJ5aN3vwtp45dEAcaJLiDTCq9LxZRfVYtH5GkWfbe8wbqp6J3AXk725f4SdPVMr0cEakar1JkE828Phys7wGg==",
+        "resolved": "2.5.2",
+        "contentHash": "jgxIctjCNNBmSJRakKkZ71gc9uMpBzw5bbmedxbFxzoPGY8VMkACKa2iJyaJofLyxUZUUhACQTbBTyIrIgZ2+Q==",
         "dependencies": {
-          "Handlebars.Net.Helpers.Core": "2.4.6",
+          "Handlebars.Net.Helpers.Core": "2.5.2",
           "System.Text.RegularExpressions": "4.3.1"
         }
       },
       "Handlebars.Net.Helpers.Core": {
         "type": "Transitive",
-        "resolved": "2.4.6",
-        "contentHash": "Hhx+t0BfRNqZjK0OqshMOxmAgWYhxfCqWvo2MehgckfYAp0myTkQMuD0pWk4e753bLhYTQPRs56gsSEvOLR0JA==",
+        "resolved": "2.5.2",
+        "contentHash": "ruZrZfH/nCu3m5reG5URtdCHA0X8i4i2AumHGKKB3g9c9h3D5eMDGXWeT277Nw64OHNwS4+QZxxJiJ4OYkaIKw==",
         "dependencies": {
           "Handlebars.Net": "2.1.6",
           "Stef.Validation": "0.1.1",
           "System.Text.RegularExpressions": "4.3.1"
         }
       },
-      "Handlebars.Net.Helpers.DynamicLinq": {
-        "type": "Transitive",
-        "resolved": "2.4.6",
-        "contentHash": "AAmTOaKjimzBoVvWteOQkgUVs2O6Kl4dWYX+bTrgUANHDwOQJYmCubi1a+KlFaTif/qDP51M9qKJdcXq3fmtvA==",
-        "dependencies": {
-          "Handlebars.Net.Helpers": "2.4.6",
-          "Handlebars.Net.Helpers.Core": "2.4.6",
-          "Handlebars.Net.Helpers.Json": "2.4.6",
-          "System.Linq.Dynamic.Core": "1.3.12",
-          "System.Text.RegularExpressions": "4.3.1"
-        }
-      },
       "Handlebars.Net.Helpers.Humanizer": {
         "type": "Transitive",
-        "resolved": "2.4.6",
-        "contentHash": "Q2HlgQi5V8MIEQy2QbOMPqqrijvqbFepiNqk0Oxyn0Xz/UJNy601QLT7/YtFswk08L0NJ9K2FNJ0H9mdHPqdlw==",
+        "resolved": "2.5.2",
+        "contentHash": "uohCZ76ae+7fo55ULtwTk4G76N8VnBHdYjcV/q3oVBfNmVJV3ng7arFMpgdb64t0ZkymZSEoY/tBgzQ7ERWdBQ==",
         "dependencies": {
-          "Handlebars.Net.Helpers": "2.4.6",
-          "Handlebars.Net.Helpers.Core": "2.4.6",
+          "Handlebars.Net.Helpers": "2.5.2",
+          "Handlebars.Net.Helpers.Core": "2.5.2",
           "Humanizer": "2.14.1",
           "System.Text.RegularExpressions": "4.3.1"
         }
       },
       "Handlebars.Net.Helpers.Json": {
         "type": "Transitive",
-        "resolved": "2.4.6",
-        "contentHash": "8olzUUgeoXlVTk6G4dBlff63SBY4QfHRnsIIX10Q2e6p64qQ6ylDFQ8PGerv6KKDY75YoC+s1E7hdTYB2fihgg==",
+        "resolved": "2.5.2",
+        "contentHash": "uJRc55nIWXf1J+pWVYqcI1Jg4BsIJfEk1vccXVahKjCeB159fzhJeSCchhQddSbd6ihSj92u6bSCqXnV+q5qdQ==",
         "dependencies": {
-          "Handlebars.Net.Helpers": "2.4.6",
-          "Handlebars.Net.Helpers.Core": "2.4.6",
+          "Handlebars.Net.Helpers": "2.5.2",
+          "Handlebars.Net.Helpers.Core": "2.5.2",
           "Newtonsoft.Json": "13.0.3",
           "System.Text.RegularExpressions": "4.3.1"
         }
       },
       "Handlebars.Net.Helpers.Random": {
         "type": "Transitive",
-        "resolved": "2.4.6",
-        "contentHash": "1IRLwzsyEUaIP9xj/0aCGWojm1GE9mtkeJlyFaxzQjNR7HLiHdmVfeoRX+8qxLIrkxffEhxqjxQBhKTRSzanzg==",
+        "resolved": "2.5.2",
+        "contentHash": "eRoi7x0Jvik3rSe1da3o0QNRoWE1YCCT4H3Gfd/D6EkcxbefqmyR4mKqkDG+e9SzEgFwbjvWqI1wx4Mea8Jiuw==",
         "dependencies": {
-          "Handlebars.Net.Helpers": "2.4.6",
-          "Handlebars.Net.Helpers.Core": "2.4.6",
-          "RandomDataGenerator.Net": "1.0.18",
+          "Handlebars.Net.Helpers": "2.5.2",
+          "Handlebars.Net.Helpers.Core": "2.5.2",
+          "RandomDataGenerator.Net": "1.0.19",
           "System.Text.RegularExpressions": "4.3.1"
         }
       },
       "Handlebars.Net.Helpers.Xeger": {
         "type": "Transitive",
-        "resolved": "2.4.6",
-        "contentHash": "8irxKofQL6WxvuMZrO/3c7xz5R0pL0j0f8bv82h0RDjNCKXBVM/UQSTzpKlCR+6G4eRRQMb+CDaGYsO7XeHYNQ==",
+        "resolved": "2.5.2",
+        "contentHash": "rmhJfzuHAZMVCMpkDT3+mRCJQyk8xoJtj/9IUfo3bOEXE2M3HPgNfwvHlDcg0oGFC8eMXW+lOrYTQK2+UyvoKA==",
         "dependencies": {
           "Fare": "2.2.1",
-          "Handlebars.Net.Helpers": "2.4.6",
-          "Handlebars.Net.Helpers.Core": "2.4.6",
+          "Handlebars.Net.Helpers": "2.5.2",
+          "Handlebars.Net.Helpers.Core": "2.5.2",
           "System.Text.RegularExpressions": "4.3.1"
         }
       },
       "Handlebars.Net.Helpers.XPath": {
         "type": "Transitive",
-        "resolved": "2.4.6",
-        "contentHash": "LuOeT9DfUfyG+gRZE3CAzj1gAyZ40DfqYLn+n8mtk3rwCCmLLVTc25zoBQr4bNzHdH5EJSzzsUSVGmePE59HRw==",
+        "resolved": "2.5.2",
+        "contentHash": "miJUZQ3CS11YDMxwsCd4YyNI2hKDwkwCHEVtung0N23opIotJXXCpJcyiwwh5RbdbJhiCYaVfMaD3xAyZLrkmg==",
         "dependencies": {
-          "Handlebars.Net.Helpers": "2.4.6",
-          "Handlebars.Net.Helpers.Core": "2.4.6",
+          "Handlebars.Net.Helpers": "2.5.2",
+          "Handlebars.Net.Helpers.Core": "2.5.2",
           "System.Text.RegularExpressions": "4.3.1",
           "XPath2.Extensions": "1.1.5"
         }
       },
       "Handlebars.Net.Helpers.Xslt": {
         "type": "Transitive",
-        "resolved": "2.4.6",
-        "contentHash": "feDTYeIP+xzIIT2GZrktvJKZVf1Fu3jPJM4Ho9W8QggkZU4ukMlR7Fx0jxAwJ/T5Z7LEz4AFMJriTFNeoR2SVg==",
+        "resolved": "2.5.2",
+        "contentHash": "x8jsTWHEPLn5HLskYQ8AKE5hcaPzT0H/C2s55tvBpR29xCxaA2YJyERpYly0xdc/IbbChNnt5eOlWdebMf/wjQ==",
         "dependencies": {
-          "Handlebars.Net.Helpers": "2.4.6",
-          "Handlebars.Net.Helpers.Core": "2.4.6",
+          "Handlebars.Net.Helpers": "2.5.2",
+          "Handlebars.Net.Helpers.Core": "2.5.2",
           "System.Text.RegularExpressions": "4.3.1",
           "System.Xml.XmlDocument": "4.3.0"
         }
@@ -3388,20 +3341,6 @@
         "resolved": "1.0.3",
         "contentHash": "0E7evZXHXaDYYiLRfpyXvCh+yzM2rNTyuZDI+ZO7UUqSc6GfjePiXTdqJGtgIKUwdI81tzQKmaWprnUiPj9hAw=="
       },
-      "Microsoft.OpenApi": {
-        "type": "Transitive",
-        "resolved": "1.2.3",
-        "contentHash": "Nug3rO+7Kl5/SBAadzSMAVgqDlfGjJZ0GenQrLywJ84XGKO0uRqkunz5Wyl0SDwcR71bAATXvSdbdzPrYRYKGw=="
-      },
-      "Microsoft.OpenApi.Readers": {
-        "type": "Transitive",
-        "resolved": "1.2.3",
-        "contentHash": "r1KBRewLxmCYuQ3fBksYQ2u/D1FtsN3zlPvOsZoiugzVgJbtq1wFD25Rgh/UAonUXgTpmlHciM5WHMavR9bk2g==",
-        "dependencies": {
-          "Microsoft.OpenApi": "1.2.3",
-          "SharpYaml": "1.6.5"
-        }
-      },
       "Microsoft.QualityTools.Testing.Fakes": {
         "type": "Transitive",
         "resolved": "18.1.1",
@@ -3505,20 +3444,15 @@
           "Newtonsoft.Json": "9.0.1"
         }
       },
-      "RamlToOpenApiConverter": {
+      "RamlToOpenApiConverter.SourceOnly": {
         "type": "Transitive",
-        "resolved": "0.6.1",
-        "contentHash": "Po3tkv67cXKDKJV+4CB5MAomZVwPB9fdnhAbt0fPIF7cL5O2lzjmI40w3PMwD4f8b6s8mn2yjCvYJd+dGPZyfg==",
-        "dependencies": {
-          "Microsoft.OpenApi.Readers": "1.2.3",
-          "System.ValueTuple": "4.3.0",
-          "YamlDotNet": "8.1.0"
-        }
+        "resolved": "0.11.0",
+        "contentHash": "uYuENc27+ly789oJITPXGDEjvq/gzXrIZ0STCaN2Gkg6rmYTLPkcQyqXuia6HFzMaNBDEI1+WT5V+G4mYYq6bQ=="
       },
       "RandomDataGenerator.Net": {
         "type": "Transitive",
-        "resolved": "1.0.18",
-        "contentHash": "bz6EjJ/tqCzqURrkpPnu/3hm1/3MDd73Adsv1a+LFbXfNGvcJCZOR5dros3hpNYN1AEi94xmrkvUoT+L3CqbCw==",
+        "resolved": "1.0.19",
+        "contentHash": "5VbGD7ZVmrclpJk/5es9xNJoNB13qBZtSeX669IqUUKh5M3/w7f0N8y/HGvpsNnEhuzFXVvh2N2tkdzzl2K5Jw==",
         "dependencies": {
           "Fare": "2.2.1",
           "Stef.Validation": "0.1.1",
@@ -3536,8 +3470,8 @@
       },
       "SharpYaml": {
         "type": "Transitive",
-        "resolved": "1.6.5",
-        "contentHash": "z4MKt+NxdGE5BsmNDNkcTylNx6evl9kvia/ER3jfBf+j2mLUUDz8pTbzoQLCTULR02tziDtX1Ij+eQcAey11Gw=="
+        "resolved": "2.1.3",
+        "contentHash": "qd6kDo2uZPG/AvQ3NS2CXr7fDtP+rjiNQ81No3mFGpn41DcG0FEklgnj/j5hVhgQ6YTgTYbvyzkdDnvT+RtuLQ=="
       },
       "SimMetrics.Net": {
         "type": "Transitive",
@@ -3610,11 +3544,6 @@
           "System.Memory": "4.6.3",
           "System.Threading.Tasks.Extensions": "4.6.3"
         }
-      },
-      "System.Linq.Dynamic.Core": {
-        "type": "Transitive",
-        "resolved": "1.3.12",
-        "contentHash": "uriIEVgq1Wp1wcGohFkS4VESynM2za9BhCH/Vtaxtq8cwvRCobjq9ZLnCrzRLwtJqexKRaH2ItBZwuMRISsclw=="
       },
       "System.Memory": {
         "type": "Transitive",
@@ -3741,38 +3670,85 @@
         "resolved": "4.3.0",
         "contentHash": "lJ8AxvkX7GQxpC6GFCeBj8ThYVyQczx2+f/cWHJU8tjS7YfI6Cv6bon70jVEgs2CiFbmmM8b9j1oZVx0dSI2Ww=="
       },
-      "TinyMapper": {
+      "TinyMapper.Signed": {
         "type": "Transitive",
-        "resolved": "3.0.3",
-        "contentHash": "a070h+NbFjMMclmWjEjGDnihUs4wE3ykx7R4BG7Oo38Jf66spzc3h3CbvbJYFlkbYl65dt5vbJFFH72vFdRr1A=="
+        "resolved": "4.0.0",
+        "contentHash": "W5uc9QXp8PUgP3VQ1Qyt3vK8ptyjj38tJ7nEAtRKA6R/4e6+2gsgYrAmRg9fCK1hhe3E0yeAm5acC14qx2CINg=="
       },
       "WireMock.Net.Abstractions": {
         "type": "Transitive",
-        "resolved": "1.6.9",
-        "contentHash": "cVhGa1mx1RyJKVB6egHXZQEW0tp5LnlglzA+msqbV6Y/G+27Wm1CO08r8y8enyKnV8CyL0/EG6cfjs8FIwD5dA==",
+        "resolved": "1.21.0",
+        "contentHash": "H3U3NLBOJVbffSzKNN9o/TDOyn5hCE6bLxEsSRkEj91IIs9ot9IbpzGCDzsoQjB62e2O+Un9KVU/+8eebygF0Q==",
         "dependencies": {
           "System.Net.Http": "4.3.4",
-          "System.Text.RegularExpressions": "4.3.1"
+          "System.Text.RegularExpressions": "4.3.1",
+          "System.ValueTuple": "4.5.0"
+        }
+      },
+      "WireMock.Net.Minimal": {
+        "type": "Transitive",
+        "resolved": "1.21.0",
+        "contentHash": "vGbnQyQEeH24Qdjy89ScQpfZ9EfqXQuB7uH5xS0a7xa6WAOF3WRS9hkLtzwDXgdaYh8cm1DzHiCWEcSyyr14Bw==",
+        "dependencies": {
+          "AnyOf": "0.4.0",
+          "Handlebars.Net.Helpers.Xslt": "2.5.2",
+          "JmesPath.Net": "1.0.330",
+          "JsonConverter.Abstractions": "0.7.0",
+          "Microsoft.AspNetCore": "2.2.0",
+          "Microsoft.AspNetCore.Server.IIS": "2.2.6",
+          "Microsoft.IdentityModel.Protocols.OpenIdConnect": "6.34.0",
+          "NJsonSchema.Extensions": "0.1.0",
+          "NSwag.Core": "13.16.1",
+          "Newtonsoft.Json": "13.0.3",
+          "Scriban.Signed": "2.1.4",
+          "SimMetrics.Net": "1.0.5",
+          "System.Text.RegularExpressions": "4.3.1",
+          "TinyMapper.Signed": "4.0.0",
+          "WireMock.Net.OpenApiParser": "1.21.0",
+          "WireMock.Net.Shared": "1.21.0",
+          "WireMock.Org.Abstractions": "1.21.0"
         }
       },
       "WireMock.Net.OpenApiParser": {
         "type": "Transitive",
-        "resolved": "1.6.9",
-        "contentHash": "Z1HE2mBfpm6rxyofYpcRxM3Wi2d5V1FyITt97kU2/GEZ6czp9Bc6bcHliPRp+G6BYxCU6kPdHD4tnDINypo11Q==",
+        "resolved": "1.21.0",
+        "contentHash": "8oJBn8PfrfynakDPXeut781sLBSzDGRl8RK9lKVILbipwGg0pyiiyjF0VzzX/J25oxNkpMtz72ZorrCeL9Wrig==",
         "dependencies": {
-          "Microsoft.OpenApi.Readers": "1.2.3",
           "Newtonsoft.Json": "13.0.3",
-          "RamlToOpenApiConverter": "0.6.1",
-          "RandomDataGenerator.Net": "1.0.18",
+          "RamlToOpenApiConverter.SourceOnly": "0.11.0",
+          "RandomDataGenerator.Net": "1.0.19",
+          "SharpYaml": "2.1.3",
+          "Stef.Validation": "0.1.1",
+          "System.Text.Json": "8.0.5",
+          "System.Text.RegularExpressions": "4.3.1",
+          "WireMock.Net.Abstractions": "1.21.0",
+          "YamlDotNet": "16.3.0"
+        }
+      },
+      "WireMock.Net.Shared": {
+        "type": "Transitive",
+        "resolved": "1.21.0",
+        "contentHash": "MEI+aqCg+xf6BPNeJtoF84mw3GU/0qVy4TkiexMj9Z4jkY9C/fi+WEa7r8sMt6LaHFyWBRDO8+0dKRjcp0V0Eg==",
+        "dependencies": {
+          "AnyOf": "0.4.0",
+          "Handlebars.Net.Helpers": "2.5.2",
+          "Handlebars.Net.Helpers.Humanizer": "2.5.2",
+          "Handlebars.Net.Helpers.Json": "2.5.2",
+          "Handlebars.Net.Helpers.Random": "2.5.2",
+          "Handlebars.Net.Helpers.XPath": "2.5.2",
+          "Handlebars.Net.Helpers.Xeger": "2.5.2",
+          "JsonConverter.Abstractions": "0.7.0",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "1.1.0",
+          "Newtonsoft.Json": "13.0.3",
           "Stef.Validation": "0.1.1",
           "System.Text.RegularExpressions": "4.3.1",
-          "WireMock.Net.Abstractions": "1.6.9"
+          "WireMock.Net.Abstractions": "1.21.0"
         }
       },
       "WireMock.Org.Abstractions": {
         "type": "Transitive",
-        "resolved": "1.6.9",
-        "contentHash": "urejAMTkDmvF21QuoS4F6D7eT+6R6VzZSUyuQNkJaBHRA3SF9s/DUjVK/EmqKKOj6zvLf6HiuKr2Kh95zxRjPA==",
+        "resolved": "1.21.0",
+        "contentHash": "kv0KlCQdB9ne0c6obpYGSqhipVpCIewICNHlUbcMI1jdrwvTm9bsM0ddZIa0kdug3L2b+wCXpsI2XlsFezqZTA==",
         "dependencies": {
           "System.Text.RegularExpressions": "4.3.1"
         }
@@ -3793,8 +3769,8 @@
       },
       "YamlDotNet": {
         "type": "Transitive",
-        "resolved": "8.1.0",
-        "contentHash": "U8UtsQJ7s6sHwt/4G7q6af0CuMzjPQcuS7/KuxqoLdDdMzwBilPldI0T3pUVwWYqrWfd3veokCrDyrGH/0tWAQ=="
+        "resolved": "16.3.0",
+        "contentHash": "SgMOdxbz8X65z8hraIs6hOEdnkH6hESTAIUa7viEngHOYaH+6q5XJmwr1+yb9vJpNQ19hCQY69xbFsLtXpobQA=="
       },
       "hangy.NLog.Targets.ApplicationInsights": {
         "type": "Project",
@@ -4241,35 +4217,12 @@
       },
       "WireMock.Net": {
         "type": "Direct",
-        "requested": "[1.6.9, )",
-        "resolved": "1.6.9",
-        "contentHash": "nPr9GEqTBBh/AuVHqAUcMYmq+DEnCEr2pUo0MbzzeV1FBKw2O+dfO8CuE8c/KvPQcY67gWeEPeKvKucHkCZHlg==",
+        "requested": "[1.21.0, )",
+        "resolved": "1.21.0",
+        "contentHash": "37yaoueEXrlKKI4T/uF5jFTnjF3PXGRER0VYK+igmJrGJZZSDyAP2xFZLuBNikXyrPVV2y1yNMjWeNLRx+Djyg==",
         "dependencies": {
-          "AnyOf": "0.4.0",
-          "Handlebars.Net.Helpers": "2.4.6",
-          "Handlebars.Net.Helpers.DynamicLinq": "2.4.6",
-          "Handlebars.Net.Helpers.Humanizer": "2.4.6",
-          "Handlebars.Net.Helpers.Json": "2.4.6",
-          "Handlebars.Net.Helpers.Random": "2.4.6",
-          "Handlebars.Net.Helpers.XPath": "2.4.6",
-          "Handlebars.Net.Helpers.Xeger": "2.4.6",
-          "Handlebars.Net.Helpers.Xslt": "2.4.6",
-          "JmesPath.Net": "1.0.330",
-          "JsonConverter.Abstractions": "0.7.0",
-          "Microsoft.AspNetCore": "2.2.0",
-          "Microsoft.AspNetCore.Server.IIS": "2.2.6",
-          "Microsoft.IdentityModel.Protocols.OpenIdConnect": "6.34.0",
-          "NJsonSchema.Extensions": "0.1.0",
-          "NSwag.Core": "13.16.1",
-          "Newtonsoft.Json": "13.0.3",
-          "Scriban.Signed": "2.1.4",
-          "SimMetrics.Net": "1.0.5",
-          "System.Text.Encodings.Web": "4.7.2",
           "System.Text.RegularExpressions": "4.3.1",
-          "TinyMapper": "3.0.3",
-          "WireMock.Net.Abstractions": "1.6.9",
-          "WireMock.Net.OpenApiParser": "1.6.9",
-          "WireMock.Org.Abstractions": "1.6.9"
+          "WireMock.Net.Minimal": "1.21.0"
         }
       },
       "AnyOf": {
@@ -4292,97 +4245,85 @@
       },
       "Handlebars.Net.Helpers": {
         "type": "Transitive",
-        "resolved": "2.4.6",
-        "contentHash": "HnJ5aN3vwtp45dEAcaJLiDTCq9LxZRfVYtH5GkWfbe8wbqp6J3AXk725f4SdPVMr0cEakar1JkE828Phys7wGg==",
+        "resolved": "2.5.2",
+        "contentHash": "jgxIctjCNNBmSJRakKkZ71gc9uMpBzw5bbmedxbFxzoPGY8VMkACKa2iJyaJofLyxUZUUhACQTbBTyIrIgZ2+Q==",
         "dependencies": {
-          "Handlebars.Net.Helpers.Core": "2.4.6",
+          "Handlebars.Net.Helpers.Core": "2.5.2",
           "System.Text.RegularExpressions": "4.3.1"
         }
       },
       "Handlebars.Net.Helpers.Core": {
         "type": "Transitive",
-        "resolved": "2.4.6",
-        "contentHash": "Hhx+t0BfRNqZjK0OqshMOxmAgWYhxfCqWvo2MehgckfYAp0myTkQMuD0pWk4e753bLhYTQPRs56gsSEvOLR0JA==",
+        "resolved": "2.5.2",
+        "contentHash": "ruZrZfH/nCu3m5reG5URtdCHA0X8i4i2AumHGKKB3g9c9h3D5eMDGXWeT277Nw64OHNwS4+QZxxJiJ4OYkaIKw==",
         "dependencies": {
           "Handlebars.Net": "2.1.6",
           "Stef.Validation": "0.1.1",
           "System.Text.RegularExpressions": "4.3.1"
         }
       },
-      "Handlebars.Net.Helpers.DynamicLinq": {
-        "type": "Transitive",
-        "resolved": "2.4.6",
-        "contentHash": "AAmTOaKjimzBoVvWteOQkgUVs2O6Kl4dWYX+bTrgUANHDwOQJYmCubi1a+KlFaTif/qDP51M9qKJdcXq3fmtvA==",
-        "dependencies": {
-          "Handlebars.Net.Helpers": "2.4.6",
-          "Handlebars.Net.Helpers.Core": "2.4.6",
-          "Handlebars.Net.Helpers.Json": "2.4.6",
-          "System.Linq.Dynamic.Core": "1.3.12",
-          "System.Text.RegularExpressions": "4.3.1"
-        }
-      },
       "Handlebars.Net.Helpers.Humanizer": {
         "type": "Transitive",
-        "resolved": "2.4.6",
-        "contentHash": "Q2HlgQi5V8MIEQy2QbOMPqqrijvqbFepiNqk0Oxyn0Xz/UJNy601QLT7/YtFswk08L0NJ9K2FNJ0H9mdHPqdlw==",
+        "resolved": "2.5.2",
+        "contentHash": "uohCZ76ae+7fo55ULtwTk4G76N8VnBHdYjcV/q3oVBfNmVJV3ng7arFMpgdb64t0ZkymZSEoY/tBgzQ7ERWdBQ==",
         "dependencies": {
-          "Handlebars.Net.Helpers": "2.4.6",
-          "Handlebars.Net.Helpers.Core": "2.4.6",
+          "Handlebars.Net.Helpers": "2.5.2",
+          "Handlebars.Net.Helpers.Core": "2.5.2",
           "Humanizer": "2.14.1",
           "System.Text.RegularExpressions": "4.3.1"
         }
       },
       "Handlebars.Net.Helpers.Json": {
         "type": "Transitive",
-        "resolved": "2.4.6",
-        "contentHash": "8olzUUgeoXlVTk6G4dBlff63SBY4QfHRnsIIX10Q2e6p64qQ6ylDFQ8PGerv6KKDY75YoC+s1E7hdTYB2fihgg==",
+        "resolved": "2.5.2",
+        "contentHash": "uJRc55nIWXf1J+pWVYqcI1Jg4BsIJfEk1vccXVahKjCeB159fzhJeSCchhQddSbd6ihSj92u6bSCqXnV+q5qdQ==",
         "dependencies": {
-          "Handlebars.Net.Helpers": "2.4.6",
-          "Handlebars.Net.Helpers.Core": "2.4.6",
+          "Handlebars.Net.Helpers": "2.5.2",
+          "Handlebars.Net.Helpers.Core": "2.5.2",
           "Newtonsoft.Json": "13.0.3",
           "System.Text.RegularExpressions": "4.3.1"
         }
       },
       "Handlebars.Net.Helpers.Random": {
         "type": "Transitive",
-        "resolved": "2.4.6",
-        "contentHash": "1IRLwzsyEUaIP9xj/0aCGWojm1GE9mtkeJlyFaxzQjNR7HLiHdmVfeoRX+8qxLIrkxffEhxqjxQBhKTRSzanzg==",
+        "resolved": "2.5.2",
+        "contentHash": "eRoi7x0Jvik3rSe1da3o0QNRoWE1YCCT4H3Gfd/D6EkcxbefqmyR4mKqkDG+e9SzEgFwbjvWqI1wx4Mea8Jiuw==",
         "dependencies": {
-          "Handlebars.Net.Helpers": "2.4.6",
-          "Handlebars.Net.Helpers.Core": "2.4.6",
-          "RandomDataGenerator.Net": "1.0.18",
+          "Handlebars.Net.Helpers": "2.5.2",
+          "Handlebars.Net.Helpers.Core": "2.5.2",
+          "RandomDataGenerator.Net": "1.0.19",
           "System.Text.RegularExpressions": "4.3.1"
         }
       },
       "Handlebars.Net.Helpers.Xeger": {
         "type": "Transitive",
-        "resolved": "2.4.6",
-        "contentHash": "8irxKofQL6WxvuMZrO/3c7xz5R0pL0j0f8bv82h0RDjNCKXBVM/UQSTzpKlCR+6G4eRRQMb+CDaGYsO7XeHYNQ==",
+        "resolved": "2.5.2",
+        "contentHash": "rmhJfzuHAZMVCMpkDT3+mRCJQyk8xoJtj/9IUfo3bOEXE2M3HPgNfwvHlDcg0oGFC8eMXW+lOrYTQK2+UyvoKA==",
         "dependencies": {
           "Fare": "2.2.1",
-          "Handlebars.Net.Helpers": "2.4.6",
-          "Handlebars.Net.Helpers.Core": "2.4.6",
+          "Handlebars.Net.Helpers": "2.5.2",
+          "Handlebars.Net.Helpers.Core": "2.5.2",
           "System.Text.RegularExpressions": "4.3.1"
         }
       },
       "Handlebars.Net.Helpers.XPath": {
         "type": "Transitive",
-        "resolved": "2.4.6",
-        "contentHash": "LuOeT9DfUfyG+gRZE3CAzj1gAyZ40DfqYLn+n8mtk3rwCCmLLVTc25zoBQr4bNzHdH5EJSzzsUSVGmePE59HRw==",
+        "resolved": "2.5.2",
+        "contentHash": "miJUZQ3CS11YDMxwsCd4YyNI2hKDwkwCHEVtung0N23opIotJXXCpJcyiwwh5RbdbJhiCYaVfMaD3xAyZLrkmg==",
         "dependencies": {
-          "Handlebars.Net.Helpers": "2.4.6",
-          "Handlebars.Net.Helpers.Core": "2.4.6",
+          "Handlebars.Net.Helpers": "2.5.2",
+          "Handlebars.Net.Helpers.Core": "2.5.2",
           "System.Text.RegularExpressions": "4.3.1",
           "XPath2.Extensions": "1.1.5"
         }
       },
       "Handlebars.Net.Helpers.Xslt": {
         "type": "Transitive",
-        "resolved": "2.4.6",
-        "contentHash": "feDTYeIP+xzIIT2GZrktvJKZVf1Fu3jPJM4Ho9W8QggkZU4ukMlR7Fx0jxAwJ/T5Z7LEz4AFMJriTFNeoR2SVg==",
+        "resolved": "2.5.2",
+        "contentHash": "x8jsTWHEPLn5HLskYQ8AKE5hcaPzT0H/C2s55tvBpR29xCxaA2YJyERpYly0xdc/IbbChNnt5eOlWdebMf/wjQ==",
         "dependencies": {
-          "Handlebars.Net.Helpers": "2.4.6",
-          "Handlebars.Net.Helpers.Core": "2.4.6",
+          "Handlebars.Net.Helpers": "2.5.2",
+          "Handlebars.Net.Helpers.Core": "2.5.2",
           "System.Text.RegularExpressions": "4.3.1",
           "System.Xml.XmlDocument": "4.3.0"
         }
@@ -5464,20 +5405,6 @@
         "resolved": "1.0.3",
         "contentHash": "zMk4D+9zyiEWByyQ7oPImPN/Jhpj166Ky0Nlla4eXlNL8hI/BtSJsgR8Inldd4NNpIAH3oh8yym0W2DrhXdSLQ=="
       },
-      "Microsoft.OpenApi": {
-        "type": "Transitive",
-        "resolved": "1.2.3",
-        "contentHash": "Nug3rO+7Kl5/SBAadzSMAVgqDlfGjJZ0GenQrLywJ84XGKO0uRqkunz5Wyl0SDwcR71bAATXvSdbdzPrYRYKGw=="
-      },
-      "Microsoft.OpenApi.Readers": {
-        "type": "Transitive",
-        "resolved": "1.2.3",
-        "contentHash": "r1KBRewLxmCYuQ3fBksYQ2u/D1FtsN3zlPvOsZoiugzVgJbtq1wFD25Rgh/UAonUXgTpmlHciM5WHMavR9bk2g==",
-        "dependencies": {
-          "Microsoft.OpenApi": "1.2.3",
-          "SharpYaml": "1.6.5"
-        }
-      },
       "Microsoft.QualityTools.Testing.Fakes": {
         "type": "Transitive",
         "resolved": "18.1.1",
@@ -5581,20 +5508,15 @@
           "Newtonsoft.Json": "9.0.1"
         }
       },
-      "RamlToOpenApiConverter": {
+      "RamlToOpenApiConverter.SourceOnly": {
         "type": "Transitive",
-        "resolved": "0.6.1",
-        "contentHash": "Po3tkv67cXKDKJV+4CB5MAomZVwPB9fdnhAbt0fPIF7cL5O2lzjmI40w3PMwD4f8b6s8mn2yjCvYJd+dGPZyfg==",
-        "dependencies": {
-          "Microsoft.OpenApi.Readers": "1.2.3",
-          "System.ValueTuple": "4.3.0",
-          "YamlDotNet": "8.1.0"
-        }
+        "resolved": "0.11.0",
+        "contentHash": "uYuENc27+ly789oJITPXGDEjvq/gzXrIZ0STCaN2Gkg6rmYTLPkcQyqXuia6HFzMaNBDEI1+WT5V+G4mYYq6bQ=="
       },
       "RandomDataGenerator.Net": {
         "type": "Transitive",
-        "resolved": "1.0.18",
-        "contentHash": "bz6EjJ/tqCzqURrkpPnu/3hm1/3MDd73Adsv1a+LFbXfNGvcJCZOR5dros3hpNYN1AEi94xmrkvUoT+L3CqbCw==",
+        "resolved": "1.0.19",
+        "contentHash": "5VbGD7ZVmrclpJk/5es9xNJoNB13qBZtSeX669IqUUKh5M3/w7f0N8y/HGvpsNnEhuzFXVvh2N2tkdzzl2K5Jw==",
         "dependencies": {
           "Fare": "2.2.1",
           "Stef.Validation": "0.1.1",
@@ -5612,8 +5534,8 @@
       },
       "SharpYaml": {
         "type": "Transitive",
-        "resolved": "1.6.5",
-        "contentHash": "z4MKt+NxdGE5BsmNDNkcTylNx6evl9kvia/ER3jfBf+j2mLUUDz8pTbzoQLCTULR02tziDtX1Ij+eQcAey11Gw=="
+        "resolved": "2.1.3",
+        "contentHash": "qd6kDo2uZPG/AvQ3NS2CXr7fDtP+rjiNQ81No3mFGpn41DcG0FEklgnj/j5hVhgQ6YTgTYbvyzkdDnvT+RtuLQ=="
       },
       "SimMetrics.Net": {
         "type": "Transitive",
@@ -5686,11 +5608,6 @@
           "System.Memory": "4.6.3",
           "System.Threading.Tasks.Extensions": "4.6.3"
         }
-      },
-      "System.Linq.Dynamic.Core": {
-        "type": "Transitive",
-        "resolved": "1.3.12",
-        "contentHash": "uriIEVgq1Wp1wcGohFkS4VESynM2za9BhCH/Vtaxtq8cwvRCobjq9ZLnCrzRLwtJqexKRaH2ItBZwuMRISsclw=="
       },
       "System.Memory": {
         "type": "Transitive",
@@ -5817,38 +5734,85 @@
         "resolved": "4.3.0",
         "contentHash": "lJ8AxvkX7GQxpC6GFCeBj8ThYVyQczx2+f/cWHJU8tjS7YfI6Cv6bon70jVEgs2CiFbmmM8b9j1oZVx0dSI2Ww=="
       },
-      "TinyMapper": {
+      "TinyMapper.Signed": {
         "type": "Transitive",
-        "resolved": "3.0.3",
-        "contentHash": "a070h+NbFjMMclmWjEjGDnihUs4wE3ykx7R4BG7Oo38Jf66spzc3h3CbvbJYFlkbYl65dt5vbJFFH72vFdRr1A=="
+        "resolved": "4.0.0",
+        "contentHash": "W5uc9QXp8PUgP3VQ1Qyt3vK8ptyjj38tJ7nEAtRKA6R/4e6+2gsgYrAmRg9fCK1hhe3E0yeAm5acC14qx2CINg=="
       },
       "WireMock.Net.Abstractions": {
         "type": "Transitive",
-        "resolved": "1.6.9",
-        "contentHash": "cVhGa1mx1RyJKVB6egHXZQEW0tp5LnlglzA+msqbV6Y/G+27Wm1CO08r8y8enyKnV8CyL0/EG6cfjs8FIwD5dA==",
+        "resolved": "1.21.0",
+        "contentHash": "H3U3NLBOJVbffSzKNN9o/TDOyn5hCE6bLxEsSRkEj91IIs9ot9IbpzGCDzsoQjB62e2O+Un9KVU/+8eebygF0Q==",
         "dependencies": {
           "System.Net.Http": "4.3.4",
-          "System.Text.RegularExpressions": "4.3.1"
+          "System.Text.RegularExpressions": "4.3.1",
+          "System.ValueTuple": "4.5.0"
+        }
+      },
+      "WireMock.Net.Minimal": {
+        "type": "Transitive",
+        "resolved": "1.21.0",
+        "contentHash": "vGbnQyQEeH24Qdjy89ScQpfZ9EfqXQuB7uH5xS0a7xa6WAOF3WRS9hkLtzwDXgdaYh8cm1DzHiCWEcSyyr14Bw==",
+        "dependencies": {
+          "AnyOf": "0.4.0",
+          "Handlebars.Net.Helpers.Xslt": "2.5.2",
+          "JmesPath.Net": "1.0.330",
+          "JsonConverter.Abstractions": "0.7.0",
+          "Microsoft.AspNetCore": "2.2.0",
+          "Microsoft.AspNetCore.Server.IIS": "2.2.6",
+          "Microsoft.IdentityModel.Protocols.OpenIdConnect": "6.34.0",
+          "NJsonSchema.Extensions": "0.1.0",
+          "NSwag.Core": "13.16.1",
+          "Newtonsoft.Json": "13.0.3",
+          "Scriban.Signed": "2.1.4",
+          "SimMetrics.Net": "1.0.5",
+          "System.Text.RegularExpressions": "4.3.1",
+          "TinyMapper.Signed": "4.0.0",
+          "WireMock.Net.OpenApiParser": "1.21.0",
+          "WireMock.Net.Shared": "1.21.0",
+          "WireMock.Org.Abstractions": "1.21.0"
         }
       },
       "WireMock.Net.OpenApiParser": {
         "type": "Transitive",
-        "resolved": "1.6.9",
-        "contentHash": "Z1HE2mBfpm6rxyofYpcRxM3Wi2d5V1FyITt97kU2/GEZ6czp9Bc6bcHliPRp+G6BYxCU6kPdHD4tnDINypo11Q==",
+        "resolved": "1.21.0",
+        "contentHash": "8oJBn8PfrfynakDPXeut781sLBSzDGRl8RK9lKVILbipwGg0pyiiyjF0VzzX/J25oxNkpMtz72ZorrCeL9Wrig==",
         "dependencies": {
-          "Microsoft.OpenApi.Readers": "1.2.3",
           "Newtonsoft.Json": "13.0.3",
-          "RamlToOpenApiConverter": "0.6.1",
-          "RandomDataGenerator.Net": "1.0.18",
+          "RamlToOpenApiConverter.SourceOnly": "0.11.0",
+          "RandomDataGenerator.Net": "1.0.19",
+          "SharpYaml": "2.1.3",
+          "Stef.Validation": "0.1.1",
+          "System.Text.Json": "8.0.5",
+          "System.Text.RegularExpressions": "4.3.1",
+          "WireMock.Net.Abstractions": "1.21.0",
+          "YamlDotNet": "16.3.0"
+        }
+      },
+      "WireMock.Net.Shared": {
+        "type": "Transitive",
+        "resolved": "1.21.0",
+        "contentHash": "MEI+aqCg+xf6BPNeJtoF84mw3GU/0qVy4TkiexMj9Z4jkY9C/fi+WEa7r8sMt6LaHFyWBRDO8+0dKRjcp0V0Eg==",
+        "dependencies": {
+          "AnyOf": "0.4.0",
+          "Handlebars.Net.Helpers": "2.5.2",
+          "Handlebars.Net.Helpers.Humanizer": "2.5.2",
+          "Handlebars.Net.Helpers.Json": "2.5.2",
+          "Handlebars.Net.Helpers.Random": "2.5.2",
+          "Handlebars.Net.Helpers.XPath": "2.5.2",
+          "Handlebars.Net.Helpers.Xeger": "2.5.2",
+          "JsonConverter.Abstractions": "0.7.0",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "1.1.0",
+          "Newtonsoft.Json": "13.0.3",
           "Stef.Validation": "0.1.1",
           "System.Text.RegularExpressions": "4.3.1",
-          "WireMock.Net.Abstractions": "1.6.9"
+          "WireMock.Net.Abstractions": "1.21.0"
         }
       },
       "WireMock.Org.Abstractions": {
         "type": "Transitive",
-        "resolved": "1.6.9",
-        "contentHash": "urejAMTkDmvF21QuoS4F6D7eT+6R6VzZSUyuQNkJaBHRA3SF9s/DUjVK/EmqKKOj6zvLf6HiuKr2Kh95zxRjPA==",
+        "resolved": "1.21.0",
+        "contentHash": "kv0KlCQdB9ne0c6obpYGSqhipVpCIewICNHlUbcMI1jdrwvTm9bsM0ddZIa0kdug3L2b+wCXpsI2XlsFezqZTA==",
         "dependencies": {
           "System.Text.RegularExpressions": "4.3.1"
         }
@@ -5869,8 +5833,8 @@
       },
       "YamlDotNet": {
         "type": "Transitive",
-        "resolved": "8.1.0",
-        "contentHash": "U8UtsQJ7s6sHwt/4G7q6af0CuMzjPQcuS7/KuxqoLdDdMzwBilPldI0T3pUVwWYqrWfd3veokCrDyrGH/0tWAQ=="
+        "resolved": "16.3.0",
+        "contentHash": "SgMOdxbz8X65z8hraIs6hOEdnkH6hESTAIUa7viEngHOYaH+6q5XJmwr1+yb9vJpNQ19hCQY69xbFsLtXpobQA=="
       },
       "hangy.NLog.Targets.ApplicationInsights": {
         "type": "Project",
@@ -6305,34 +6269,14 @@
       },
       "WireMock.Net": {
         "type": "Direct",
-        "requested": "[1.6.9, )",
-        "resolved": "1.6.9",
-        "contentHash": "nPr9GEqTBBh/AuVHqAUcMYmq+DEnCEr2pUo0MbzzeV1FBKw2O+dfO8CuE8c/KvPQcY67gWeEPeKvKucHkCZHlg==",
+        "requested": "[1.21.0, )",
+        "resolved": "1.21.0",
+        "contentHash": "37yaoueEXrlKKI4T/uF5jFTnjF3PXGRER0VYK+igmJrGJZZSDyAP2xFZLuBNikXyrPVV2y1yNMjWeNLRx+Djyg==",
         "dependencies": {
-          "AnyOf": "0.4.0",
-          "GraphQL.NewtonsoftJson": "8.2.1",
-          "Handlebars.Net.Helpers": "2.4.6",
-          "Handlebars.Net.Helpers.DynamicLinq": "2.4.6",
-          "Handlebars.Net.Helpers.Humanizer": "2.4.6",
-          "Handlebars.Net.Helpers.Json": "2.4.6",
-          "Handlebars.Net.Helpers.Random": "2.4.6",
-          "Handlebars.Net.Helpers.XPath": "2.4.6",
-          "Handlebars.Net.Helpers.Xeger": "2.4.6",
-          "Handlebars.Net.Helpers.Xslt": "2.4.6",
-          "JmesPath.Net": "1.0.330",
-          "JsonConverter.Abstractions": "0.7.0",
-          "Microsoft.IdentityModel.Protocols.OpenIdConnect": "6.34.0",
-          "MimeKitLite": "4.1.0.1",
-          "NJsonSchema.Extensions": "0.1.0",
-          "NSwag.Core": "13.16.1",
-          "Newtonsoft.Json": "13.0.3",
-          "ProtoBufJsonConverter": "0.5.0",
-          "Scriban.Signed": "5.5.0",
-          "SimMetrics.Net": "1.0.5",
-          "TinyMapper": "3.0.3",
-          "WireMock.Net.Abstractions": "1.6.9",
-          "WireMock.Net.OpenApiParser": "1.6.9",
-          "WireMock.Org.Abstractions": "1.6.9"
+          "WireMock.Net.GraphQL": "1.21.0",
+          "WireMock.Net.MimePart": "1.21.0",
+          "WireMock.Net.Minimal": "1.21.0",
+          "WireMock.Net.ProtoBuf": "1.21.0"
         }
       },
       "AnyOf": {
@@ -6380,89 +6324,78 @@
       },
       "Handlebars.Net.Helpers": {
         "type": "Transitive",
-        "resolved": "2.4.6",
-        "contentHash": "HnJ5aN3vwtp45dEAcaJLiDTCq9LxZRfVYtH5GkWfbe8wbqp6J3AXk725f4SdPVMr0cEakar1JkE828Phys7wGg==",
+        "resolved": "2.5.2",
+        "contentHash": "jgxIctjCNNBmSJRakKkZ71gc9uMpBzw5bbmedxbFxzoPGY8VMkACKa2iJyaJofLyxUZUUhACQTbBTyIrIgZ2+Q==",
         "dependencies": {
-          "Handlebars.Net.Helpers.Core": "2.4.6"
+          "Handlebars.Net.Helpers.Core": "2.5.2"
         }
       },
       "Handlebars.Net.Helpers.Core": {
         "type": "Transitive",
-        "resolved": "2.4.6",
-        "contentHash": "Hhx+t0BfRNqZjK0OqshMOxmAgWYhxfCqWvo2MehgckfYAp0myTkQMuD0pWk4e753bLhYTQPRs56gsSEvOLR0JA==",
+        "resolved": "2.5.2",
+        "contentHash": "ruZrZfH/nCu3m5reG5URtdCHA0X8i4i2AumHGKKB3g9c9h3D5eMDGXWeT277Nw64OHNwS4+QZxxJiJ4OYkaIKw==",
         "dependencies": {
           "Handlebars.Net": "2.1.6",
           "Stef.Validation": "0.1.1"
         }
       },
-      "Handlebars.Net.Helpers.DynamicLinq": {
-        "type": "Transitive",
-        "resolved": "2.4.6",
-        "contentHash": "AAmTOaKjimzBoVvWteOQkgUVs2O6Kl4dWYX+bTrgUANHDwOQJYmCubi1a+KlFaTif/qDP51M9qKJdcXq3fmtvA==",
-        "dependencies": {
-          "Handlebars.Net.Helpers": "2.4.6",
-          "Handlebars.Net.Helpers.Core": "2.4.6",
-          "Handlebars.Net.Helpers.Json": "2.4.6",
-          "System.Linq.Dynamic.Core": "1.3.12"
-        }
-      },
       "Handlebars.Net.Helpers.Humanizer": {
         "type": "Transitive",
-        "resolved": "2.4.6",
-        "contentHash": "Q2HlgQi5V8MIEQy2QbOMPqqrijvqbFepiNqk0Oxyn0Xz/UJNy601QLT7/YtFswk08L0NJ9K2FNJ0H9mdHPqdlw==",
+        "resolved": "2.5.2",
+        "contentHash": "uohCZ76ae+7fo55ULtwTk4G76N8VnBHdYjcV/q3oVBfNmVJV3ng7arFMpgdb64t0ZkymZSEoY/tBgzQ7ERWdBQ==",
         "dependencies": {
-          "Handlebars.Net.Helpers": "2.4.6",
-          "Handlebars.Net.Helpers.Core": "2.4.6",
+          "Handlebars.Net.Helpers": "2.5.2",
+          "Handlebars.Net.Helpers.Core": "2.5.2",
           "Humanizer": "2.14.1"
         }
       },
       "Handlebars.Net.Helpers.Json": {
         "type": "Transitive",
-        "resolved": "2.4.6",
-        "contentHash": "8olzUUgeoXlVTk6G4dBlff63SBY4QfHRnsIIX10Q2e6p64qQ6ylDFQ8PGerv6KKDY75YoC+s1E7hdTYB2fihgg==",
+        "resolved": "2.5.2",
+        "contentHash": "uJRc55nIWXf1J+pWVYqcI1Jg4BsIJfEk1vccXVahKjCeB159fzhJeSCchhQddSbd6ihSj92u6bSCqXnV+q5qdQ==",
         "dependencies": {
-          "Handlebars.Net.Helpers": "2.4.6",
-          "Handlebars.Net.Helpers.Core": "2.4.6",
+          "Handlebars.Net.Helpers": "2.5.2",
+          "Handlebars.Net.Helpers.Core": "2.5.2",
           "Newtonsoft.Json": "13.0.3"
         }
       },
       "Handlebars.Net.Helpers.Random": {
         "type": "Transitive",
-        "resolved": "2.4.6",
-        "contentHash": "1IRLwzsyEUaIP9xj/0aCGWojm1GE9mtkeJlyFaxzQjNR7HLiHdmVfeoRX+8qxLIrkxffEhxqjxQBhKTRSzanzg==",
+        "resolved": "2.5.2",
+        "contentHash": "eRoi7x0Jvik3rSe1da3o0QNRoWE1YCCT4H3Gfd/D6EkcxbefqmyR4mKqkDG+e9SzEgFwbjvWqI1wx4Mea8Jiuw==",
         "dependencies": {
-          "Handlebars.Net.Helpers": "2.4.6",
-          "Handlebars.Net.Helpers.Core": "2.4.6",
-          "RandomDataGenerator.Net": "1.0.18"
+          "Handlebars.Net.Helpers": "2.5.2",
+          "Handlebars.Net.Helpers.Core": "2.5.2",
+          "RandomDataGenerator.Net": "1.0.19"
         }
       },
       "Handlebars.Net.Helpers.Xeger": {
         "type": "Transitive",
-        "resolved": "2.4.6",
-        "contentHash": "8irxKofQL6WxvuMZrO/3c7xz5R0pL0j0f8bv82h0RDjNCKXBVM/UQSTzpKlCR+6G4eRRQMb+CDaGYsO7XeHYNQ==",
+        "resolved": "2.5.2",
+        "contentHash": "rmhJfzuHAZMVCMpkDT3+mRCJQyk8xoJtj/9IUfo3bOEXE2M3HPgNfwvHlDcg0oGFC8eMXW+lOrYTQK2+UyvoKA==",
         "dependencies": {
           "Fare": "2.2.1",
-          "Handlebars.Net.Helpers": "2.4.6",
-          "Handlebars.Net.Helpers.Core": "2.4.6"
+          "Handlebars.Net.Helpers": "2.5.2",
+          "Handlebars.Net.Helpers.Core": "2.5.2"
         }
       },
       "Handlebars.Net.Helpers.XPath": {
         "type": "Transitive",
-        "resolved": "2.4.6",
-        "contentHash": "LuOeT9DfUfyG+gRZE3CAzj1gAyZ40DfqYLn+n8mtk3rwCCmLLVTc25zoBQr4bNzHdH5EJSzzsUSVGmePE59HRw==",
+        "resolved": "2.5.2",
+        "contentHash": "miJUZQ3CS11YDMxwsCd4YyNI2hKDwkwCHEVtung0N23opIotJXXCpJcyiwwh5RbdbJhiCYaVfMaD3xAyZLrkmg==",
         "dependencies": {
-          "Handlebars.Net.Helpers": "2.4.6",
-          "Handlebars.Net.Helpers.Core": "2.4.6",
+          "Handlebars.Net.Helpers": "2.5.2",
+          "Handlebars.Net.Helpers.Core": "2.5.2",
           "XPath2.Extensions": "1.1.5"
         }
       },
       "Handlebars.Net.Helpers.Xslt": {
         "type": "Transitive",
-        "resolved": "2.4.6",
-        "contentHash": "feDTYeIP+xzIIT2GZrktvJKZVf1Fu3jPJM4Ho9W8QggkZU4ukMlR7Fx0jxAwJ/T5Z7LEz4AFMJriTFNeoR2SVg==",
+        "resolved": "2.5.2",
+        "contentHash": "x8jsTWHEPLn5HLskYQ8AKE5hcaPzT0H/C2s55tvBpR29xCxaA2YJyERpYly0xdc/IbbChNnt5eOlWdebMf/wjQ==",
         "dependencies": {
-          "Handlebars.Net.Helpers": "2.4.6",
-          "Handlebars.Net.Helpers.Core": "2.4.6"
+          "Handlebars.Net.Helpers": "2.5.2",
+          "Handlebars.Net.Helpers.Core": "2.5.2"
         }
       },
       "Humanizer": {
@@ -6987,6 +6920,14 @@
         "resolved": "2.0.0",
         "contentHash": "QcZrCETsBJqy/vQpFtJc+jSXQ0K5sucQ6NUFbTNVHD4vfZZOwjZ/3sBzczkC4DityhD3AVO/+K/+9ioLs1AgRA=="
       },
+      "Microsoft.Extensions.DependencyInjection.Abstractions": {
+        "type": "Transitive",
+        "resolved": "1.1.0",
+        "contentHash": "2luhjVaWZd8Wmr2KUJcLNAN+iZgezTyfamLG6Lo5FVYY1LYaS7UFOmNtApHGVIytWWtuXSk4ea0t2Vx0HgF5fg==",
+        "dependencies": {
+          "NETStandard.Library": "1.6.1"
+        }
+      },
       "Microsoft.Extensions.DependencyModel": {
         "type": "Transitive",
         "resolved": "6.0.2",
@@ -7049,20 +6990,6 @@
         "resolved": "1.1.0",
         "contentHash": "kz0PEW2lhqygehI/d6XsPCQzD7ff7gUJaVGPVETX611eadGsA3A877GdSlU0LRVMCTH/+P3o2iDTak+S08V2+A=="
       },
-      "Microsoft.OpenApi": {
-        "type": "Transitive",
-        "resolved": "1.2.3",
-        "contentHash": "Nug3rO+7Kl5/SBAadzSMAVgqDlfGjJZ0GenQrLywJ84XGKO0uRqkunz5Wyl0SDwcR71bAATXvSdbdzPrYRYKGw=="
-      },
-      "Microsoft.OpenApi.Readers": {
-        "type": "Transitive",
-        "resolved": "1.2.3",
-        "contentHash": "r1KBRewLxmCYuQ3fBksYQ2u/D1FtsN3zlPvOsZoiugzVgJbtq1wFD25Rgh/UAonUXgTpmlHciM5WHMavR9bk2g==",
-        "dependencies": {
-          "Microsoft.OpenApi": "1.2.3",
-          "SharpYaml": "1.6.5"
-        }
-      },
       "Microsoft.QualityTools.Testing.Fakes": {
         "type": "Transitive",
         "resolved": "18.1.1",
@@ -7123,11 +7050,6 @@
         "resolved": "18.0.1",
         "contentHash": "qT/mwMcLF9BieRkzOBPL2qCopl8hQu6A1P7JWAoj/FMu5i9vds/7cjbJ/LLtaiwWevWLAeD5v5wjQJ/l6jvhWQ=="
       },
-      "MimeKitLite": {
-        "type": "Transitive",
-        "resolved": "4.1.0.1",
-        "contentHash": "XJHU1/pY5c/y3aVZwp6ARF7ciIEeEamPJVvWGo1v10X6oC3FHyy5oFum9JWrIqCuzHoMrT8SdeMZ0iUzBGZMsw=="
-      },
       "MSTest.Analyzers": {
         "type": "Transitive",
         "resolved": "4.0.2",
@@ -7180,51 +7102,38 @@
       },
       "protobuf-net": {
         "type": "Transitive",
-        "resolved": "3.2.30",
-        "contentHash": "C/UTlmxEJHAHpqm8xQK1UyJKaIynVCSNG4mVrbLgnZ7ccH28nN49O8iMJvKEodTgVbnimvy+3mIiAdW6mATwnw==",
+        "resolved": "3.2.52",
+        "contentHash": "XbZurNU3B/VaL/5OJ0kshO+AWxsZroI1saKuLfZpDwH2ngb2K9bdF1nIW6elFOViZw7TQCmfVZapxrMKCDqecQ==",
         "dependencies": {
-          "protobuf-net.Core": "3.2.30"
+          "protobuf-net.Core": "3.2.52"
         }
       },
       "protobuf-net.Core": {
         "type": "Transitive",
-        "resolved": "3.2.30",
-        "contentHash": "v2ZxxYrz+X212ukSx+uqkLuPu414bvmSAnTyf+PBUKR9ENJxO4P/csorA/27456MCp1JNoMssDj/f91RDiwBfQ=="
-      },
-      "protobuf-net.Reflection": {
-        "type": "Transitive",
-        "resolved": "3.2.12",
-        "contentHash": "bpNTENWPqP2mx1sJJ5C6qZ2xP+f/E3dQF9MYY+xZ+RHxe3sLg+sPyBSCcJDTCY0e4dVIwQ/02gS8m4tVClDoKQ==",
-        "dependencies": {
-          "protobuf-net.Core": "3.2.12"
-        }
+        "resolved": "3.2.52",
+        "contentHash": "zOpGtUo2QTgbsiI0D0yCe8aUTgDPov6kqIu1CDHI6isqhYcAHdirRrdnfsQXmAUfAWx1LwVYGgC6xe6fNS4UAg=="
       },
       "ProtoBufJsonConverter": {
         "type": "Transitive",
-        "resolved": "0.5.0",
-        "contentHash": "jy5vn+hOdYXlCl42VuebHIzvcLvwPLPJFN3bT7hCu8ZMZD1idcfBX3pomVlfDHqYA60dg/vhDlL/EEefYuE4iQ==",
+        "resolved": "0.11.0",
+        "contentHash": "lxvcZQlCtgYZpfm9hhAJVZ1jsPkb9g3fyaAOnQLyEu8MiAowEIdED6jzwfjqLqOhY4AahqnbfRvZ904Ud43X7w==",
         "dependencies": {
           "MetadataReferenceService.Default": "0.0.1",
           "Microsoft.CodeAnalysis.CSharp": "4.8.0",
           "Newtonsoft.Json": "13.0.3",
           "Stef.Validation": "0.1.1",
-          "protobuf-net": "3.2.30",
-          "protobuf-net.Reflection": "3.2.12"
+          "protobuf-net": "3.2.52"
         }
       },
-      "RamlToOpenApiConverter": {
+      "RamlToOpenApiConverter.SourceOnly": {
         "type": "Transitive",
-        "resolved": "0.6.1",
-        "contentHash": "Po3tkv67cXKDKJV+4CB5MAomZVwPB9fdnhAbt0fPIF7cL5O2lzjmI40w3PMwD4f8b6s8mn2yjCvYJd+dGPZyfg==",
-        "dependencies": {
-          "Microsoft.OpenApi.Readers": "1.2.3",
-          "YamlDotNet": "8.1.0"
-        }
+        "resolved": "0.11.0",
+        "contentHash": "uYuENc27+ly789oJITPXGDEjvq/gzXrIZ0STCaN2Gkg6rmYTLPkcQyqXuia6HFzMaNBDEI1+WT5V+G4mYYq6bQ=="
       },
       "RandomDataGenerator.Net": {
         "type": "Transitive",
-        "resolved": "1.0.18",
-        "contentHash": "bz6EjJ/tqCzqURrkpPnu/3hm1/3MDd73Adsv1a+LFbXfNGvcJCZOR5dros3hpNYN1AEi94xmrkvUoT+L3CqbCw==",
+        "resolved": "1.0.19",
+        "contentHash": "5VbGD7ZVmrclpJk/5es9xNJoNB13qBZtSeX669IqUUKh5M3/w7f0N8y/HGvpsNnEhuzFXVvh2N2tkdzzl2K5Jw==",
         "dependencies": {
           "Fare": "2.2.1",
           "Stef.Validation": "0.1.1"
@@ -7237,8 +7146,8 @@
       },
       "SharpYaml": {
         "type": "Transitive",
-        "resolved": "1.6.5",
-        "contentHash": "z4MKt+NxdGE5BsmNDNkcTylNx6evl9kvia/ER3jfBf+j2mLUUDz8pTbzoQLCTULR02tziDtX1Ij+eQcAey11Gw=="
+        "resolved": "2.1.3",
+        "contentHash": "qd6kDo2uZPG/AvQ3NS2CXr7fDtP+rjiNQ81No3mFGpn41DcG0FEklgnj/j5hVhgQ6YTgTYbvyzkdDnvT+RtuLQ=="
       },
       "SimMetrics.Net": {
         "type": "Transitive",
@@ -7275,11 +7184,6 @@
           "Microsoft.IdentityModel.Tokens": "6.34.0"
         }
       },
-      "System.Linq.Dynamic.Core": {
-        "type": "Transitive",
-        "resolved": "1.3.12",
-        "contentHash": "uriIEVgq1Wp1wcGohFkS4VESynM2za9BhCH/Vtaxtq8cwvRCobjq9ZLnCrzRLwtJqexKRaH2ItBZwuMRISsclw=="
-      },
       "System.Reflection.TypeExtensions": {
         "type": "Transitive",
         "resolved": "4.7.0",
@@ -7298,33 +7202,101 @@
         "resolved": "8.0.0",
         "contentHash": "Obg3a90MkOw9mYKxrardLpY2u0axDMrSmy4JCdq2cYbelM2cUwmUir5Bomvd1yxmPL9h5LVHU1tuKBZpUjfASg=="
       },
-      "TinyMapper": {
+      "TinyMapper.Signed": {
         "type": "Transitive",
-        "resolved": "3.0.3",
-        "contentHash": "a070h+NbFjMMclmWjEjGDnihUs4wE3ykx7R4BG7Oo38Jf66spzc3h3CbvbJYFlkbYl65dt5vbJFFH72vFdRr1A=="
+        "resolved": "4.0.0",
+        "contentHash": "W5uc9QXp8PUgP3VQ1Qyt3vK8ptyjj38tJ7nEAtRKA6R/4e6+2gsgYrAmRg9fCK1hhe3E0yeAm5acC14qx2CINg=="
       },
       "WireMock.Net.Abstractions": {
         "type": "Transitive",
-        "resolved": "1.6.9",
-        "contentHash": "cVhGa1mx1RyJKVB6egHXZQEW0tp5LnlglzA+msqbV6Y/G+27Wm1CO08r8y8enyKnV8CyL0/EG6cfjs8FIwD5dA=="
+        "resolved": "1.21.0",
+        "contentHash": "H3U3NLBOJVbffSzKNN9o/TDOyn5hCE6bLxEsSRkEj91IIs9ot9IbpzGCDzsoQjB62e2O+Un9KVU/+8eebygF0Q=="
+      },
+      "WireMock.Net.GraphQL": {
+        "type": "Transitive",
+        "resolved": "1.21.0",
+        "contentHash": "B7+zLoGD/Ek2mW4o8bu0gHxPrJX0zM/RnlD/ttVKgJhB4FWQiCXpeNOqAxYv+H2DtIXYYPe/n+beqyWqpc2qqw==",
+        "dependencies": {
+          "GraphQL.NewtonsoftJson": "8.2.1",
+          "WireMock.Net.Shared": "1.21.0"
+        }
+      },
+      "WireMock.Net.MimePart": {
+        "type": "Transitive",
+        "resolved": "1.21.0",
+        "contentHash": "0oGq7Q+QtZH0ZBH6vkdOh3/+06YKiwLckCN1o2UWucSCaZt998UjEexGih9ewATYa+kJtfSodbtSr/bS/N1GeA==",
+        "dependencies": {
+          "Stef.Validation": "0.1.1",
+          "WireMock.Net.Shared": "1.21.0"
+        }
+      },
+      "WireMock.Net.Minimal": {
+        "type": "Transitive",
+        "resolved": "1.21.0",
+        "contentHash": "vGbnQyQEeH24Qdjy89ScQpfZ9EfqXQuB7uH5xS0a7xa6WAOF3WRS9hkLtzwDXgdaYh8cm1DzHiCWEcSyyr14Bw==",
+        "dependencies": {
+          "AnyOf": "0.4.0",
+          "Handlebars.Net.Helpers.Xslt": "2.5.2",
+          "JmesPath.Net": "1.0.330",
+          "JsonConverter.Abstractions": "0.7.0",
+          "Microsoft.IdentityModel.Protocols.OpenIdConnect": "6.34.0",
+          "NJsonSchema.Extensions": "0.1.0",
+          "NSwag.Core": "13.16.1",
+          "Newtonsoft.Json": "13.0.3",
+          "Scriban.Signed": "5.5.0",
+          "SimMetrics.Net": "1.0.5",
+          "TinyMapper.Signed": "4.0.0",
+          "WireMock.Net.OpenApiParser": "1.21.0",
+          "WireMock.Net.Shared": "1.21.0",
+          "WireMock.Org.Abstractions": "1.21.0"
+        }
       },
       "WireMock.Net.OpenApiParser": {
         "type": "Transitive",
-        "resolved": "1.6.9",
-        "contentHash": "Z1HE2mBfpm6rxyofYpcRxM3Wi2d5V1FyITt97kU2/GEZ6czp9Bc6bcHliPRp+G6BYxCU6kPdHD4tnDINypo11Q==",
+        "resolved": "1.21.0",
+        "contentHash": "8oJBn8PfrfynakDPXeut781sLBSzDGRl8RK9lKVILbipwGg0pyiiyjF0VzzX/J25oxNkpMtz72ZorrCeL9Wrig==",
         "dependencies": {
-          "Microsoft.OpenApi.Readers": "1.2.3",
           "Newtonsoft.Json": "13.0.3",
-          "RamlToOpenApiConverter": "0.6.1",
-          "RandomDataGenerator.Net": "1.0.18",
+          "RamlToOpenApiConverter.SourceOnly": "0.11.0",
+          "RandomDataGenerator.Net": "1.0.19",
+          "SharpYaml": "2.1.3",
           "Stef.Validation": "0.1.1",
-          "WireMock.Net.Abstractions": "1.6.9"
+          "WireMock.Net.Abstractions": "1.21.0",
+          "YamlDotNet": "16.3.0"
+        }
+      },
+      "WireMock.Net.ProtoBuf": {
+        "type": "Transitive",
+        "resolved": "1.21.0",
+        "contentHash": "+Z5PTh+caud7WW2hmFEeRruNeB0MkhftEX8IjJdOXBIB0Egwyw+WMLbqPRFJOlgTteY6qUcaEZqyOclA8s80Vg==",
+        "dependencies": {
+          "ProtoBufJsonConverter": "0.11.0",
+          "WireMock.Net.Shared": "1.21.0"
+        }
+      },
+      "WireMock.Net.Shared": {
+        "type": "Transitive",
+        "resolved": "1.21.0",
+        "contentHash": "MEI+aqCg+xf6BPNeJtoF84mw3GU/0qVy4TkiexMj9Z4jkY9C/fi+WEa7r8sMt6LaHFyWBRDO8+0dKRjcp0V0Eg==",
+        "dependencies": {
+          "AnyOf": "0.4.0",
+          "Handlebars.Net.Helpers": "2.5.2",
+          "Handlebars.Net.Helpers.Humanizer": "2.5.2",
+          "Handlebars.Net.Helpers.Json": "2.5.2",
+          "Handlebars.Net.Helpers.Random": "2.5.2",
+          "Handlebars.Net.Helpers.XPath": "2.5.2",
+          "Handlebars.Net.Helpers.Xeger": "2.5.2",
+          "JsonConverter.Abstractions": "0.7.0",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "1.1.0",
+          "Newtonsoft.Json": "13.0.3",
+          "Stef.Validation": "0.1.1",
+          "WireMock.Net.Abstractions": "1.21.0"
         }
       },
       "WireMock.Org.Abstractions": {
         "type": "Transitive",
-        "resolved": "1.6.9",
-        "contentHash": "urejAMTkDmvF21QuoS4F6D7eT+6R6VzZSUyuQNkJaBHRA3SF9s/DUjVK/EmqKKOj6zvLf6HiuKr2Kh95zxRjPA=="
+        "resolved": "1.21.0",
+        "contentHash": "kv0KlCQdB9ne0c6obpYGSqhipVpCIewICNHlUbcMI1jdrwvTm9bsM0ddZIa0kdug3L2b+wCXpsI2XlsFezqZTA=="
       },
       "XPath2": {
         "type": "Transitive",
@@ -7342,8 +7314,8 @@
       },
       "YamlDotNet": {
         "type": "Transitive",
-        "resolved": "8.1.0",
-        "contentHash": "U8UtsQJ7s6sHwt/4G7q6af0CuMzjPQcuS7/KuxqoLdDdMzwBilPldI0T3pUVwWYqrWfd3veokCrDyrGH/0tWAQ=="
+        "resolved": "16.3.0",
+        "contentHash": "SgMOdxbz8X65z8hraIs6hOEdnkH6hESTAIUa7viEngHOYaH+6q5XJmwr1+yb9vJpNQ19hCQY69xbFsLtXpobQA=="
       },
       "hangy.NLog.Targets.ApplicationInsights": {
         "type": "Project",
@@ -7578,34 +7550,14 @@
       },
       "WireMock.Net": {
         "type": "Direct",
-        "requested": "[1.6.9, )",
-        "resolved": "1.6.9",
-        "contentHash": "nPr9GEqTBBh/AuVHqAUcMYmq+DEnCEr2pUo0MbzzeV1FBKw2O+dfO8CuE8c/KvPQcY67gWeEPeKvKucHkCZHlg==",
+        "requested": "[1.21.0, )",
+        "resolved": "1.21.0",
+        "contentHash": "37yaoueEXrlKKI4T/uF5jFTnjF3PXGRER0VYK+igmJrGJZZSDyAP2xFZLuBNikXyrPVV2y1yNMjWeNLRx+Djyg==",
         "dependencies": {
-          "AnyOf": "0.4.0",
-          "GraphQL.NewtonsoftJson": "8.2.1",
-          "Handlebars.Net.Helpers": "2.4.6",
-          "Handlebars.Net.Helpers.DynamicLinq": "2.4.6",
-          "Handlebars.Net.Helpers.Humanizer": "2.4.6",
-          "Handlebars.Net.Helpers.Json": "2.4.6",
-          "Handlebars.Net.Helpers.Random": "2.4.6",
-          "Handlebars.Net.Helpers.XPath": "2.4.6",
-          "Handlebars.Net.Helpers.Xeger": "2.4.6",
-          "Handlebars.Net.Helpers.Xslt": "2.4.6",
-          "JmesPath.Net": "1.0.330",
-          "JsonConverter.Abstractions": "0.7.0",
-          "Microsoft.IdentityModel.Protocols.OpenIdConnect": "6.34.0",
-          "MimeKitLite": "4.1.0.1",
-          "NJsonSchema.Extensions": "0.1.0",
-          "NSwag.Core": "13.16.1",
-          "Newtonsoft.Json": "13.0.3",
-          "ProtoBufJsonConverter": "0.5.0",
-          "Scriban.Signed": "5.5.0",
-          "SimMetrics.Net": "1.0.5",
-          "TinyMapper": "3.0.3",
-          "WireMock.Net.Abstractions": "1.6.9",
-          "WireMock.Net.OpenApiParser": "1.6.9",
-          "WireMock.Org.Abstractions": "1.6.9"
+          "WireMock.Net.GraphQL": "1.21.0",
+          "WireMock.Net.MimePart": "1.21.0",
+          "WireMock.Net.Minimal": "1.21.0",
+          "WireMock.Net.ProtoBuf": "1.21.0"
         }
       },
       "AnyOf": {
@@ -7653,89 +7605,78 @@
       },
       "Handlebars.Net.Helpers": {
         "type": "Transitive",
-        "resolved": "2.4.6",
-        "contentHash": "HnJ5aN3vwtp45dEAcaJLiDTCq9LxZRfVYtH5GkWfbe8wbqp6J3AXk725f4SdPVMr0cEakar1JkE828Phys7wGg==",
+        "resolved": "2.5.2",
+        "contentHash": "jgxIctjCNNBmSJRakKkZ71gc9uMpBzw5bbmedxbFxzoPGY8VMkACKa2iJyaJofLyxUZUUhACQTbBTyIrIgZ2+Q==",
         "dependencies": {
-          "Handlebars.Net.Helpers.Core": "2.4.6"
+          "Handlebars.Net.Helpers.Core": "2.5.2"
         }
       },
       "Handlebars.Net.Helpers.Core": {
         "type": "Transitive",
-        "resolved": "2.4.6",
-        "contentHash": "Hhx+t0BfRNqZjK0OqshMOxmAgWYhxfCqWvo2MehgckfYAp0myTkQMuD0pWk4e753bLhYTQPRs56gsSEvOLR0JA==",
+        "resolved": "2.5.2",
+        "contentHash": "ruZrZfH/nCu3m5reG5URtdCHA0X8i4i2AumHGKKB3g9c9h3D5eMDGXWeT277Nw64OHNwS4+QZxxJiJ4OYkaIKw==",
         "dependencies": {
           "Handlebars.Net": "2.1.6",
           "Stef.Validation": "0.1.1"
         }
       },
-      "Handlebars.Net.Helpers.DynamicLinq": {
-        "type": "Transitive",
-        "resolved": "2.4.6",
-        "contentHash": "AAmTOaKjimzBoVvWteOQkgUVs2O6Kl4dWYX+bTrgUANHDwOQJYmCubi1a+KlFaTif/qDP51M9qKJdcXq3fmtvA==",
-        "dependencies": {
-          "Handlebars.Net.Helpers": "2.4.6",
-          "Handlebars.Net.Helpers.Core": "2.4.6",
-          "Handlebars.Net.Helpers.Json": "2.4.6",
-          "System.Linq.Dynamic.Core": "1.3.12"
-        }
-      },
       "Handlebars.Net.Helpers.Humanizer": {
         "type": "Transitive",
-        "resolved": "2.4.6",
-        "contentHash": "Q2HlgQi5V8MIEQy2QbOMPqqrijvqbFepiNqk0Oxyn0Xz/UJNy601QLT7/YtFswk08L0NJ9K2FNJ0H9mdHPqdlw==",
+        "resolved": "2.5.2",
+        "contentHash": "uohCZ76ae+7fo55ULtwTk4G76N8VnBHdYjcV/q3oVBfNmVJV3ng7arFMpgdb64t0ZkymZSEoY/tBgzQ7ERWdBQ==",
         "dependencies": {
-          "Handlebars.Net.Helpers": "2.4.6",
-          "Handlebars.Net.Helpers.Core": "2.4.6",
+          "Handlebars.Net.Helpers": "2.5.2",
+          "Handlebars.Net.Helpers.Core": "2.5.2",
           "Humanizer": "2.14.1"
         }
       },
       "Handlebars.Net.Helpers.Json": {
         "type": "Transitive",
-        "resolved": "2.4.6",
-        "contentHash": "8olzUUgeoXlVTk6G4dBlff63SBY4QfHRnsIIX10Q2e6p64qQ6ylDFQ8PGerv6KKDY75YoC+s1E7hdTYB2fihgg==",
+        "resolved": "2.5.2",
+        "contentHash": "uJRc55nIWXf1J+pWVYqcI1Jg4BsIJfEk1vccXVahKjCeB159fzhJeSCchhQddSbd6ihSj92u6bSCqXnV+q5qdQ==",
         "dependencies": {
-          "Handlebars.Net.Helpers": "2.4.6",
-          "Handlebars.Net.Helpers.Core": "2.4.6",
+          "Handlebars.Net.Helpers": "2.5.2",
+          "Handlebars.Net.Helpers.Core": "2.5.2",
           "Newtonsoft.Json": "13.0.3"
         }
       },
       "Handlebars.Net.Helpers.Random": {
         "type": "Transitive",
-        "resolved": "2.4.6",
-        "contentHash": "1IRLwzsyEUaIP9xj/0aCGWojm1GE9mtkeJlyFaxzQjNR7HLiHdmVfeoRX+8qxLIrkxffEhxqjxQBhKTRSzanzg==",
+        "resolved": "2.5.2",
+        "contentHash": "eRoi7x0Jvik3rSe1da3o0QNRoWE1YCCT4H3Gfd/D6EkcxbefqmyR4mKqkDG+e9SzEgFwbjvWqI1wx4Mea8Jiuw==",
         "dependencies": {
-          "Handlebars.Net.Helpers": "2.4.6",
-          "Handlebars.Net.Helpers.Core": "2.4.6",
-          "RandomDataGenerator.Net": "1.0.18"
+          "Handlebars.Net.Helpers": "2.5.2",
+          "Handlebars.Net.Helpers.Core": "2.5.2",
+          "RandomDataGenerator.Net": "1.0.19"
         }
       },
       "Handlebars.Net.Helpers.Xeger": {
         "type": "Transitive",
-        "resolved": "2.4.6",
-        "contentHash": "8irxKofQL6WxvuMZrO/3c7xz5R0pL0j0f8bv82h0RDjNCKXBVM/UQSTzpKlCR+6G4eRRQMb+CDaGYsO7XeHYNQ==",
+        "resolved": "2.5.2",
+        "contentHash": "rmhJfzuHAZMVCMpkDT3+mRCJQyk8xoJtj/9IUfo3bOEXE2M3HPgNfwvHlDcg0oGFC8eMXW+lOrYTQK2+UyvoKA==",
         "dependencies": {
           "Fare": "2.2.1",
-          "Handlebars.Net.Helpers": "2.4.6",
-          "Handlebars.Net.Helpers.Core": "2.4.6"
+          "Handlebars.Net.Helpers": "2.5.2",
+          "Handlebars.Net.Helpers.Core": "2.5.2"
         }
       },
       "Handlebars.Net.Helpers.XPath": {
         "type": "Transitive",
-        "resolved": "2.4.6",
-        "contentHash": "LuOeT9DfUfyG+gRZE3CAzj1gAyZ40DfqYLn+n8mtk3rwCCmLLVTc25zoBQr4bNzHdH5EJSzzsUSVGmePE59HRw==",
+        "resolved": "2.5.2",
+        "contentHash": "miJUZQ3CS11YDMxwsCd4YyNI2hKDwkwCHEVtung0N23opIotJXXCpJcyiwwh5RbdbJhiCYaVfMaD3xAyZLrkmg==",
         "dependencies": {
-          "Handlebars.Net.Helpers": "2.4.6",
-          "Handlebars.Net.Helpers.Core": "2.4.6",
+          "Handlebars.Net.Helpers": "2.5.2",
+          "Handlebars.Net.Helpers.Core": "2.5.2",
           "XPath2.Extensions": "1.1.5"
         }
       },
       "Handlebars.Net.Helpers.Xslt": {
         "type": "Transitive",
-        "resolved": "2.4.6",
-        "contentHash": "feDTYeIP+xzIIT2GZrktvJKZVf1Fu3jPJM4Ho9W8QggkZU4ukMlR7Fx0jxAwJ/T5Z7LEz4AFMJriTFNeoR2SVg==",
+        "resolved": "2.5.2",
+        "contentHash": "x8jsTWHEPLn5HLskYQ8AKE5hcaPzT0H/C2s55tvBpR29xCxaA2YJyERpYly0xdc/IbbChNnt5eOlWdebMf/wjQ==",
         "dependencies": {
-          "Handlebars.Net.Helpers": "2.4.6",
-          "Handlebars.Net.Helpers.Core": "2.4.6"
+          "Handlebars.Net.Helpers": "2.5.2",
+          "Handlebars.Net.Helpers.Core": "2.5.2"
         }
       },
       "Humanizer": {
@@ -8258,6 +8199,14 @@
         "resolved": "2.0.0",
         "contentHash": "QcZrCETsBJqy/vQpFtJc+jSXQ0K5sucQ6NUFbTNVHD4vfZZOwjZ/3sBzczkC4DityhD3AVO/+K/+9ioLs1AgRA=="
       },
+      "Microsoft.Extensions.DependencyInjection.Abstractions": {
+        "type": "Transitive",
+        "resolved": "1.1.0",
+        "contentHash": "2luhjVaWZd8Wmr2KUJcLNAN+iZgezTyfamLG6Lo5FVYY1LYaS7UFOmNtApHGVIytWWtuXSk4ea0t2Vx0HgF5fg==",
+        "dependencies": {
+          "NETStandard.Library": "1.6.1"
+        }
+      },
       "Microsoft.Extensions.DependencyModel": {
         "type": "Transitive",
         "resolved": "6.0.2",
@@ -8320,20 +8269,6 @@
         "resolved": "1.1.0",
         "contentHash": "kz0PEW2lhqygehI/d6XsPCQzD7ff7gUJaVGPVETX611eadGsA3A877GdSlU0LRVMCTH/+P3o2iDTak+S08V2+A=="
       },
-      "Microsoft.OpenApi": {
-        "type": "Transitive",
-        "resolved": "1.2.3",
-        "contentHash": "Nug3rO+7Kl5/SBAadzSMAVgqDlfGjJZ0GenQrLywJ84XGKO0uRqkunz5Wyl0SDwcR71bAATXvSdbdzPrYRYKGw=="
-      },
-      "Microsoft.OpenApi.Readers": {
-        "type": "Transitive",
-        "resolved": "1.2.3",
-        "contentHash": "r1KBRewLxmCYuQ3fBksYQ2u/D1FtsN3zlPvOsZoiugzVgJbtq1wFD25Rgh/UAonUXgTpmlHciM5WHMavR9bk2g==",
-        "dependencies": {
-          "Microsoft.OpenApi": "1.2.3",
-          "SharpYaml": "1.6.5"
-        }
-      },
       "Microsoft.QualityTools.Testing.Fakes": {
         "type": "Transitive",
         "resolved": "18.1.1",
@@ -8394,11 +8329,6 @@
         "resolved": "18.0.1",
         "contentHash": "qT/mwMcLF9BieRkzOBPL2qCopl8hQu6A1P7JWAoj/FMu5i9vds/7cjbJ/LLtaiwWevWLAeD5v5wjQJ/l6jvhWQ=="
       },
-      "MimeKitLite": {
-        "type": "Transitive",
-        "resolved": "4.1.0.1",
-        "contentHash": "XJHU1/pY5c/y3aVZwp6ARF7ciIEeEamPJVvWGo1v10X6oC3FHyy5oFum9JWrIqCuzHoMrT8SdeMZ0iUzBGZMsw=="
-      },
       "MSTest.Analyzers": {
         "type": "Transitive",
         "resolved": "4.0.2",
@@ -8451,51 +8381,38 @@
       },
       "protobuf-net": {
         "type": "Transitive",
-        "resolved": "3.2.30",
-        "contentHash": "C/UTlmxEJHAHpqm8xQK1UyJKaIynVCSNG4mVrbLgnZ7ccH28nN49O8iMJvKEodTgVbnimvy+3mIiAdW6mATwnw==",
+        "resolved": "3.2.52",
+        "contentHash": "XbZurNU3B/VaL/5OJ0kshO+AWxsZroI1saKuLfZpDwH2ngb2K9bdF1nIW6elFOViZw7TQCmfVZapxrMKCDqecQ==",
         "dependencies": {
-          "protobuf-net.Core": "3.2.30"
+          "protobuf-net.Core": "3.2.52"
         }
       },
       "protobuf-net.Core": {
         "type": "Transitive",
-        "resolved": "3.2.30",
-        "contentHash": "v2ZxxYrz+X212ukSx+uqkLuPu414bvmSAnTyf+PBUKR9ENJxO4P/csorA/27456MCp1JNoMssDj/f91RDiwBfQ=="
-      },
-      "protobuf-net.Reflection": {
-        "type": "Transitive",
-        "resolved": "3.2.12",
-        "contentHash": "bpNTENWPqP2mx1sJJ5C6qZ2xP+f/E3dQF9MYY+xZ+RHxe3sLg+sPyBSCcJDTCY0e4dVIwQ/02gS8m4tVClDoKQ==",
-        "dependencies": {
-          "protobuf-net.Core": "3.2.12"
-        }
+        "resolved": "3.2.52",
+        "contentHash": "zOpGtUo2QTgbsiI0D0yCe8aUTgDPov6kqIu1CDHI6isqhYcAHdirRrdnfsQXmAUfAWx1LwVYGgC6xe6fNS4UAg=="
       },
       "ProtoBufJsonConverter": {
         "type": "Transitive",
-        "resolved": "0.5.0",
-        "contentHash": "jy5vn+hOdYXlCl42VuebHIzvcLvwPLPJFN3bT7hCu8ZMZD1idcfBX3pomVlfDHqYA60dg/vhDlL/EEefYuE4iQ==",
+        "resolved": "0.11.0",
+        "contentHash": "lxvcZQlCtgYZpfm9hhAJVZ1jsPkb9g3fyaAOnQLyEu8MiAowEIdED6jzwfjqLqOhY4AahqnbfRvZ904Ud43X7w==",
         "dependencies": {
           "MetadataReferenceService.Default": "0.0.1",
           "Microsoft.CodeAnalysis.CSharp": "4.8.0",
           "Newtonsoft.Json": "13.0.3",
           "Stef.Validation": "0.1.1",
-          "protobuf-net": "3.2.30",
-          "protobuf-net.Reflection": "3.2.12"
+          "protobuf-net": "3.2.52"
         }
       },
-      "RamlToOpenApiConverter": {
+      "RamlToOpenApiConverter.SourceOnly": {
         "type": "Transitive",
-        "resolved": "0.6.1",
-        "contentHash": "Po3tkv67cXKDKJV+4CB5MAomZVwPB9fdnhAbt0fPIF7cL5O2lzjmI40w3PMwD4f8b6s8mn2yjCvYJd+dGPZyfg==",
-        "dependencies": {
-          "Microsoft.OpenApi.Readers": "1.2.3",
-          "YamlDotNet": "8.1.0"
-        }
+        "resolved": "0.11.0",
+        "contentHash": "uYuENc27+ly789oJITPXGDEjvq/gzXrIZ0STCaN2Gkg6rmYTLPkcQyqXuia6HFzMaNBDEI1+WT5V+G4mYYq6bQ=="
       },
       "RandomDataGenerator.Net": {
         "type": "Transitive",
-        "resolved": "1.0.18",
-        "contentHash": "bz6EjJ/tqCzqURrkpPnu/3hm1/3MDd73Adsv1a+LFbXfNGvcJCZOR5dros3hpNYN1AEi94xmrkvUoT+L3CqbCw==",
+        "resolved": "1.0.19",
+        "contentHash": "5VbGD7ZVmrclpJk/5es9xNJoNB13qBZtSeX669IqUUKh5M3/w7f0N8y/HGvpsNnEhuzFXVvh2N2tkdzzl2K5Jw==",
         "dependencies": {
           "Fare": "2.2.1",
           "Stef.Validation": "0.1.1"
@@ -8508,8 +8425,8 @@
       },
       "SharpYaml": {
         "type": "Transitive",
-        "resolved": "1.6.5",
-        "contentHash": "z4MKt+NxdGE5BsmNDNkcTylNx6evl9kvia/ER3jfBf+j2mLUUDz8pTbzoQLCTULR02tziDtX1Ij+eQcAey11Gw=="
+        "resolved": "2.1.3",
+        "contentHash": "qd6kDo2uZPG/AvQ3NS2CXr7fDtP+rjiNQ81No3mFGpn41DcG0FEklgnj/j5hVhgQ6YTgTYbvyzkdDnvT+RtuLQ=="
       },
       "SimMetrics.Net": {
         "type": "Transitive",
@@ -8551,11 +8468,6 @@
         "resolved": "10.0.0",
         "contentHash": "M1eb3nfXntaRJPrrMVM9EFS8I1bDTnt0uvUS6QP/SicZf/ZZjydMD5NiXxfmwW/uQwaMDP/yX2P+zQN1NBHChg=="
       },
-      "System.Linq.Dynamic.Core": {
-        "type": "Transitive",
-        "resolved": "1.3.12",
-        "contentHash": "uriIEVgq1Wp1wcGohFkS4VESynM2za9BhCH/Vtaxtq8cwvRCobjq9ZLnCrzRLwtJqexKRaH2ItBZwuMRISsclw=="
-      },
       "System.Security.Permissions": {
         "type": "Transitive",
         "resolved": "8.0.0",
@@ -8574,33 +8486,101 @@
         "resolved": "8.0.0",
         "contentHash": "Obg3a90MkOw9mYKxrardLpY2u0axDMrSmy4JCdq2cYbelM2cUwmUir5Bomvd1yxmPL9h5LVHU1tuKBZpUjfASg=="
       },
-      "TinyMapper": {
+      "TinyMapper.Signed": {
         "type": "Transitive",
-        "resolved": "3.0.3",
-        "contentHash": "a070h+NbFjMMclmWjEjGDnihUs4wE3ykx7R4BG7Oo38Jf66spzc3h3CbvbJYFlkbYl65dt5vbJFFH72vFdRr1A=="
+        "resolved": "4.0.0",
+        "contentHash": "W5uc9QXp8PUgP3VQ1Qyt3vK8ptyjj38tJ7nEAtRKA6R/4e6+2gsgYrAmRg9fCK1hhe3E0yeAm5acC14qx2CINg=="
       },
       "WireMock.Net.Abstractions": {
         "type": "Transitive",
-        "resolved": "1.6.9",
-        "contentHash": "cVhGa1mx1RyJKVB6egHXZQEW0tp5LnlglzA+msqbV6Y/G+27Wm1CO08r8y8enyKnV8CyL0/EG6cfjs8FIwD5dA=="
+        "resolved": "1.21.0",
+        "contentHash": "H3U3NLBOJVbffSzKNN9o/TDOyn5hCE6bLxEsSRkEj91IIs9ot9IbpzGCDzsoQjB62e2O+Un9KVU/+8eebygF0Q=="
+      },
+      "WireMock.Net.GraphQL": {
+        "type": "Transitive",
+        "resolved": "1.21.0",
+        "contentHash": "B7+zLoGD/Ek2mW4o8bu0gHxPrJX0zM/RnlD/ttVKgJhB4FWQiCXpeNOqAxYv+H2DtIXYYPe/n+beqyWqpc2qqw==",
+        "dependencies": {
+          "GraphQL.NewtonsoftJson": "8.2.1",
+          "WireMock.Net.Shared": "1.21.0"
+        }
+      },
+      "WireMock.Net.MimePart": {
+        "type": "Transitive",
+        "resolved": "1.21.0",
+        "contentHash": "0oGq7Q+QtZH0ZBH6vkdOh3/+06YKiwLckCN1o2UWucSCaZt998UjEexGih9ewATYa+kJtfSodbtSr/bS/N1GeA==",
+        "dependencies": {
+          "Stef.Validation": "0.1.1",
+          "WireMock.Net.Shared": "1.21.0"
+        }
+      },
+      "WireMock.Net.Minimal": {
+        "type": "Transitive",
+        "resolved": "1.21.0",
+        "contentHash": "vGbnQyQEeH24Qdjy89ScQpfZ9EfqXQuB7uH5xS0a7xa6WAOF3WRS9hkLtzwDXgdaYh8cm1DzHiCWEcSyyr14Bw==",
+        "dependencies": {
+          "AnyOf": "0.4.0",
+          "Handlebars.Net.Helpers.Xslt": "2.5.2",
+          "JmesPath.Net": "1.0.330",
+          "JsonConverter.Abstractions": "0.7.0",
+          "Microsoft.IdentityModel.Protocols.OpenIdConnect": "6.34.0",
+          "NJsonSchema.Extensions": "0.1.0",
+          "NSwag.Core": "13.16.1",
+          "Newtonsoft.Json": "13.0.3",
+          "Scriban.Signed": "5.5.0",
+          "SimMetrics.Net": "1.0.5",
+          "TinyMapper.Signed": "4.0.0",
+          "WireMock.Net.OpenApiParser": "1.21.0",
+          "WireMock.Net.Shared": "1.21.0",
+          "WireMock.Org.Abstractions": "1.21.0"
+        }
       },
       "WireMock.Net.OpenApiParser": {
         "type": "Transitive",
-        "resolved": "1.6.9",
-        "contentHash": "Z1HE2mBfpm6rxyofYpcRxM3Wi2d5V1FyITt97kU2/GEZ6czp9Bc6bcHliPRp+G6BYxCU6kPdHD4tnDINypo11Q==",
+        "resolved": "1.21.0",
+        "contentHash": "8oJBn8PfrfynakDPXeut781sLBSzDGRl8RK9lKVILbipwGg0pyiiyjF0VzzX/J25oxNkpMtz72ZorrCeL9Wrig==",
         "dependencies": {
-          "Microsoft.OpenApi.Readers": "1.2.3",
           "Newtonsoft.Json": "13.0.3",
-          "RamlToOpenApiConverter": "0.6.1",
-          "RandomDataGenerator.Net": "1.0.18",
+          "RamlToOpenApiConverter.SourceOnly": "0.11.0",
+          "RandomDataGenerator.Net": "1.0.19",
+          "SharpYaml": "2.1.3",
           "Stef.Validation": "0.1.1",
-          "WireMock.Net.Abstractions": "1.6.9"
+          "WireMock.Net.Abstractions": "1.21.0",
+          "YamlDotNet": "16.3.0"
+        }
+      },
+      "WireMock.Net.ProtoBuf": {
+        "type": "Transitive",
+        "resolved": "1.21.0",
+        "contentHash": "+Z5PTh+caud7WW2hmFEeRruNeB0MkhftEX8IjJdOXBIB0Egwyw+WMLbqPRFJOlgTteY6qUcaEZqyOclA8s80Vg==",
+        "dependencies": {
+          "ProtoBufJsonConverter": "0.11.0",
+          "WireMock.Net.Shared": "1.21.0"
+        }
+      },
+      "WireMock.Net.Shared": {
+        "type": "Transitive",
+        "resolved": "1.21.0",
+        "contentHash": "MEI+aqCg+xf6BPNeJtoF84mw3GU/0qVy4TkiexMj9Z4jkY9C/fi+WEa7r8sMt6LaHFyWBRDO8+0dKRjcp0V0Eg==",
+        "dependencies": {
+          "AnyOf": "0.4.0",
+          "Handlebars.Net.Helpers": "2.5.2",
+          "Handlebars.Net.Helpers.Humanizer": "2.5.2",
+          "Handlebars.Net.Helpers.Json": "2.5.2",
+          "Handlebars.Net.Helpers.Random": "2.5.2",
+          "Handlebars.Net.Helpers.XPath": "2.5.2",
+          "Handlebars.Net.Helpers.Xeger": "2.5.2",
+          "JsonConverter.Abstractions": "0.7.0",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "1.1.0",
+          "Newtonsoft.Json": "13.0.3",
+          "Stef.Validation": "0.1.1",
+          "WireMock.Net.Abstractions": "1.21.0"
         }
       },
       "WireMock.Org.Abstractions": {
         "type": "Transitive",
-        "resolved": "1.6.9",
-        "contentHash": "urejAMTkDmvF21QuoS4F6D7eT+6R6VzZSUyuQNkJaBHRA3SF9s/DUjVK/EmqKKOj6zvLf6HiuKr2Kh95zxRjPA=="
+        "resolved": "1.21.0",
+        "contentHash": "kv0KlCQdB9ne0c6obpYGSqhipVpCIewICNHlUbcMI1jdrwvTm9bsM0ddZIa0kdug3L2b+wCXpsI2XlsFezqZTA=="
       },
       "XPath2": {
         "type": "Transitive",
@@ -8618,8 +8598,8 @@
       },
       "YamlDotNet": {
         "type": "Transitive",
-        "resolved": "8.1.0",
-        "contentHash": "U8UtsQJ7s6sHwt/4G7q6af0CuMzjPQcuS7/KuxqoLdDdMzwBilPldI0T3pUVwWYqrWfd3veokCrDyrGH/0tWAQ=="
+        "resolved": "16.3.0",
+        "contentHash": "SgMOdxbz8X65z8hraIs6hOEdnkH6hESTAIUa7viEngHOYaH+6q5XJmwr1+yb9vJpNQ19hCQY69xbFsLtXpobQA=="
       },
       "hangy.NLog.Targets.ApplicationInsights": {
         "type": "Project",
@@ -8885,34 +8865,14 @@
       },
       "WireMock.Net": {
         "type": "Direct",
-        "requested": "[1.6.9, )",
-        "resolved": "1.6.9",
-        "contentHash": "nPr9GEqTBBh/AuVHqAUcMYmq+DEnCEr2pUo0MbzzeV1FBKw2O+dfO8CuE8c/KvPQcY67gWeEPeKvKucHkCZHlg==",
+        "requested": "[1.21.0, )",
+        "resolved": "1.21.0",
+        "contentHash": "37yaoueEXrlKKI4T/uF5jFTnjF3PXGRER0VYK+igmJrGJZZSDyAP2xFZLuBNikXyrPVV2y1yNMjWeNLRx+Djyg==",
         "dependencies": {
-          "AnyOf": "0.4.0",
-          "GraphQL.NewtonsoftJson": "8.2.1",
-          "Handlebars.Net.Helpers": "2.4.6",
-          "Handlebars.Net.Helpers.DynamicLinq": "2.4.6",
-          "Handlebars.Net.Helpers.Humanizer": "2.4.6",
-          "Handlebars.Net.Helpers.Json": "2.4.6",
-          "Handlebars.Net.Helpers.Random": "2.4.6",
-          "Handlebars.Net.Helpers.XPath": "2.4.6",
-          "Handlebars.Net.Helpers.Xeger": "2.4.6",
-          "Handlebars.Net.Helpers.Xslt": "2.4.6",
-          "JmesPath.Net": "1.0.330",
-          "JsonConverter.Abstractions": "0.7.0",
-          "Microsoft.IdentityModel.Protocols.OpenIdConnect": "6.34.0",
-          "MimeKitLite": "4.1.0.1",
-          "NJsonSchema.Extensions": "0.1.0",
-          "NSwag.Core": "13.16.1",
-          "Newtonsoft.Json": "13.0.3",
-          "ProtoBufJsonConverter": "0.5.0",
-          "Scriban.Signed": "5.5.0",
-          "SimMetrics.Net": "1.0.5",
-          "TinyMapper": "3.0.3",
-          "WireMock.Net.Abstractions": "1.6.9",
-          "WireMock.Net.OpenApiParser": "1.6.9",
-          "WireMock.Org.Abstractions": "1.6.9"
+          "WireMock.Net.GraphQL": "1.21.0",
+          "WireMock.Net.MimePart": "1.21.0",
+          "WireMock.Net.Minimal": "1.21.0",
+          "WireMock.Net.ProtoBuf": "1.21.0"
         }
       },
       "AnyOf": {
@@ -8960,89 +8920,78 @@
       },
       "Handlebars.Net.Helpers": {
         "type": "Transitive",
-        "resolved": "2.4.6",
-        "contentHash": "HnJ5aN3vwtp45dEAcaJLiDTCq9LxZRfVYtH5GkWfbe8wbqp6J3AXk725f4SdPVMr0cEakar1JkE828Phys7wGg==",
+        "resolved": "2.5.2",
+        "contentHash": "jgxIctjCNNBmSJRakKkZ71gc9uMpBzw5bbmedxbFxzoPGY8VMkACKa2iJyaJofLyxUZUUhACQTbBTyIrIgZ2+Q==",
         "dependencies": {
-          "Handlebars.Net.Helpers.Core": "2.4.6"
+          "Handlebars.Net.Helpers.Core": "2.5.2"
         }
       },
       "Handlebars.Net.Helpers.Core": {
         "type": "Transitive",
-        "resolved": "2.4.6",
-        "contentHash": "Hhx+t0BfRNqZjK0OqshMOxmAgWYhxfCqWvo2MehgckfYAp0myTkQMuD0pWk4e753bLhYTQPRs56gsSEvOLR0JA==",
+        "resolved": "2.5.2",
+        "contentHash": "ruZrZfH/nCu3m5reG5URtdCHA0X8i4i2AumHGKKB3g9c9h3D5eMDGXWeT277Nw64OHNwS4+QZxxJiJ4OYkaIKw==",
         "dependencies": {
           "Handlebars.Net": "2.1.6",
           "Stef.Validation": "0.1.1"
         }
       },
-      "Handlebars.Net.Helpers.DynamicLinq": {
-        "type": "Transitive",
-        "resolved": "2.4.6",
-        "contentHash": "AAmTOaKjimzBoVvWteOQkgUVs2O6Kl4dWYX+bTrgUANHDwOQJYmCubi1a+KlFaTif/qDP51M9qKJdcXq3fmtvA==",
-        "dependencies": {
-          "Handlebars.Net.Helpers": "2.4.6",
-          "Handlebars.Net.Helpers.Core": "2.4.6",
-          "Handlebars.Net.Helpers.Json": "2.4.6",
-          "System.Linq.Dynamic.Core": "1.3.12"
-        }
-      },
       "Handlebars.Net.Helpers.Humanizer": {
         "type": "Transitive",
-        "resolved": "2.4.6",
-        "contentHash": "Q2HlgQi5V8MIEQy2QbOMPqqrijvqbFepiNqk0Oxyn0Xz/UJNy601QLT7/YtFswk08L0NJ9K2FNJ0H9mdHPqdlw==",
+        "resolved": "2.5.2",
+        "contentHash": "uohCZ76ae+7fo55ULtwTk4G76N8VnBHdYjcV/q3oVBfNmVJV3ng7arFMpgdb64t0ZkymZSEoY/tBgzQ7ERWdBQ==",
         "dependencies": {
-          "Handlebars.Net.Helpers": "2.4.6",
-          "Handlebars.Net.Helpers.Core": "2.4.6",
+          "Handlebars.Net.Helpers": "2.5.2",
+          "Handlebars.Net.Helpers.Core": "2.5.2",
           "Humanizer": "2.14.1"
         }
       },
       "Handlebars.Net.Helpers.Json": {
         "type": "Transitive",
-        "resolved": "2.4.6",
-        "contentHash": "8olzUUgeoXlVTk6G4dBlff63SBY4QfHRnsIIX10Q2e6p64qQ6ylDFQ8PGerv6KKDY75YoC+s1E7hdTYB2fihgg==",
+        "resolved": "2.5.2",
+        "contentHash": "uJRc55nIWXf1J+pWVYqcI1Jg4BsIJfEk1vccXVahKjCeB159fzhJeSCchhQddSbd6ihSj92u6bSCqXnV+q5qdQ==",
         "dependencies": {
-          "Handlebars.Net.Helpers": "2.4.6",
-          "Handlebars.Net.Helpers.Core": "2.4.6",
+          "Handlebars.Net.Helpers": "2.5.2",
+          "Handlebars.Net.Helpers.Core": "2.5.2",
           "Newtonsoft.Json": "13.0.3"
         }
       },
       "Handlebars.Net.Helpers.Random": {
         "type": "Transitive",
-        "resolved": "2.4.6",
-        "contentHash": "1IRLwzsyEUaIP9xj/0aCGWojm1GE9mtkeJlyFaxzQjNR7HLiHdmVfeoRX+8qxLIrkxffEhxqjxQBhKTRSzanzg==",
+        "resolved": "2.5.2",
+        "contentHash": "eRoi7x0Jvik3rSe1da3o0QNRoWE1YCCT4H3Gfd/D6EkcxbefqmyR4mKqkDG+e9SzEgFwbjvWqI1wx4Mea8Jiuw==",
         "dependencies": {
-          "Handlebars.Net.Helpers": "2.4.6",
-          "Handlebars.Net.Helpers.Core": "2.4.6",
-          "RandomDataGenerator.Net": "1.0.18"
+          "Handlebars.Net.Helpers": "2.5.2",
+          "Handlebars.Net.Helpers.Core": "2.5.2",
+          "RandomDataGenerator.Net": "1.0.19"
         }
       },
       "Handlebars.Net.Helpers.Xeger": {
         "type": "Transitive",
-        "resolved": "2.4.6",
-        "contentHash": "8irxKofQL6WxvuMZrO/3c7xz5R0pL0j0f8bv82h0RDjNCKXBVM/UQSTzpKlCR+6G4eRRQMb+CDaGYsO7XeHYNQ==",
+        "resolved": "2.5.2",
+        "contentHash": "rmhJfzuHAZMVCMpkDT3+mRCJQyk8xoJtj/9IUfo3bOEXE2M3HPgNfwvHlDcg0oGFC8eMXW+lOrYTQK2+UyvoKA==",
         "dependencies": {
           "Fare": "2.2.1",
-          "Handlebars.Net.Helpers": "2.4.6",
-          "Handlebars.Net.Helpers.Core": "2.4.6"
+          "Handlebars.Net.Helpers": "2.5.2",
+          "Handlebars.Net.Helpers.Core": "2.5.2"
         }
       },
       "Handlebars.Net.Helpers.XPath": {
         "type": "Transitive",
-        "resolved": "2.4.6",
-        "contentHash": "LuOeT9DfUfyG+gRZE3CAzj1gAyZ40DfqYLn+n8mtk3rwCCmLLVTc25zoBQr4bNzHdH5EJSzzsUSVGmePE59HRw==",
+        "resolved": "2.5.2",
+        "contentHash": "miJUZQ3CS11YDMxwsCd4YyNI2hKDwkwCHEVtung0N23opIotJXXCpJcyiwwh5RbdbJhiCYaVfMaD3xAyZLrkmg==",
         "dependencies": {
-          "Handlebars.Net.Helpers": "2.4.6",
-          "Handlebars.Net.Helpers.Core": "2.4.6",
+          "Handlebars.Net.Helpers": "2.5.2",
+          "Handlebars.Net.Helpers.Core": "2.5.2",
           "XPath2.Extensions": "1.1.5"
         }
       },
       "Handlebars.Net.Helpers.Xslt": {
         "type": "Transitive",
-        "resolved": "2.4.6",
-        "contentHash": "feDTYeIP+xzIIT2GZrktvJKZVf1Fu3jPJM4Ho9W8QggkZU4ukMlR7Fx0jxAwJ/T5Z7LEz4AFMJriTFNeoR2SVg==",
+        "resolved": "2.5.2",
+        "contentHash": "x8jsTWHEPLn5HLskYQ8AKE5hcaPzT0H/C2s55tvBpR29xCxaA2YJyERpYly0xdc/IbbChNnt5eOlWdebMf/wjQ==",
         "dependencies": {
-          "Handlebars.Net.Helpers": "2.4.6",
-          "Handlebars.Net.Helpers.Core": "2.4.6"
+          "Handlebars.Net.Helpers": "2.5.2",
+          "Handlebars.Net.Helpers.Core": "2.5.2"
         }
       },
       "Humanizer": {
@@ -9565,6 +9514,14 @@
         "resolved": "2.0.0",
         "contentHash": "QcZrCETsBJqy/vQpFtJc+jSXQ0K5sucQ6NUFbTNVHD4vfZZOwjZ/3sBzczkC4DityhD3AVO/+K/+9ioLs1AgRA=="
       },
+      "Microsoft.Extensions.DependencyInjection.Abstractions": {
+        "type": "Transitive",
+        "resolved": "1.1.0",
+        "contentHash": "2luhjVaWZd8Wmr2KUJcLNAN+iZgezTyfamLG6Lo5FVYY1LYaS7UFOmNtApHGVIytWWtuXSk4ea0t2Vx0HgF5fg==",
+        "dependencies": {
+          "NETStandard.Library": "1.6.1"
+        }
+      },
       "Microsoft.Extensions.DependencyModel": {
         "type": "Transitive",
         "resolved": "6.0.2",
@@ -9627,20 +9584,6 @@
         "resolved": "1.1.0",
         "contentHash": "kz0PEW2lhqygehI/d6XsPCQzD7ff7gUJaVGPVETX611eadGsA3A877GdSlU0LRVMCTH/+P3o2iDTak+S08V2+A=="
       },
-      "Microsoft.OpenApi": {
-        "type": "Transitive",
-        "resolved": "1.2.3",
-        "contentHash": "Nug3rO+7Kl5/SBAadzSMAVgqDlfGjJZ0GenQrLywJ84XGKO0uRqkunz5Wyl0SDwcR71bAATXvSdbdzPrYRYKGw=="
-      },
-      "Microsoft.OpenApi.Readers": {
-        "type": "Transitive",
-        "resolved": "1.2.3",
-        "contentHash": "r1KBRewLxmCYuQ3fBksYQ2u/D1FtsN3zlPvOsZoiugzVgJbtq1wFD25Rgh/UAonUXgTpmlHciM5WHMavR9bk2g==",
-        "dependencies": {
-          "Microsoft.OpenApi": "1.2.3",
-          "SharpYaml": "1.6.5"
-        }
-      },
       "Microsoft.QualityTools.Testing.Fakes": {
         "type": "Transitive",
         "resolved": "18.1.1",
@@ -9701,11 +9644,6 @@
         "resolved": "18.0.1",
         "contentHash": "qT/mwMcLF9BieRkzOBPL2qCopl8hQu6A1P7JWAoj/FMu5i9vds/7cjbJ/LLtaiwWevWLAeD5v5wjQJ/l6jvhWQ=="
       },
-      "MimeKitLite": {
-        "type": "Transitive",
-        "resolved": "4.1.0.1",
-        "contentHash": "XJHU1/pY5c/y3aVZwp6ARF7ciIEeEamPJVvWGo1v10X6oC3FHyy5oFum9JWrIqCuzHoMrT8SdeMZ0iUzBGZMsw=="
-      },
       "MSTest.Analyzers": {
         "type": "Transitive",
         "resolved": "4.0.2",
@@ -9758,51 +9696,38 @@
       },
       "protobuf-net": {
         "type": "Transitive",
-        "resolved": "3.2.30",
-        "contentHash": "C/UTlmxEJHAHpqm8xQK1UyJKaIynVCSNG4mVrbLgnZ7ccH28nN49O8iMJvKEodTgVbnimvy+3mIiAdW6mATwnw==",
+        "resolved": "3.2.52",
+        "contentHash": "XbZurNU3B/VaL/5OJ0kshO+AWxsZroI1saKuLfZpDwH2ngb2K9bdF1nIW6elFOViZw7TQCmfVZapxrMKCDqecQ==",
         "dependencies": {
-          "protobuf-net.Core": "3.2.30"
+          "protobuf-net.Core": "3.2.52"
         }
       },
       "protobuf-net.Core": {
         "type": "Transitive",
-        "resolved": "3.2.30",
-        "contentHash": "v2ZxxYrz+X212ukSx+uqkLuPu414bvmSAnTyf+PBUKR9ENJxO4P/csorA/27456MCp1JNoMssDj/f91RDiwBfQ=="
-      },
-      "protobuf-net.Reflection": {
-        "type": "Transitive",
-        "resolved": "3.2.12",
-        "contentHash": "bpNTENWPqP2mx1sJJ5C6qZ2xP+f/E3dQF9MYY+xZ+RHxe3sLg+sPyBSCcJDTCY0e4dVIwQ/02gS8m4tVClDoKQ==",
-        "dependencies": {
-          "protobuf-net.Core": "3.2.12"
-        }
+        "resolved": "3.2.52",
+        "contentHash": "zOpGtUo2QTgbsiI0D0yCe8aUTgDPov6kqIu1CDHI6isqhYcAHdirRrdnfsQXmAUfAWx1LwVYGgC6xe6fNS4UAg=="
       },
       "ProtoBufJsonConverter": {
         "type": "Transitive",
-        "resolved": "0.5.0",
-        "contentHash": "jy5vn+hOdYXlCl42VuebHIzvcLvwPLPJFN3bT7hCu8ZMZD1idcfBX3pomVlfDHqYA60dg/vhDlL/EEefYuE4iQ==",
+        "resolved": "0.11.0",
+        "contentHash": "lxvcZQlCtgYZpfm9hhAJVZ1jsPkb9g3fyaAOnQLyEu8MiAowEIdED6jzwfjqLqOhY4AahqnbfRvZ904Ud43X7w==",
         "dependencies": {
           "MetadataReferenceService.Default": "0.0.1",
           "Microsoft.CodeAnalysis.CSharp": "4.8.0",
           "Newtonsoft.Json": "13.0.3",
           "Stef.Validation": "0.1.1",
-          "protobuf-net": "3.2.30",
-          "protobuf-net.Reflection": "3.2.12"
+          "protobuf-net": "3.2.52"
         }
       },
-      "RamlToOpenApiConverter": {
+      "RamlToOpenApiConverter.SourceOnly": {
         "type": "Transitive",
-        "resolved": "0.6.1",
-        "contentHash": "Po3tkv67cXKDKJV+4CB5MAomZVwPB9fdnhAbt0fPIF7cL5O2lzjmI40w3PMwD4f8b6s8mn2yjCvYJd+dGPZyfg==",
-        "dependencies": {
-          "Microsoft.OpenApi.Readers": "1.2.3",
-          "YamlDotNet": "8.1.0"
-        }
+        "resolved": "0.11.0",
+        "contentHash": "uYuENc27+ly789oJITPXGDEjvq/gzXrIZ0STCaN2Gkg6rmYTLPkcQyqXuia6HFzMaNBDEI1+WT5V+G4mYYq6bQ=="
       },
       "RandomDataGenerator.Net": {
         "type": "Transitive",
-        "resolved": "1.0.18",
-        "contentHash": "bz6EjJ/tqCzqURrkpPnu/3hm1/3MDd73Adsv1a+LFbXfNGvcJCZOR5dros3hpNYN1AEi94xmrkvUoT+L3CqbCw==",
+        "resolved": "1.0.19",
+        "contentHash": "5VbGD7ZVmrclpJk/5es9xNJoNB13qBZtSeX669IqUUKh5M3/w7f0N8y/HGvpsNnEhuzFXVvh2N2tkdzzl2K5Jw==",
         "dependencies": {
           "Fare": "2.2.1",
           "Stef.Validation": "0.1.1"
@@ -9815,8 +9740,8 @@
       },
       "SharpYaml": {
         "type": "Transitive",
-        "resolved": "1.6.5",
-        "contentHash": "z4MKt+NxdGE5BsmNDNkcTylNx6evl9kvia/ER3jfBf+j2mLUUDz8pTbzoQLCTULR02tziDtX1Ij+eQcAey11Gw=="
+        "resolved": "2.1.3",
+        "contentHash": "qd6kDo2uZPG/AvQ3NS2CXr7fDtP+rjiNQ81No3mFGpn41DcG0FEklgnj/j5hVhgQ6YTgTYbvyzkdDnvT+RtuLQ=="
       },
       "SimMetrics.Net": {
         "type": "Transitive",
@@ -9858,11 +9783,6 @@
         "resolved": "10.0.0",
         "contentHash": "M1eb3nfXntaRJPrrMVM9EFS8I1bDTnt0uvUS6QP/SicZf/ZZjydMD5NiXxfmwW/uQwaMDP/yX2P+zQN1NBHChg=="
       },
-      "System.Linq.Dynamic.Core": {
-        "type": "Transitive",
-        "resolved": "1.3.12",
-        "contentHash": "uriIEVgq1Wp1wcGohFkS4VESynM2za9BhCH/Vtaxtq8cwvRCobjq9ZLnCrzRLwtJqexKRaH2ItBZwuMRISsclw=="
-      },
       "System.Security.Permissions": {
         "type": "Transitive",
         "resolved": "8.0.0",
@@ -9881,33 +9801,101 @@
         "resolved": "8.0.0",
         "contentHash": "Obg3a90MkOw9mYKxrardLpY2u0axDMrSmy4JCdq2cYbelM2cUwmUir5Bomvd1yxmPL9h5LVHU1tuKBZpUjfASg=="
       },
-      "TinyMapper": {
+      "TinyMapper.Signed": {
         "type": "Transitive",
-        "resolved": "3.0.3",
-        "contentHash": "a070h+NbFjMMclmWjEjGDnihUs4wE3ykx7R4BG7Oo38Jf66spzc3h3CbvbJYFlkbYl65dt5vbJFFH72vFdRr1A=="
+        "resolved": "4.0.0",
+        "contentHash": "W5uc9QXp8PUgP3VQ1Qyt3vK8ptyjj38tJ7nEAtRKA6R/4e6+2gsgYrAmRg9fCK1hhe3E0yeAm5acC14qx2CINg=="
       },
       "WireMock.Net.Abstractions": {
         "type": "Transitive",
-        "resolved": "1.6.9",
-        "contentHash": "cVhGa1mx1RyJKVB6egHXZQEW0tp5LnlglzA+msqbV6Y/G+27Wm1CO08r8y8enyKnV8CyL0/EG6cfjs8FIwD5dA=="
+        "resolved": "1.21.0",
+        "contentHash": "H3U3NLBOJVbffSzKNN9o/TDOyn5hCE6bLxEsSRkEj91IIs9ot9IbpzGCDzsoQjB62e2O+Un9KVU/+8eebygF0Q=="
+      },
+      "WireMock.Net.GraphQL": {
+        "type": "Transitive",
+        "resolved": "1.21.0",
+        "contentHash": "B7+zLoGD/Ek2mW4o8bu0gHxPrJX0zM/RnlD/ttVKgJhB4FWQiCXpeNOqAxYv+H2DtIXYYPe/n+beqyWqpc2qqw==",
+        "dependencies": {
+          "GraphQL.NewtonsoftJson": "8.2.1",
+          "WireMock.Net.Shared": "1.21.0"
+        }
+      },
+      "WireMock.Net.MimePart": {
+        "type": "Transitive",
+        "resolved": "1.21.0",
+        "contentHash": "0oGq7Q+QtZH0ZBH6vkdOh3/+06YKiwLckCN1o2UWucSCaZt998UjEexGih9ewATYa+kJtfSodbtSr/bS/N1GeA==",
+        "dependencies": {
+          "Stef.Validation": "0.1.1",
+          "WireMock.Net.Shared": "1.21.0"
+        }
+      },
+      "WireMock.Net.Minimal": {
+        "type": "Transitive",
+        "resolved": "1.21.0",
+        "contentHash": "vGbnQyQEeH24Qdjy89ScQpfZ9EfqXQuB7uH5xS0a7xa6WAOF3WRS9hkLtzwDXgdaYh8cm1DzHiCWEcSyyr14Bw==",
+        "dependencies": {
+          "AnyOf": "0.4.0",
+          "Handlebars.Net.Helpers.Xslt": "2.5.2",
+          "JmesPath.Net": "1.0.330",
+          "JsonConverter.Abstractions": "0.7.0",
+          "Microsoft.IdentityModel.Protocols.OpenIdConnect": "6.34.0",
+          "NJsonSchema.Extensions": "0.1.0",
+          "NSwag.Core": "13.16.1",
+          "Newtonsoft.Json": "13.0.3",
+          "Scriban.Signed": "5.5.0",
+          "SimMetrics.Net": "1.0.5",
+          "TinyMapper.Signed": "4.0.0",
+          "WireMock.Net.OpenApiParser": "1.21.0",
+          "WireMock.Net.Shared": "1.21.0",
+          "WireMock.Org.Abstractions": "1.21.0"
+        }
       },
       "WireMock.Net.OpenApiParser": {
         "type": "Transitive",
-        "resolved": "1.6.9",
-        "contentHash": "Z1HE2mBfpm6rxyofYpcRxM3Wi2d5V1FyITt97kU2/GEZ6czp9Bc6bcHliPRp+G6BYxCU6kPdHD4tnDINypo11Q==",
+        "resolved": "1.21.0",
+        "contentHash": "8oJBn8PfrfynakDPXeut781sLBSzDGRl8RK9lKVILbipwGg0pyiiyjF0VzzX/J25oxNkpMtz72ZorrCeL9Wrig==",
         "dependencies": {
-          "Microsoft.OpenApi.Readers": "1.2.3",
           "Newtonsoft.Json": "13.0.3",
-          "RamlToOpenApiConverter": "0.6.1",
-          "RandomDataGenerator.Net": "1.0.18",
+          "RamlToOpenApiConverter.SourceOnly": "0.11.0",
+          "RandomDataGenerator.Net": "1.0.19",
+          "SharpYaml": "2.1.3",
           "Stef.Validation": "0.1.1",
-          "WireMock.Net.Abstractions": "1.6.9"
+          "WireMock.Net.Abstractions": "1.21.0",
+          "YamlDotNet": "16.3.0"
+        }
+      },
+      "WireMock.Net.ProtoBuf": {
+        "type": "Transitive",
+        "resolved": "1.21.0",
+        "contentHash": "+Z5PTh+caud7WW2hmFEeRruNeB0MkhftEX8IjJdOXBIB0Egwyw+WMLbqPRFJOlgTteY6qUcaEZqyOclA8s80Vg==",
+        "dependencies": {
+          "ProtoBufJsonConverter": "0.11.0",
+          "WireMock.Net.Shared": "1.21.0"
+        }
+      },
+      "WireMock.Net.Shared": {
+        "type": "Transitive",
+        "resolved": "1.21.0",
+        "contentHash": "MEI+aqCg+xf6BPNeJtoF84mw3GU/0qVy4TkiexMj9Z4jkY9C/fi+WEa7r8sMt6LaHFyWBRDO8+0dKRjcp0V0Eg==",
+        "dependencies": {
+          "AnyOf": "0.4.0",
+          "Handlebars.Net.Helpers": "2.5.2",
+          "Handlebars.Net.Helpers.Humanizer": "2.5.2",
+          "Handlebars.Net.Helpers.Json": "2.5.2",
+          "Handlebars.Net.Helpers.Random": "2.5.2",
+          "Handlebars.Net.Helpers.XPath": "2.5.2",
+          "Handlebars.Net.Helpers.Xeger": "2.5.2",
+          "JsonConverter.Abstractions": "0.7.0",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "1.1.0",
+          "Newtonsoft.Json": "13.0.3",
+          "Stef.Validation": "0.1.1",
+          "WireMock.Net.Abstractions": "1.21.0"
         }
       },
       "WireMock.Org.Abstractions": {
         "type": "Transitive",
-        "resolved": "1.6.9",
-        "contentHash": "urejAMTkDmvF21QuoS4F6D7eT+6R6VzZSUyuQNkJaBHRA3SF9s/DUjVK/EmqKKOj6zvLf6HiuKr2Kh95zxRjPA=="
+        "resolved": "1.21.0",
+        "contentHash": "kv0KlCQdB9ne0c6obpYGSqhipVpCIewICNHlUbcMI1jdrwvTm9bsM0ddZIa0kdug3L2b+wCXpsI2XlsFezqZTA=="
       },
       "XPath2": {
         "type": "Transitive",
@@ -9925,8 +9913,8 @@
       },
       "YamlDotNet": {
         "type": "Transitive",
-        "resolved": "8.1.0",
-        "contentHash": "U8UtsQJ7s6sHwt/4G7q6af0CuMzjPQcuS7/KuxqoLdDdMzwBilPldI0T3pUVwWYqrWfd3veokCrDyrGH/0tWAQ=="
+        "resolved": "16.3.0",
+        "contentHash": "SgMOdxbz8X65z8hraIs6hOEdnkH6hESTAIUa7viEngHOYaH+6q5XJmwr1+yb9vJpNQ19hCQY69xbFsLtXpobQA=="
       },
       "hangy.NLog.Targets.ApplicationInsights": {
         "type": "Project",
