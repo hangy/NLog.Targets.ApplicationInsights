@@ -22,9 +22,9 @@
       },
       "NLog": {
         "type": "Direct",
-        "requested": "[5.5.0, )",
-        "resolved": "5.5.0",
-        "contentHash": "FCH8s7GWlonH5JXV9/EpeNJ8pRZQMVZOSWX3JrHPU8rzdHJhS5+lUGGvJIUOtzkGV1clYBFR0WXOI5FnUwVCMA=="
+        "requested": "[6.1.1, )",
+        "resolved": "6.1.1",
+        "contentHash": "TCIwfAQX2IpZDnqs/+c5jCPnveCG8M6/wFmUk2odjRl0xiocfe4B+4qIvRbVbazSxcS28+Zu14pFeRJE9yAQAQ=="
       },
       "System.Text.Json": {
         "type": "Direct",
