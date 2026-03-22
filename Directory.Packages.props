@@ -6,10 +6,12 @@
   </PropertyGroup>
   <ItemGroup Label="Runtime">
     <PackageVersion Include="Microsoft.ApplicationInsights" Version="2.23.0" />
-    <PackageVersion Include="NLog" Version="5.5.0" />
-    <PackageVersion Include="System.Text.Json" Version="10.0.3" />
+    <PackageVersion Include="NLog" Version="6.1.1" />
+    <PackageVersion Include="System.Text.Json" Version="10.0.5" />
   </ItemGroup>
   <ItemGroup Label="Test">
-    <PackageVersion Include="WireMock.Net" Version="1.25.0" />
+    <PackageVersion Include="WireMock.Net" Version="2.0.0" />
+    <PackageVersion Include="Microsoft.Testing.Extensions.CodeCoverage" Version="18.5.2" />
+    <PackageVersion Include="JsonConverter.Abstractions" Version="0.8.0" />
   </ItemGroup>
 </Project>
