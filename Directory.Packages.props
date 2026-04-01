@@ -6,7 +6,7 @@
   </PropertyGroup>
   <ItemGroup Label="Runtime">
     <PackageVersion Include="Microsoft.ApplicationInsights" Version="2.23.0" />
-    <PackageVersion Include="NLog" Version="6.1.1" />
+    <PackageVersion Include="NLog" Version="6.1.2" />
     <PackageVersion Include="System.Text.Json" Version="10.0.5" />
   </ItemGroup>
   <ItemGroup Label="Test">
