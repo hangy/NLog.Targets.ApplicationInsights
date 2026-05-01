@@ -7,11 +7,11 @@
   <ItemGroup Label="Runtime">
     <PackageVersion Include="Microsoft.ApplicationInsights" Version="2.23.0" />
     <PackageVersion Include="NLog" Version="6.1.2" />
-    <PackageVersion Include="System.Text.Json" Version="10.0.5" />
+    <PackageVersion Include="System.Text.Json" Version="10.0.7" />
   </ItemGroup>
   <ItemGroup Label="Test">
-    <PackageVersion Include="WireMock.Net" Version="2.2.0" />
-    <PackageVersion Include="Microsoft.Testing.Extensions.CodeCoverage" Version="18.5.2" />
-    <PackageVersion Include="JsonConverter.Abstractions" Version="0.8.0" />
+    <PackageVersion Include="WireMock.Net" Version="2.4.0" />
+    <PackageVersion Include="Microsoft.Testing.Extensions.CodeCoverage" Version="18.6.2" />
+    <PackageVersion Include="JsonConverter.Abstractions" Version="0.11.0" />
   </ItemGroup>
 </Project>
