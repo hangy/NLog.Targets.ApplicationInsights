@@ -10,7 +10,7 @@
     <PackageVersion Include="System.Text.Json" Version="10.0.10" />
   </ItemGroup>
   <ItemGroup Label="Test">
-    <PackageVersion Include="WireMock.Net" Version="2.13.0" />
+    <PackageVersion Include="WireMock.Net" Version="2.15.0" />
     <PackageVersion Include="Microsoft.Testing.Extensions.CodeCoverage" Version="18.9.0" />
     <PackageVersion Include="JsonConverter.Abstractions" Version="0.13.0" />
   </ItemGroup>
